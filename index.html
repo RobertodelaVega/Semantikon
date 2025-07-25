@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Abstract Research</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    /* Tipografía serif refinada */
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Libre+Baskerville&display=swap');
+
+    body {
+      font-family: 'Libre Baskerville', serif;
+      max-width: 720px;
+      margin: 4rem auto;
+      line-height: 1.7;
+      font-size: 1.125rem;
+      color: #222;
+      background-color: #f9f9f6;
+      padding: 0 1rem;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+            line-height: 1.3;
+      margin-bottom: 0.5rem;
+      border-bottom: 2px solid #000;
+      display: inline-block;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    p {
+      margin: 1.25rem 0;
+      text-align: justify;
+    }
+
+    .byline {
+      font-style: italic;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #ccc;
+      margin: 3rem 0;
+    }
+
+    blockquote {
+      font-style: italic;
+      border-left: 4px solid #aaa;
+      padding-left: 1rem;
+      margin: 2rem 0;
+    }
+            table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+            .footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+                thead {
+            background-color: #3498db;
+            color: white;
+            font-size: 14px;
+        }
+               iframe {
+            border: 1px solid #ccc; /* Opcional: para ver el borde del iframe */
+            width: 100%; /* El ancho del iframe */
+            height: 650px; /* La altura del iframe, ajusta según el tamaño de tu gráfico */
+        }
+  </style>
+</head>
+<body>
+  <h1>Mapeando diferencias semanticas: Supply Chain, Comercio Exterior y Logística.</h1>
+  <div class="byline">OPT / Oficina de Prospección y Tendencias &mdash; Julio 22, 2025</div>
+
+<p> La evolución de las competencias no solo depende de su formulación interna, sino también del campo disciplinar que las enmarca. Analizar cómo varían semánticamente estas competencias entre áreas permite detectar orientaciones formativas dominantes, sesgos temáticos o vacíos emergentes. Este estudio se sitúa en esa intersección, combinando técnicas de representación semántica con análisis estructurado de rutas. El objetivo es revelar patrones conceptuales que no son evidentes desde la simple lectura textual, pero que influyen directamente en el diseño y convergencia de perfiles profesionales.</p>
+
+<p>Se compara la orientación semántica general de las competencias inferidas en tres campos disciplinarios —Comercio Exterior, Supply Chain Management y Logística<sup id="ref1"><a href="#note1">[1]</a></sup>— a partir de los componentes estructurales de sus rutas: acción, objeto, finalidad y contexto. Para ello, se utiliza un enfoque basado en <em>embeddings</em> semánticos, que transforma texto en vectores numéricos de alta dimensionalidad capaces de capturar el significado contextual.</p>
+
+ <blockquote>
+“Vectorizar textos y calcular similitud entre vectores medios...”
+</blockquote>
+
+<p>A diferencia de un análisis término a término, aquí se calcula un vector promedio por grupo y por dimensión, lo que permite identificar tendencias conceptuales generales, reduciendo la sensibilidad a variaciones léxicas específicas o frases atípicas. Esto permite evaluar la proximidad semántica global entre disciplinas, brindando un marco más tolerante y robusto para analizar convergencias o divergencias en el diseño de competencias.</p>
+
+
+
+<figure style="text-align: center;">
+  <iframe src="sankey_similitud_revistas.html" title="Diagrama de Sankey de Similitud Semántica" width="100%" height="400" style="border:none;"></iframe>
+  <figcaption style="font-size: 0.9em; color: #555;">
+    Figura 1. Diagrama Sankey que representa los flujos semánticos entre los componentes de competencias inferidas: acción, objeto, finalidad y contexto, comparando tres disciplinas.
+  </figcaption>
+</figure>
+
+<h2>Tabla de similitud semántica</h2>
+
+
+<div class="table-container">
+            <table id="similarityTable">
+                <thead>
+                    <tr>
+                        <th>Grupo</th>
+                        <th>Acción</th>
+                        <th>Objeto</th>
+                        <th>Finalidad</th>
+                        <th>Condición</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Comercio Exterior</td>
+                        <td>0.82</td>
+                        <td>0.56</td>
+                        <td>0.72</td>
+                        <td>0.67</td>
+                    </tr>
+                    <tr>
+                        <td>Supply Chain Management</td>
+                        <td>0.79</td>
+                        <td>0.57</td>
+                        <td>0.72</td>
+                        <td>0.62</td>
+                    </tr>
+                    <tr>
+                        <td>Logística</td>
+                        <td>0.79</td>
+                        <td>0.39</td>
+                        <td>0.67</td>
+                        <td>0.60</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="footer">
+            Evaluación de similitudes semánticas - Promedios comparativos
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const table = document.getElementById('similarityTable');
+            const rows = table.getElementsByTagName('tr');
+            
+            // Convertir a array y quitar el header
+            const dataRows = Array.from(rows).slice(1);
+            
+            // Para cada columna (excepto la primera)
+            for (let col = 1; col <= 4; col++) {
+                // Obtener todos los valores de la columna
+                const values = dataRows.map(row => 
+                    parseFloat(row.getElementsByTagName('td')[col].textContent)
+                );
+                
+                // Encontrar el valor máximo
+                const maxValue = Math.max(...values);
+                
+                // Resaltar las celdas con el valor máximo
+                dataRows.forEach(row => {
+                    const cell = row.getElementsByTagName('td')[col];
+                    const cellValue = parseFloat(cell.textContent);
+                    
+                    if (cellValue === maxValue) {
+                        cell.classList.add('highlight');
+                    }
+                });
+            }
+        });
+    </script>
+
+
+
+ <h2>Algunos hallazgos sobre la similitud entre Revistas</h2>
+
+<p>Las revistas de "Comercio Exterior" y "Supply Chain Management" demuestran una conexión temática consistentemente fuerte en todos los aspectos analizados. Sus valores promedio de similitud son los más altos entre los pares, especialmente en 'acción' (0.82-0.83) y 'finalidad' (0.72-0.77). Esto significa que, en cuanto a lo que investigan y los propósitos que buscan, estas dos áreas están muy alineadas. Por ejemplo, las "acciones" investigadas en "Comercio Exterior" son casi idénticas a las de "Supply Chain Management" en promedio, y sus "finalidades" también se solapan significativamente. Esta alta correspondencia resalta la interdependencia práctica y académica entre el movimiento global de bienes y la gestión integral de la cadena de suministro que las engloba.</p>
+
+<p>Por otro lado, la revista de "Logística" muestra una relación más distante con las otras dos, especialmente en el 'objeto' de estudio. Su similitud promedio en 'objeto' (0.39) es considerablemente inferior a la de los otros grupos (0.74), lo que indica que los temas específicos o lo que aborda la logística pura son distintos de los que preocupan al comercio exterior o a la cadena de suministro en su conjunto. Aunque comparte cierta conexión en 'acción' (0.78-0.81) y 'finalidad' (0.67), la "Logística" tiende a tener similitudes promedio más bajas con "Supply Chain Management" en 'condición' (0.54) y 'acción' (0.76). Esto sugiere que, si bien la logística es un pilar fundamental, su enfoque es más especializado en la eficiencia del movimiento y almacenamiento de bienes, diferenciándose de las perspectivas más amplias de la gestión global de la cadena de suministro y las complejidades del comercio exterior.</p>
+
+
+ <h2>Extracto de componentes de abstracts de las revistas.</h2>
+
+
+<iframe src="dataframe_table.html" title="Tabla de Datos de Revistas"></iframe>
+
+  <hr>
+
+  <p style="font-size: 0.7rem; color: #666;">© 2025 OPT/DuocUC. All rights reserved.</p>
+
+  <p id="note1"><strong>[1]</strong> <table style="width:100%; border-collapse: collapse; font-size: 0.7em;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #000; padding: 6px;">Revista</th>
+      <th style="border: 1px solid #000; padding: 6px;">Descripción</th>
+      <th style="border: 1px solid #000; padding: 6px;">Factor de Impacto</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #000; padding: 6px;">Journal of Business Logistics</td>
+      <td style="border: 1px solid #000; padding: 6px;">Revista centrada en investigación aplicada y teórica sobre logística, desempeño organizacional y transformación digital en cadenas de suministro.</td>
+      <td style="border: 1px solid #000; padding: 6px;">10.3</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #000; padding: 6px;">Journal of Supply Chain Management</td>
+      <td style="border: 1px solid #000; padding: 6px;">Publicación académica de alto impacto dedicada al pensamiento estratégico en gestión de cadenas de suministro y colaboración empresarial.</td>
+      <td style="border: 1px solid #000; padding: 6px;">9.9</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #000; padding: 6px;">Transportation Science</td>
+      <td style="border: 1px solid #000; padding: 6px;">Revista internacional que aborda investigación cuantitativa en transporte, optimización logística y toma de decisiones complejas.</td>
+      <td style="border: 1px solid #000; padding: 6px;">4.8</td>
+    </tr>
+  </tbody>
+</table>.</p>
+</body>
+</html>
+
+

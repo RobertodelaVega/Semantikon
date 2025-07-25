@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Evaluación de Similitudes Semánticas</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        
+        .table-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        thead {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 500;
+        }
+        
+        th:first-child {
+            border-top-left-radius: 8px;
+        }
+        
+        th:last-child {
+            border-top-right-radius: 8px;
+        }
+        
+        tbody tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tbody tr:hover {
+            background-color: #e9f7fe;
+            transition: background-color 0.2s;
+        }
+        
+        td {
+            padding: 12px 15px;
+            color: #34495e;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .highlight {
+            font-weight: bold;
+            color: #2980b9;
+        }
+        
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tabla de Evaluación de Similitudes Semánticas por Grupo y Dimensión<br>(Promedio con Otros Grupos)</h1>
+        
+        <div class="table-container">
+            <table id="similarityTable">
+                <thead>
+                    <tr>
+                        <th>Grupo</th>
+                        <th>Acción</th>
+                        <th>Objeto</th>
+                        <th>Finalidad</th>
+                        <th>Condición</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Comercio Exterior</td>
+                        <td>0.82</td>
+                        <td>0.56</td>
+                        <td>0.72</td>
+                        <td>0.67</td>
+                    </tr>
+                    <tr>
+                        <td>Supply Chain Management</td>
+                        <td>0.79</td>
+                        <td>0.57</td>
+                        <td>0.72</td>
+                        <td>0.62</td>
+                    </tr>
+                    <tr>
+                        <td>Logística</td>
+                        <td>0.79</td>
+                        <td>0.39</td>
+                        <td>0.67</td>
+                        <td>0.60</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="footer">
+            Evaluación de similitudes semánticas - Promedios comparativos
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const table = document.getElementById('similarityTable');
+            const rows = table.getElementsByTagName('tr');
+            
+            // Convertir a array y quitar el header
+            const dataRows = Array.from(rows).slice(1);
+            
+            // Para cada columna (excepto la primera)
+            for (let col = 1; col <= 4; col++) {
+                // Obtener todos los valores de la columna
+                const values = dataRows.map(row => 
+                    parseFloat(row.getElementsByTagName('td')[col].textContent)
+                );
+                
+                // Encontrar el valor máximo
+                const maxValue = Math.max(...values);
+                
+                // Resaltar las celdas con el valor máximo
+                dataRows.forEach(row => {
+                    const cell = row.getElementsByTagName('td')[col];
+                    const cellValue = parseFloat(cell.textContent);
+                    
+                    if (cellValue === maxValue) {
+                        cell.classList.add('highlight');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
