@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+    /* Tipografía serif refinada */
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Libre+Baskerville&display=swap');
+
+    body {
+      font-family: 'Libre Baskerville', serif;
+      max-width: 720px;
+      margin: 4rem auto;
+      line-height: 1.7;
+      font-size: 1.125rem;
+      color: #222;
+      background-color: #f9f9f6;
+      padding: 0 1rem;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+            line-height: 1.3;
+      margin-bottom: 0.5rem;
+      border-bottom: 2px solid #000;
+      display: inline-block;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    p {
+      margin: 1.25rem 0;
+      text-align: justify;
+    }
+
+    .byline {
+      font-style: italic;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #ccc;
+      margin: 3rem 0;
+    }
+
+
+            table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10px;
+        }
+            .footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+                thead {
+            background-color: #3498db;
+            color: white;
+            font-size: 10px;
+        }
+               iframe {
+            border: 1px solid #ccc; /* Opcional: para ver el borde del iframe */
+            width: 100%; /* El ancho del iframe */
+            height: 650px; /* La altura del iframe, ajusta según el tamaño de tu gráfico */
+        }
+  </style>
+</head>
+<body>
+
+<div class="table-container">
+<table id="data">
+  <thead>
+    <tr>
+      <th>grupo</th>
+      <th>acción</th>
+      <th>objeto</th>
+      <th>finalidad</th>
+      <th>condición</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Supply Chain Management</td>
+      <td>reduce</td>
+      <td>idiosyncratic risk</td>
+      <td>improve performance</td>
+      <td>supplier carbon</td>
+    </tr>
+    <tr>
+      <td>Supply Chain Management</td>
+      <td>leverage</td>
+      <td>ecosystem collaboration</td>
+      <td>manage transformation</td>
+      <td>extreme conditions</td>
+    </tr>
+    <tr>
+      <td>Supply Chain Management</td>
+      <td>adjust</td>
+      <td>sourcing strategy</td>
+      <td>mitigate uncertainty</td>
+      <td>policy variations</td>
+    </tr>
+    <tr>
+      <td>Supply Chain Management</td>
+      <td>integrate</td>
+      <td>social aspects</td>
+      <td>achieve sustainability</td>
+      <td>supply chains</td>
+    </tr>
+    <tr>
+      <td>Supply Chain Management</td>
+      <td>drive</td>
+      <td>emissions reduction</td>
+      <td>societal impact</td>
+      <td>research agenda</td>
+    </tr>
+    <tr>
+      <td>Supply Chain Management</td>
+      <td>calibrate</td>
+      <td>governance mechanisms</td>
+      <td>foster collaboration</td>
+      <td>network structures</td>
+    </tr>
+    <tr>
+      <td>Supply Chain Management</td>
+      <td>develop</td>
+      <td>resilience strategies</td>
+      <td>deal disruptions</td>
+      <td>adaptive cycles</td>
+    </tr>
+    <tr>
+      <td>Supply Chain Management</td>
+      <td>leverage</td>
+      <td>buyer narratives</td>
+      <td>influence negotiations</td>
+      <td>supplier interactions</td>
+    </tr>
+    <tr>
+      <td>Supply Chain Management</td>
+      <td>reconfigure</td>
+      <td>deep structures</td>
+      <td>achieve recovery</td>
+      <td>postshutdown</td>
+    </tr>
+    <tr>
+      <td>Supply Chain Management</td>
+      <td>hybridize</td>
+      <td>institutional logics</td>
+      <td>address problems</td>
+      <td>metaorganizations</td>
+    </tr>
+    <tr>
+      <td>Supply Chain Management</td>
+      <td>expand</td>
+      <td>research methods</td>
+      <td>advance theory</td>
+      <td>complex phenomena</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>analyze</td>
+      <td>jit strategy</td>
+      <td>reduce emissions</td>
+      <td>maritime shipping</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>model</td>
+      <td>caas markets</td>
+      <td>guide development</td>
+      <td>urban mobility</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>measure</td>
+      <td>sc performance</td>
+      <td>inform decisions</td>
+      <td>sustainability resilience</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>design</td>
+      <td>reverse logistics</td>
+      <td>reduce footprint</td>
+      <td>fashion industry</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>evaluate</td>
+      <td>plm systems</td>
+      <td>integrate sustainability</td>
+      <td>with frameworks</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>identify</td>
+      <td>support mechanisms</td>
+      <td>promote decarbonization</td>
+      <td>for freight</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>integrate</td>
+      <td>transport solutions</td>
+      <td>enhance sustainability</td>
+      <td>with technology</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>optimize</td>
+      <td>supply chains</td>
+      <td>reduce waste</td>
+      <td>through incentives</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>influence</td>
+      <td>consumer behavior</td>
+      <td>foster sustainability</td>
+      <td>through norms</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>develop</td>
+      <td>resilience frameworks</td>
+      <td>mitigate disruptions</td>
+      <td>in supply chains</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>enhance</td>
+      <td>organizational performance</td>
+      <td>foster sustainability</td>
+      <td>through hlsps</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>mitigate</td>
+      <td>project risks</td>
+      <td>improve performance</td>
+      <td>through collaboration</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>mitigate</td>
+      <td>supply chain risks</td>
+      <td>enhance sustainability</td>
+      <td>using blockchain</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>adapt</td>
+      <td>logistics practices</td>
+      <td>improve efficiency</td>
+      <td>for biomass</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>quantify</td>
+      <td>receiver benefits</td>
+      <td>ensure viability</td>
+      <td>urban freight</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>apply</td>
+      <td>dynamic driving</td>
+      <td>reduce fuel</td>
+      <td>container terminals</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>optimize</td>
+      <td>coal procurement</td>
+      <td>enhance efficiency</td>
+      <td>maritime uncertainty</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>optimize</td>
+      <td>service routes</td>
+      <td>minimize travel</td>
+      <td>customer interventions</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>coordinate</td>
+      <td>coal operations</td>
+      <td>minimize costs</td>
+      <td>power generation</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>analyze</td>
+      <td>purchase uncertainty</td>
+      <td>mitigate returns</td>
+      <td>ecommerce rls</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>integrate</td>
+      <td>i50 gscm</td>
+      <td>achieve sustainability</td>
+      <td>rmg industries</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>design</td>
+      <td>clsc networks</td>
+      <td>optimize performance</td>
+      <td>under uncertainty</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>review</td>
+      <td>ml models</td>
+      <td>predict fuelpower</td>
+      <td>maritime industry</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>identify</td>
+      <td>disruptions strategies</td>
+      <td>electrify fleets</td>
+      <td>hbev adoption</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>prioritize</td>
+      <td>overcoming barriers</td>
+      <td>implement circularity</td>
+      <td>copper industry</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>model</td>
+      <td>carbon trading</td>
+      <td>abate emissions</td>
+      <td>air transport</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>optimize</td>
+      <td>gas transportation</td>
+      <td>enhance efficiency</td>
+      <td>clean energy</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>implement</td>
+      <td>iims systems</td>
+      <td>improve performance</td>
+      <td>with industry 40</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>design</td>
+      <td>clsc systems</td>
+      <td>enhance resilience</td>
+      <td>under risk</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>develop</td>
+      <td>remanufacturing models</td>
+      <td>meet demand</td>
+      <td>ev batteries</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>implement</td>
+      <td>lean practices</td>
+      <td>improve environment</td>
+      <td>manufacturing firms</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>integrate</td>
+      <td>ce principles</td>
+      <td>enhance resilience</td>
+      <td>port cybersecurity</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>model</td>
+      <td>inventory systems</td>
+      <td>reduce costs</td>
+      <td>carbon captrade</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>design</td>
+      <td>matching framework</td>
+      <td>optimize supplydemand</td>
+      <td>carbonconstrained scm</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>optimize</td>
+      <td>clsc operations</td>
+      <td>improve profitability</td>
+      <td>through remanufacturing</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>analyze</td>
+      <td>shipping routes</td>
+      <td>optimize emissions</td>
+      <td>ets framework</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>develop</td>
+      <td>forecasting model</td>
+      <td>reduce waste</td>
+      <td>food supply chain</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>evaluate</td>
+      <td>acceptance factors</td>
+      <td>promote traceability</td>
+      <td>halal food scm</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>implement</td>
+      <td>circular economy</td>
+      <td>enhance resilience</td>
+      <td>with industry 40</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>assess</td>
+      <td>sc impacts</td>
+      <td>mitigate harm</td>
+      <td>marine ecosystems</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>disclose</td>
+      <td>financial data</td>
+      <td>lower asymmetry</td>
+      <td>in family firms</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>leverage</td>
+      <td>foreign ownership</td>
+      <td>boost performance</td>
+      <td>for arbitrage</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>foster</td>
+      <td>entrepreneurship</td>
+      <td>provide resources</td>
+      <td>through networks</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>drive</td>
+      <td>green purchases</td>
+      <td>build trust</td>
+      <td>via health consciousness</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>cultivate</td>
+      <td>customer loyalty</td>
+      <td>build etrust</td>
+      <td>through ereputation</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>promote</td>
+      <td>ocb</td>
+      <td>improve performance</td>
+      <td>with worklife balance</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>select</td>
+      <td>establishment modes</td>
+      <td>expand internationally</td>
+      <td>based on country factors</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>enhance</td>
+      <td>innovation</td>
+      <td>attain development</td>
+      <td>via governance</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>implement</td>
+      <td>ecoinnovations</td>
+      <td>boost competitiveness</td>
+      <td>in developing economies</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>manage</td>
+      <td>cash holdings</td>
+      <td>optimize liquidity</td>
+      <td>given intermediation</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>mitigate</td>
+      <td>ostracism impact</td>
+      <td>promote voice</td>
+      <td>preserve energy</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>improve</td>
+      <td>export performance</td>
+      <td>enhance tqm</td>
+      <td>via networks</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>apply</td>
+      <td>ihrm framework</td>
+      <td>improve performance</td>
+      <td>using icts</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>analyze</td>
+      <td>industrial policies</td>
+      <td>understand global impact</td>
+      <td>specific to china</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>orchestrate</td>
+      <td>innovation networks</td>
+      <td>foster internationalization</td>
+      <td>in digital environments</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>adapt</td>
+      <td>digital marketing</td>
+      <td>optimize engagement</td>
+      <td>across cultures</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>develop</td>
+      <td>decision skills</td>
+      <td>improve performance</td>
+      <td>via peer assessment</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>advance</td>
+      <td>gvt research</td>
+      <td>explore future</td>
+      <td>within a platform</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>enhance</td>
+      <td>team climate</td>
+      <td>improve gvt performance</td>
+      <td>through eq cq</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>resolve</td>
+      <td>gvt conflict</td>
+      <td>ensure success</td>
+      <td>with cultural intelligence</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>optimize</td>
+      <td>team cohesion</td>
+      <td>maximize gvt performance</td>
+      <td>given high skills</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>build</td>
+      <td>trust knowledge</td>
+      <td>enhance team effectiveness</td>
+      <td>in diverse teams</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>implement</td>
+      <td>management strategies</td>
+      <td>reduce gvt conflict</td>
+      <td>with cultural intelligence</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>mitigate</td>
+      <td>diversity impact</td>
+      <td>improve gvt performance</td>
+      <td>with team composition</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>leverage</td>
+      <td>team innovation</td>
+      <td>boost export performance</td>
+      <td>for smes</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>strategize</td>
+      <td>ceo succession</td>
+      <td>manage expansion</td>
+      <td>for mnes</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>analyze</td>
+      <td>consumer behavior</td>
+      <td>promote sustainability</td>
+      <td>across generations</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>optimize</td>
+      <td>firm performance</td>
+      <td>exploit networks</td>
+      <td>for returnee firms</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>predict</td>
+      <td>revisit intention</td>
+      <td>inform marketing</td>
+      <td>for tourism</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>drive</td>
+      <td>green innovation</td>
+      <td>foster sustainability</td>
+      <td>via export intensity</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>assess</td>
+      <td>foreign listings</td>
+      <td>optimize financing</td>
+      <td>given development</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>promote</td>
+      <td>organizational learning</td>
+      <td>gain advantage</td>
+      <td>through cooperation</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>adapt</td>
+      <td>marketing channels</td>
+      <td>ensure success</td>
+      <td>given local culture</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>implement</td>
+      <td>reverse logistics</td>
+      <td>gain advantage</td>
+      <td>for sustainability</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>integrate</td>
+      <td>research traditions</td>
+      <td>unify studies</td>
+      <td>across continents</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>foster</td>
+      <td>employee thriving</td>
+      <td>boost commitment</td>
+      <td>countering abuse</td>
+    </tr>
+    <tr>
+      <td>Comercio Exterior</td>
+      <td>analyze</td>
+      <td>accounting policies</td>
+      <td>improve regulation</td>
+      <td>post ifrs adoption</td>
+    </tr>
+  </tbody>
+</table>
+        </div>
+
+        </body>
+</html>
