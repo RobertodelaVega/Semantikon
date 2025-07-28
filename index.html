@@ -76,33 +76,130 @@
             width: 100%; /* El ancho del iframe */
             height: 650px; /* La altura del iframe, ajusta según el tamaño de tu gráfico */
         }
+
+.tooltip {
+      position: relative;
+      display: inline-block;
+      cursor: help;
+    }
+
+    /* Apariencia de la palabra con tooltip */
+    .tooltip .term {
+      border-bottom: 1px dotted #555;
+      color: #005577;
+    }
+
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      width: 220px;
+      background-color: #f9f9f9;
+      color: #333;
+      text-align: center;
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      box-shadow: 0px 0px 8px rgba(0,0,0,0.1);
+      position: absolute;
+      z-index: 1;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      font-family: sans-serif;
+      font-size: 14px;
+      pointer-events: none;
+    }
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+    }
+        
   </style>
 </head>
 <body>
-  <h1>Mapeando diferencias semanticas: Supply Chain, Comercio Exterior y Logística.</h1>
-  <div class="byline">OPT / Oficina de Prospección y Tendencias &mdash; Julio 22, 2025</div>
+  <h1>Mapeando semánticas: Supply Chain, Comercio Exterior y Logística.</h1>
+  <div class="byline">OPT / Oficina de Prospectiva y Tendencias &mdash; Julio 22, 2025</div>
 
-<p> La evolución de las competencias no solo depende de su formulación interna, sino también del campo disciplinar que las enmarca. Analizar cómo varían semánticamente estas competencias entre áreas permite detectar orientaciones formativas dominantes, sesgos temáticos o vacíos emergentes. Este estudio se sitúa en esa intersección, combinando técnicas de representación semántica con análisis estructurado de rutas. El objetivo es revelar patrones conceptuales que no son evidentes desde la simple lectura textual, pero que influyen directamente en el diseño y convergencia de perfiles profesionales.</p>
+<p style="text-align: justify;">
+  <span style="float: left; font-size: 3.3em; line-height: 1;  padding-right: 6px;">A</span>
+  l leer este artículo usted podrá comprender, encontrar y comparar las diferencias semánticas entre tres campos clave: Comercio Exterior, Supply Chain Management y Logística. A través del análisis de competencias profesionales extraídas de publicaciones académicas, se revelan patrones de acción, objetos de trabajo, propósitos y contextos específicos de cada área. El estudio utiliza técnicas modernas de inteligencia artificial para medir la similitud de significados, incluso cuando el lenguaje varía.
+</p>
 
-<p>Se compara la orientación semántica general de las competencias inferidas en tres campos disciplinarios —Comercio Exterior, Supply Chain Management y Logística<sup id="ref1"><a href="#note1">[1]</a></sup>— a partir de los componentes estructurales de sus rutas: acción, objeto, finalidad y contexto. Para ello, se utiliza un enfoque basado en <em>embeddings</em> semánticos, que transforma texto en vectores numéricos de alta dimensionalidad capaces de capturar el significado contextual.</p>
+
+
+ <blockquote>
+Pregunta: ¿Actualmente cómo se diferencia Supply Chain, Comercio Exterior y Logística en la literatura académica?
+</blockquote>
+
+
+<p style="text-align:left;">
+  <div style="display:inline-block; text-align:center; margin: 0 10px;">
+    <a href="https://www.journalofsupplychainmanagement.com" target="_blank">
+      <img src="JSCHM.jpg" alt="Journal of Supply Chain Management" style="height:100px;"><br>
+      <span style="font-size: 12px;">Journal of Supply Chain Management</span>
+    </a>
+  </div>
+
+  <div style="display:inline-block; text-align:center; margin: 0 10px;">
+    <a href="https://onlinelibrary.wiley.com/journal/21581592" target="_blank">
+      <img src="JBL.png" alt="Journal of Business Logistics" style="height:100px;"><br>
+      <span style="font-size: 12px;">Journal of Business Logistics</span>
+    </a>
+  </div>
+
+  <div style="display:inline-block; text-align:center; margin: 0 10px;">
+    <a href="https://pubsonline.informs.org/journal/trsc" target="_blank">
+      <img src="TS.png" alt="Transportation Science" style="height:100px;"><br>
+      <span style="font-size: 12px;">Transportation Science</span>
+    </a>
+  </div>
+</p>
+
+
+<p>La evolución de una competencia no solo depende de su formulación interna, sino también del campo disciplinar que la enmarca. Así, analizar cómo varía <span class="tooltip"> <span class="term">semánticamente</span> <span class="tooltip-text">Estudio del significado de la palabra y su expresión.</span> </span> las competencias entre áreas permite detectar su orientación formativa dominante, sesgo temático o vacío emergente. Este estudio se sitúa en esa intersección, combinando una técnica de representación semántica con análisis estructurado de <span class="tooltip"> <span class="term">rutas</span> <span class="tooltip-text">Un concepto estructurado en secuencia: acción-objeto--finalidad--contexto.</span></span>. El objetivo es revelar un patrón conceptual que no es evidente desde la simple lectura textual, pero que influye directamente en el diseño y convergencia de un perfil profesional.</p>
+
+<p>Se compara la orientación semántica general de las competencias <span class="tooltip"> <span class="term">inferidas</span> <span class="tooltip-text">Extraer algo no dicho a partir del texto. </span> </span> en tres campos disciplinarios —Comercio Exterior, Supply Chain Management y Logística<sup id="ref1"><a href="#note1">[1]</a></sup>— a partir de los componentes estructurales de sus rutas: acción, objeto, finalidad y contexto. Para ello, se utiliza un enfoque basado en <span class="tooltip"> <span class="term"><em>embeddings</em> semánticos</span> <span class="tooltip-text">Representación numérica de palabras o frases que captura su significado según el contexto. </span> </span>, que transforma texto en <span class="tooltip"> <span class="term">vectores numéricos</span> <span class="tooltip-text">Secuencias ordenadas de números que representan magnitudes y direcciones en espacios matemáticos o computacionales.</span> </span> de <span class="tooltip"> <span class="term">alta dimensionalidad</span> <span class="tooltip-text">situación en que los datos tienen muchísimas variables o características, lo que complica el análisis y puede esconder patrones útiles. </span> </span> capaces de capturar el significado contextual.</p>
+
+<p>Y todo esto nos ayuda a comprender este tipo de afirmaciones de método:<p>
 
  <blockquote>
 “Vectorizar textos y calcular similitud entre vectores medios...”
 </blockquote>
 
-<p>A diferencia de un análisis término a término, aquí se calcula un vector promedio por grupo y por dimensión, lo que permite identificar tendencias conceptuales generales, reduciendo la sensibilidad a variaciones léxicas específicas o frases atípicas. Esto permite evaluar la proximidad semántica global entre disciplinas, brindando un marco más tolerante y robusto para analizar convergencias o divergencias en el diseño de competencias.</p>
+<p>A diferencia de un análisis término a término, aquí se calcula un vector promedio por grupo y por dimensión, lo que permite identificar tendencias conceptuales generales, reduciendo la sensibilidad a <span class="tooltip"> <span class="term">variaciones léxicas específicas o frases atípicas </span> <span class="tooltip-text">Capacidad de notar cambios sutiles en palabras concretas. </span> </span>. Esto permite evaluar la  <span class="tooltip"> <span class="term">proximidad semántica global</span> <span class="tooltip-text">Grado de similitud en significado entre conceptos dentro de un conjunto amplio de textos o corpus. </span> </span> entre disciplinas, brindando un marco más tolerante y robusto para analizar convergencias o divergencias en el diseño de competencias.</p>
 
+
+<p>El diagrama de Sankey que verá a continuación representa visualmente las relaciones de similitud semántica entre los tres grupos analizados, divididas por dimensión de competencia. Cada flujo conecta dos grupos en torno a una dimensión (acción, objeto, finalidad o contexto), y su grosor indica el nivel de semejanza: a mayor grosor, mayor similitud. Al pasar el mouse sobre cualquier flujo, podrá ver el valor exacto de  <span class="tooltip"> <span class="term">similitud coseno</span> <span class="tooltip-text">Medida que indica cuán parecidos son dos textos comparando el ángulo entre sus representaciones numéricas (vectores). Si el valor está cerca de 1, significa que los textos tienen un significado muy parecido; si está cerca de 0, son muy distintos. No importa cuán largos sean, sino qué tan alineados están sus sentidos. Es como comparar la dirección de dos flechas: si apuntan igual, son similares. </span> </span> y los grupos comparados. Esto le permitirá explorar intuitivamente qué campos se acercan más en ciertos aspectos y dónde se distancian. Es una herramienta interactiva para descubrir patrones conceptuales de forma clara y visual.</p>
 
 
 <figure style="text-align: center;">
-  <iframe src="sankey_similitud_revistas.html" title="Diagrama de Sankey de Similitud Semántica" width="100%" height="400" style="border:none;"></iframe>
+  <div style="position: relative; width: 100%; padding-top: 56.25%; /* proporción 16:9 */">
+    <embed src="sankey_similitud_revistas.html" 
+           type="text/html" 
+           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;">
+  </div>
   <figcaption style="font-size: 0.9em; color: #555;">
     Figura 1. Diagrama Sankey que representa los flujos semánticos entre los componentes de competencias inferidas: acción, objeto, finalidad y contexto, comparando tres disciplinas.
   </figcaption>
 </figure>
 
+
+
+
+
+
+
+
+
+<p>El <strong>umbral de similitud ≥ 0.7</strong> indica un nivel alto de coincidencia semántica entre dos elementos. Significa que, aunque las palabras puedan diferir, sus significados son lo suficientemente cercanos como para considerarlos equivalentes en contexto. Valores por debajo de 0.7 reflejan diferencias importantes en intención, contenido o enfoque. Este umbral permite distinguir entre similitud real y mera coincidencia superficial.</p>
+
+
+
 <h2>Tabla de similitud semántica</h2>
 
+<p> La siguiente tabla muestra el nivel promedio de similitud semántica dentro de cada grupo en relación con las cuatro dimensiones analizadas: acción, objeto, finalidad y contexto (condición). Los valores oscilan entre 0 y 1, donde un número mayor indica mayor coherencia o convergencia conceptual en las expresiones utilizadas por ese grupo. Por ejemplo, <strong>Comercio Exterior</strong> presenta alta consistencia en la dimensión "acción" (0.82), mientras que <strong>Logística</strong> muestra mayor dispersión en "objeto" (0.39). Esta tabla permite identificar qué dimensiones están más consolidadas semánticamente dentro de cada disciplina. </p>
 
 <div class="table-container">
             <table id="similarityTable">
@@ -188,12 +285,17 @@
 
  <h2>Extracto de componentes de abstracts de las revistas.</h2>
 
+<p>La tabla contiene algunas "rutas" de ejemplo. En una base de datos pueden existir una par de centenares de ellas para reaizar un estudio de similitud semántica. Es una excelente alternativa para conocer la existencia de tendencias propias en Supply Chain Management, Comercio Exterior y Logística.</p>
+
 
 <iframe src="dataframe_table.html" title="Tabla de Datos de Revistas"></iframe>
 
   <hr>
 
   <p style="font-size: 0.7rem; color: #666;">© 2025 OPT/DuocUC. All rights reserved.</p>
+
+<h2>Notas.</h2>
+
 
   <p id="note1"><strong>[1]</strong> <table style="width:100%; border-collapse: collapse; font-size: 0.7em;">
   <thead>
@@ -221,7 +323,11 @@
     </tr>
   </tbody>
 </table>.</p>
+
+<p><strong>El factor de impacto (Impact Factor, IF)</strong> de un journal es una medida que indica la relevancia y visibilidad académica de una revista científica. Se calcula observando cuántas veces, en promedio, han sido citados los artículos publicados en esa revista durante los últimos dos años. En términos simples:
+
+A mayor factor de impacto, más influyentes y citados son los artículos de esa revista.
+
+Por ejemplo, si una revista tiene un factor de impacto de 4.0, significa que, en promedio, cada artículo publicado en ella fue citado 4 veces en los dos años siguientes. Esta métrica es usada frecuentemente para evaluar la calidad y prestigio editorial dentro de una disciplina.</p>
 </body>
 </html>
-
-
