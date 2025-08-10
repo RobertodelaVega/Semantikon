@@ -1,0 +1,3826 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Competencias Inferidas - Reporte</title>
+  <style>
+    /* Tipografía serif refinada */
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Libre+Baskerville&display=swap');
+
+    body {
+      font-family: 'Libre Baskerville', serif;
+      max-width: 900px;
+      margin: 4rem auto;
+      line-height: 1.7;
+      font-size: 0.6rem;
+      color: #222;
+      background-color: #f9f9f6;
+      padding: 0 1rem;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.9rem;
+      line-height: 1.3;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid #000;
+      display: inline-block;
+      color: #2c3e50;
+    }
+
+    .header {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.7rem;
+      margin: 2rem 0;
+      box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+    }
+
+    thead {
+      background-color: #3498db;
+      color: white;
+      font-size: 0.5rem;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+
+    th {
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f8f8f8;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .footer {
+      margin-top: 40px;
+      text-align: center;
+      color: #7f8c8d;
+      font-size: 0.85rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Competencias Inferidas</h1>
+  </div>
+
+  <div class="table-container">
+    <table class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>grupo</th>
+      <th>revista</th>
+      <th>acción</th>
+      <th>objeto</th>
+      <th>finalidad</th>
+      <th>condición</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Reduce</td>
+      <td>Information asymmetry</td>
+      <td>Monitor</td>
+      <td>Family firms</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Access</td>
+      <td>Tech arbitrage</td>
+      <td>Perform</td>
+      <td>Partial ownership</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Foster</td>
+      <td>Entrepreneurship</td>
+      <td>Develop</td>
+      <td>Strong institutions</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Influence</td>
+      <td>Purchase intentions</td>
+      <td>Promote</td>
+      <td>Consumer health</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Build</td>
+      <td>Customer loyalty</td>
+      <td>Retain</td>
+      <td>E-reputation</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Enhance</td>
+      <td>Citizenship behavior</td>
+      <td>Predict</td>
+      <td>Work-life balance</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Determine</td>
+      <td>Establishment modes</td>
+      <td>Internationalize</td>
+      <td>Host factors</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Upgrade</td>
+      <td>Product innovation</td>
+      <td>Develop</td>
+      <td>Good governance</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Improve</td>
+      <td>Competitiveness</td>
+      <td>Innovate</td>
+      <td>Developing economies</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Optimize</td>
+      <td>Cash holdings</td>
+      <td>Manage</td>
+      <td>Financial efficiency</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Facilitate</td>
+      <td>Voice behavior</td>
+      <td>Improve</td>
+      <td>Employee energy</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Increase</td>
+      <td>Export performance</td>
+      <td>Improve</td>
+      <td>Quality management</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Apply</td>
+      <td>IHRM</td>
+      <td>Improve</td>
+      <td>Digital IMO</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Understand</td>
+      <td>Industrial policy</td>
+      <td>Deal</td>
+      <td>Global impact</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Boost</td>
+      <td>Innovation performance</td>
+      <td>Leverage</td>
+      <td>High capacity</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Improve</td>
+      <td>Subsidiary performance</td>
+      <td>Internationalize</td>
+      <td>Network dependence</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Foster</td>
+      <td>Entrepreneurial resilience</td>
+      <td>Develop</td>
+      <td>Climate action</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Overcome</td>
+      <td>Structural barriers</td>
+      <td>Create</td>
+      <td>Transnational networks</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Achieve</td>
+      <td>Internationalization</td>
+      <td>Transform</td>
+      <td>Digital technology</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Design</td>
+      <td>Engagement platforms</td>
+      <td>Innovate</td>
+      <td>Crowdfunding context</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Enhance</td>
+      <td>International performance</td>
+      <td>Leverage</td>
+      <td>Dynamic capabilities</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Establish</td>
+      <td>Language standards</td>
+      <td>Assess</td>
+      <td>International firms</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Enhance</td>
+      <td>Entrepreneurial resilience</td>
+      <td>Cope</td>
+      <td>Internationalization</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Predict</td>
+      <td>Bricolage behavior</td>
+      <td>Understand</td>
+      <td>Institutional environment</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Mitigate</td>
+      <td>Foreignness liability</td>
+      <td>Expand</td>
+      <td>Network effects</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Operate</td>
+      <td>Business operations</td>
+      <td>Navigate</td>
+      <td>Party heterogeneity</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Understand</td>
+      <td>Transnational identity</td>
+      <td>Contextualize</td>
+      <td>Discursive approach</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Apply</td>
+      <td>Social constructionism</td>
+      <td>Gain insight</td>
+      <td>IHRM context</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Mitigate</td>
+      <td>Liabilities origin</td>
+      <td>Address</td>
+      <td>EMNEs</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Engage</td>
+      <td>Pro bono</td>
+      <td>Benefit</td>
+      <td>Institutional pressure</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Orchestrate</td>
+      <td>Innovation networks</td>
+      <td>Internationalize</td>
+      <td>Digital ecosystem</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Provide</td>
+      <td>Market access</td>
+      <td>Expand</td>
+      <td>Relational networks</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Enhance</td>
+      <td>Customer engagement</td>
+      <td>Build</td>
+      <td>Digital era</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Develop</td>
+      <td>Effectuation skills</td>
+      <td>Improve</td>
+      <td>Digital teams</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Promote</td>
+      <td>GVT research</td>
+      <td>Advance</td>
+      <td>Future landscape</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Improve</td>
+      <td>Team performance</td>
+      <td>Enhance</td>
+      <td>GVT climate</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Manage</td>
+      <td>Team conflict</td>
+      <td>Resolve</td>
+      <td>Cultural intelligence</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Link</td>
+      <td>Cohesion</td>
+      <td>Perform</td>
+      <td>High skills</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Ensure</td>
+      <td>Team effectiveness</td>
+      <td>Achieve</td>
+      <td>Trust, sharing</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Reduce</td>
+      <td>Conflict frequency</td>
+      <td>Improve</td>
+      <td>Motivational CQ</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Optimize</td>
+      <td>Team diversity</td>
+      <td>Perform</td>
+      <td>Pedigree influence</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Leverage</td>
+      <td>Innovation resources</td>
+      <td>Export</td>
+      <td>Team capabilities</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Transfer</td>
+      <td>Core capabilities</td>
+      <td>Enhance</td>
+      <td>Multi-level mechanism</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Select</td>
+      <td>CEO origin</td>
+      <td>Respond</td>
+      <td>International expansion</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Understand</td>
+      <td>Consumer behavior</td>
+      <td>Prioritize</td>
+      <td>Pandemic impact</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Prioritize</td>
+      <td>Financial responsiveness</td>
+      <td>Respond</td>
+      <td>Crisis</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Enhance</td>
+      <td>International performance</td>
+      <td>Exploit</td>
+      <td>Network conditions</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Predict</td>
+      <td>Revisit intention</td>
+      <td>Attract</td>
+      <td>Destination image</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Promote</td>
+      <td>Green innovation</td>
+      <td>Drive</td>
+      <td>Exporting firms</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Influence</td>
+      <td>Foreign listings</td>
+      <td>Finance</td>
+      <td>Entrepreneurial opportunities</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Leverage</td>
+      <td>Cooperation</td>
+      <td>Learn</td>
+      <td>Organizational context</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Review</td>
+      <td>Learning literature</td>
+      <td>Identify</td>
+      <td>SME cooperation</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Adapt</td>
+      <td>Marketing channels</td>
+      <td>Succeed</td>
+      <td>Cultural differences</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Implement</td>
+      <td>Reverse logistics</td>
+      <td>Sustain</td>
+      <td>Competitive advantage</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Bridge</td>
+      <td>Research traditions</td>
+      <td>Unify</td>
+      <td>Academic inquiry</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Foster</td>
+      <td>Org commitment</td>
+      <td>Retain</td>
+      <td>Thriving at work</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>European Journal of International Management</td>
+      <td>Examine</td>
+      <td>Accounting policies</td>
+      <td>Harmonize</td>
+      <td>IFRS adoption</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>International Economics</td>
+      <td>Assess</td>
+      <td>Technological advantage</td>
+      <td>Inform policy</td>
+      <td>For competitiveness</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>International Economics</td>
+      <td>Attract</td>
+      <td>Private investment</td>
+      <td>Catalyze growth</td>
+      <td>Through IMF programs</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>International Economics</td>
+      <td>Mitigate</td>
+      <td>Drought impacts</td>
+      <td>Enhance resilience</td>
+      <td>With region-specific policies</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>International Economics</td>
+      <td>Manage</td>
+      <td>Currency mismatches</td>
+      <td>Sustain growth</td>
+      <td>Via policy interventions</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>International Economics</td>
+      <td>Enhance</td>
+      <td>Trade volume</td>
+      <td>Minimize risks</td>
+      <td>Through inspections/assistance</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>International Economics</td>
+      <td>Facilitate</td>
+      <td>International trade</td>
+      <td>Improve logistics</td>
+      <td>With port infrastructure</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>International Economics</td>
+      <td>Analyze</td>
+      <td>Growth patterns</td>
+      <td>Understand sustainability</td>
+      <td>Within neoclassical framework</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>International Economics</td>
+      <td>Model</td>
+      <td>Global production</td>
+      <td>Assess impacts</td>
+      <td>Under fragmentation scenarios</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>International Economics</td>
+      <td>Enhance</td>
+      <td>Corporate resilience</td>
+      <td>Improve performance</td>
+      <td>Through tax incentives</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>International Economics</td>
+      <td>Promote</td>
+      <td>GVC participation</td>
+      <td>Boost economies</td>
+      <td>Through financial inclusion</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>International Economics</td>
+      <td>Reduce</td>
+      <td>Informal economy</td>
+      <td>Foster growth</td>
+      <td>With FDI inflows</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>International Economics</td>
+      <td>Improve</td>
+      <td>Firm performance</td>
+      <td>Increase sales</td>
+      <td>Through ISO certification</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Analyze</td>
+      <td>Monetary policy</td>
+      <td>Optimize stability</td>
+      <td>Open economy</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Assess</td>
+      <td>Policy uncertainty</td>
+      <td>Mitigate recession</td>
+      <td>Regional trade</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Design</td>
+      <td>Bank structure</td>
+      <td>Enhance stability</td>
+      <td>Global banking</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Evaluate</td>
+      <td>Debt instruments</td>
+      <td>Compare risk</td>
+      <td>High-yield markets</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Quantify</td>
+      <td>Trade impact</td>
+      <td>Assess welfare</td>
+      <td>Labor supply</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Facilitate</td>
+      <td>Supply chain</td>
+      <td>Mitigate shortage</td>
+      <td>Global crisis</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Model</td>
+      <td>Economic impacts</td>
+      <td>Understand labor</td>
+      <td>Technical change</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Explain</td>
+      <td>Labor response</td>
+      <td>Analyze shocks</td>
+      <td>Technology impact</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Evaluate</td>
+      <td>Interest rates</td>
+      <td>Optimize welfare</td>
+      <td>Capital allocation</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Analyze</td>
+      <td>Trade policy</td>
+      <td>Shape competition</td>
+      <td>FTA requirements</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Determine</td>
+      <td>Policy impact</td>
+      <td>Assess risk</td>
+      <td>Bank capital</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Stabilize</td>
+      <td>Economy</td>
+      <td>Prevent crises</td>
+      <td>Imperfect information</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Analyze</td>
+      <td>Trade networks</td>
+      <td>Understand persistence</td>
+      <td>Historical context</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Map</td>
+      <td>Currency composition</td>
+      <td>Track exposures</td>
+      <td>Global finance</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Stimulate</td>
+      <td>Industrial growth</td>
+      <td>Reduce uncertainty</td>
+      <td>Trade policy</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Forecast</td>
+      <td>Market correlations</td>
+      <td>Understand trends</td>
+      <td>Commodity prices</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Evaluate</td>
+      <td>Exchange regimes</td>
+      <td>Minimize losses</td>
+      <td>Fixed rates</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Manage</td>
+      <td>Capital flow</td>
+      <td>Mitigate shocks</td>
+      <td>Deglobalization</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Analyze</td>
+      <td>Policy impact</td>
+      <td>Understand adjustment</td>
+      <td>Exchange rates</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Assess</td>
+      <td>Trade impact</td>
+      <td>Evaluate health</td>
+      <td>Policy liberalization</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Model</td>
+      <td>Trade policy</td>
+      <td>Predict outcomes</td>
+      <td>Geopolitical conflict</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Evaluate</td>
+      <td>Environmental policy</td>
+      <td>Predict leakage</td>
+      <td>Maritime regulation</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Analyze</td>
+      <td>Technological impact</td>
+      <td>Explain development</td>
+      <td>Maritime navigation</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Manage</td>
+      <td>Trade credit</td>
+      <td>Buffer shocks</td>
+      <td>Monetary tightening</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Benchmark</td>
+      <td>Investment performance</td>
+      <td>Identify gaps</td>
+      <td>International markets</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Mitigate</td>
+      <td>Economic imbalances</td>
+      <td>Stabilize accounts</td>
+      <td>Credit cycles</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Assess</td>
+      <td>Trade agreement</td>
+      <td>Analyze prices</td>
+      <td>Market competition</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Quantify</td>
+      <td>Price shocks</td>
+      <td>Forecast exchange</td>
+      <td>Commodity exports</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Adapt</td>
+      <td>Value chains</td>
+      <td>Respond uncertainty</td>
+      <td>Automation trends</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Detect</td>
+      <td>Trade fraud</td>
+      <td>Ensure compliance</td>
+      <td>Tariff policy</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Refine</td>
+      <td>Economic models</td>
+      <td>Improve fit</td>
+      <td>Behavioral agents</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Influence</td>
+      <td>Comparative advantage</td>
+      <td>Drive exports</td>
+      <td>Infrastructure development</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Manage</td>
+      <td>Bank risk</td>
+      <td>Sustain operations</td>
+      <td>Regulatory change</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Optimize</td>
+      <td>Pricing strategy</td>
+      <td>Enhance competitiveness</td>
+      <td>Managerial skills</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Optimize</td>
+      <td>Resource allocation</td>
+      <td>Maximize trade</td>
+      <td>Lobbying influence</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Manage</td>
+      <td>Sovereign debt</td>
+      <td>Influence repayment</td>
+      <td>Multilateral lending</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Assess</td>
+      <td>Default risk</td>
+      <td>Promote stability</td>
+      <td>Economic development</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Guide</td>
+      <td>Urbanization policy</td>
+      <td>Optimize welfare</td>
+      <td>City growth</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Strategize</td>
+      <td>Default prevention</td>
+      <td>Enhance welfare</td>
+      <td>Sovereign crises</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Guide</td>
+      <td>Urbanization policy</td>
+      <td>Optimize welfare</td>
+      <td>City growth</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of International Economics</td>
+      <td>Strategize</td>
+      <td>Default prevention</td>
+      <td>Enhance welfare</td>
+      <td>Sovereign crises</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of World Business</td>
+      <td>Navigate</td>
+      <td>International legitimacy challenges</td>
+      <td>Establish local footprint</td>
+      <td>Novel HRM models</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of World Business</td>
+      <td>Analyze</td>
+      <td>Academic journal landscape</td>
+      <td>Bolster discipline competitiveness</td>
+      <td>Utilizing machine learning methods</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of World Business</td>
+      <td>Apply</td>
+      <td>Microfoundations framework</td>
+      <td>Enhance theoretical precision</td>
+      <td>Modular research design</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of World Business</td>
+      <td>Manage</td>
+      <td>Global labor governance</td>
+      <td>Ensure compliance quality</td>
+      <td>Multi-tiered value chains</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of World Business</td>
+      <td>Model</td>
+      <td>International decoupling process</td>
+      <td>Explain firm internationalization</td>
+      <td>Dynamic environmental challenges</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of World Business</td>
+      <td>Analyze</td>
+      <td>International product adaptation</td>
+      <td>Understand performance outcomes</td>
+      <td>Multidimensional operational approaches</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of World Business</td>
+      <td>Estimate</td>
+      <td>Home country effects</td>
+      <td>Understand firm performance</td>
+      <td>Global firm differences</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of World Business</td>
+      <td>Define</td>
+      <td>Responsible MNE exit</td>
+      <td>Mitigate ethical dilemmas</td>
+      <td>Sanctioned foreign markets</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of World Business</td>
+      <td>Assess</td>
+      <td>Entrepreneur accelerator selection</td>
+      <td>Drive venture success</td>
+      <td>Foreign-born founder context</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of World Business</td>
+      <td>Evaluate</td>
+      <td>Secondary sanction impacts</td>
+      <td>Develop strategic responses</td>
+      <td>Third country businesses</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of World Business</td>
+      <td>Manage</td>
+      <td>Foreign organizational identity</td>
+      <td>Mitigate crisis legitimacy</td>
+      <td>Organizational crisis context</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of World Business</td>
+      <td>Optimize</td>
+      <td>Digital product entry</td>
+      <td>Enhance market performance</td>
+      <td>Varied institutional environments</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of World Business</td>
+      <td>Implement</td>
+      <td>High-potential programs</td>
+      <td>Improve firm performance</td>
+      <td>Diverse cultural environments</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of World Business</td>
+      <td>Develop</td>
+      <td>Migrant bridging skills</td>
+      <td>Facilitate organizational integration</td>
+      <td>Diverse cultural identities</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Journal of World Business</td>
+      <td>Analyze</td>
+      <td>Sanctions impact</td>
+      <td>Understand talent management</td>
+      <td>Macroeconomic talent ecosystems</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Latin American Journal of Trade Policy</td>
+      <td>Analyze</td>
+      <td>Trade diplomatic relations</td>
+      <td>Strengthen bilateral ties</td>
+      <td>Global market dynamics adaptation</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Latin American Journal of Trade Policy</td>
+      <td>Evaluate</td>
+      <td>Intraregional trade patterns</td>
+      <td>Understand economic transformation</td>
+      <td>Global market shifts impact</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Latin American Journal of Trade Policy</td>
+      <td>Develop</td>
+      <td>Global product market</td>
+      <td>Achieve successful entry</td>
+      <td>Competitive volatile market conditions</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Latin American Journal of Trade Policy</td>
+      <td>Formulate</td>
+      <td>Gender-responsive trade policies</td>
+      <td>Empower female entrepreneurs</td>
+      <td>International trade agreements framework</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Open Economies Review</td>
+      <td>Investigate</td>
+      <td>Digital domain leadership</td>
+      <td>Compare economic endowments</td>
+      <td>Heckscher-Ohlin-Vanek framework application</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Open Economies Review</td>
+      <td>Analyze</td>
+      <td>Capital flows-credit nexus</td>
+      <td>Mitigate financial vulnerabilities</td>
+      <td>Sectoral data policy assessment</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Open Economies Review</td>
+      <td>Re-examine</td>
+      <td>Money-output causality</td>
+      <td>Understand economic relationships</td>
+      <td>Time-varying Granger causality application</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Open Economies Review</td>
+      <td>Evaluate</td>
+      <td>Reserve management effects</td>
+      <td>Optimize firm investment</td>
+      <td>Global financial shocks presence</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Open Economies Review</td>
+      <td>Assess</td>
+      <td>Trade diversion effects</td>
+      <td>Understand policy repercussions</td>
+      <td>Global trade policy context</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Open Economies Review</td>
+      <td>Evaluate</td>
+      <td>Income redistribution impact</td>
+      <td>Understand economic growth</td>
+      <td>International economic interdependencies</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Open Economies Review</td>
+      <td>Examine</td>
+      <td>Exchange rate stabilization</td>
+      <td>Guide currency policy</td>
+      <td>Asymmetric shocks context</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Open Economies Review</td>
+      <td>Study</td>
+      <td>Exchange rate volatility</td>
+      <td>Influence export decisions</td>
+      <td>Firms export dynamics</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Open Economies Review</td>
+      <td>Measure</td>
+      <td>True inflation rate</td>
+      <td>Assess official accuracy</td>
+      <td>Changing spending behavior</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Open Economies Review</td>
+      <td>Investigate</td>
+      <td>Price level properties</td>
+      <td>Inform monetary strategies</td>
+      <td>Inflation targeting debate</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Open Economies Review</td>
+      <td>Examine</td>
+      <td>Central bank liquidity</td>
+      <td>Explain cross-border flows</td>
+      <td>Micro-data analysis TARGET2</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Open Economies Review</td>
+      <td>Study</td>
+      <td>Inflation targeting stability</td>
+      <td>Guide regulatory policies</td>
+      <td>Regulatory capital requirements</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Open Economies Review</td>
+      <td>Revisit</td>
+      <td>Extreme capital flows</td>
+      <td>Identify episode drivers</td>
+      <td>Global financial shocks context</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Open Economies Review</td>
+      <td>Examine</td>
+      <td>Government spending multiplier</td>
+      <td>Assess economic impact</td>
+      <td>Informal sector presence</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Open Economies Review</td>
+      <td>Investigate</td>
+      <td>Debt-growth nexus</td>
+      <td>Inform policy decisions</td>
+      <td>Economic institutions influence</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Open Economies Review</td>
+      <td>Examine</td>
+      <td>Optimum currency area</td>
+      <td>Assess monetary union costs</td>
+      <td>Business cycle divergence context</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Open Economies Review</td>
+      <td>Examine</td>
+      <td>Payment method choice</td>
+      <td>Optimize export transactions</td>
+      <td>Exporter productivity variations</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Open Economies Review</td>
+      <td>Investigate</td>
+      <td>Public debt effects</td>
+      <td>Design prudent policies</td>
+      <td>Developing countries context</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Open Economies Review</td>
+      <td>Construct</td>
+      <td>External liabilities dataset</td>
+      <td>Analyze currency exposures</td>
+      <td>Emerging market financing shifts</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Review of International Economics</td>
+      <td>Analyze</td>
+      <td>FTA multinational impact</td>
+      <td>optimize enterprise decisions</td>
+      <td>considering rules origin</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Review of International Economics</td>
+      <td>Evaluate</td>
+      <td>environmental technical measures</td>
+      <td>assess trade impacts</td>
+      <td>across sectors countries</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Review of International Economics</td>
+      <td>Quantify</td>
+      <td>globalization economic impact</td>
+      <td>understand regional disparities</td>
+      <td>across diverse sectors</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Review of International Economics</td>
+      <td>Assess</td>
+      <td>online market segmentation</td>
+      <td>understand transaction costs</td>
+      <td>for cross-border trade</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Review of International Economics</td>
+      <td>Analyze</td>
+      <td>bilateral elevation trade</td>
+      <td>quantify transportation impact</td>
+      <td>on real wages</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Review of International Economics</td>
+      <td>Model</td>
+      <td>dynamic trade adjustments</td>
+      <td>predict trade elasticities</td>
+      <td>over long term</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Review of International Economics</td>
+      <td>Optimize</td>
+      <td>trade policy design</td>
+      <td>maximize welfare gains</td>
+      <td>under market asymmetries</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Review of International Economics</td>
+      <td>Analyze</td>
+      <td>digital trade rules</td>
+      <td>enhance services DVA</td>
+      <td>considering sectoral heterogeneity</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Review of International Economics</td>
+      <td>Develop</td>
+      <td>GVC integration strategies</td>
+      <td>leverage retailer supply</td>
+      <td>in agri-food sector</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Review of International Economics</td>
+      <td>Assess</td>
+      <td>M&A trade effects</td>
+      <td>understand competitiveness erosion</td>
+      <td>in agri-food industry</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Review of International Economics</td>
+      <td>Improve</td>
+      <td>export product quality</td>
+      <td>strengthen competitive stance</td>
+      <td>via institutional quality agglomeration</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Review of International Economics</td>
+      <td>Forecast</td>
+      <td>equilibrium exchange rate</td>
+      <td>integrate GVC linkages</td>
+      <td>for Central European economies</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Review of International Economics</td>
+      <td>Reduce</td>
+      <td>industrial pollution intensity</td>
+      <td>leverage GVC participation</td>
+      <td>through greener technologies FDI</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Review of International Economics</td>
+      <td>Model</td>
+      <td>trade policy network</td>
+      <td>estimate indirect effects</td>
+      <td>considering heterogeneous elasticities</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Review of International Economics</td>
+      <td>Determine</td>
+      <td>optimal import policies</td>
+      <td>advance trade liberalization</td>
+      <td>in two-sided markets</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Review of International Economics</td>
+      <td>Reduce</td>
+      <td>international trade costs</td>
+      <td>enhance digital connectivity</td>
+      <td>with open regulatory regime</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Review of International Economics</td>
+      <td>Stimulate</td>
+      <td>new firm entry</td>
+      <td>foster regional development</td>
+      <td>through FTZ establishment</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Review of World Economics</td>
+      <td>Analyze</td>
+      <td>infrastructure lending impact</td>
+      <td>boost GVC participation</td>
+      <td>reduce African trade costs</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Review of World Economics</td>
+      <td>Design</td>
+      <td>trade agreement frameworks</td>
+      <td>boost GVC participation</td>
+      <td>improve institutional quality context</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Review of World Economics</td>
+      <td>Optimize</td>
+      <td>labor productivity growth</td>
+      <td>fast-track development</td>
+      <td>efficient resource reallocation GVC</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Review of World Economics</td>
+      <td>Promote</td>
+      <td>regional value chains</td>
+      <td>boost intra-African trade</td>
+      <td>stimulate AfCFTA implementation</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Review of World Economics</td>
+      <td>Evaluate</td>
+      <td>regional trade integration</td>
+      <td>drive economic development</td>
+      <td>assess GVC RVC</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Review of World Economics</td>
+      <td>Improve</td>
+      <td>port service quality</td>
+      <td>accelerate agricultural exports</td>
+      <td>comply food trade standards</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Review of World Economics</td>
+      <td>Diversify</td>
+      <td>export basket composition</td>
+      <td>foster economic growth</td>
+      <td>implement effective trade policies</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Review of World Economics</td>
+      <td>Assess</td>
+      <td>trade participation productivity</td>
+      <td>optimize firm performance</td>
+      <td>evaluate services input quality</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Review of World Economics</td>
+      <td>Promote</td>
+      <td>local job opportunities</td>
+      <td>enhance labor markets</td>
+      <td>attract foreign multinational affiliates</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Review of World Economics</td>
+      <td>Evaluate</td>
+      <td>FDI employment impact</td>
+      <td>drive structural change</td>
+      <td>analyze industrialization deindustrialization effects</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>Review of World Economics</td>
+      <td>Measure</td>
+      <td>greenfield FDI jobs</td>
+      <td>quantify employment effects</td>
+      <td>analyze direct indirect impact</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>The International Trade Journal</td>
+      <td>Analyze</td>
+      <td>price spatial dependencies</td>
+      <td>inform policy making</td>
+      <td>complex economic models</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>The International Trade Journal</td>
+      <td>Evaluate</td>
+      <td>export market methods</td>
+      <td>optimize resource allocation</td>
+      <td>diverse ranking inconsistencies</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>The International Trade Journal</td>
+      <td>Assess</td>
+      <td>trade efficiency potential</td>
+      <td>identify unexploited capacities</td>
+      <td>stochastic frontier gravity</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>The International Trade Journal</td>
+      <td>Develop</td>
+      <td>monetary integration index</td>
+      <td>measure regional dynamics</td>
+      <td>theoretical framework application</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>The International Trade Journal</td>
+      <td>Determine</td>
+      <td>growth economic drivers</td>
+      <td>guide macroeconomic policies</td>
+      <td>complex aid FDI interactions</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>The International Trade Journal</td>
+      <td>Examine</td>
+      <td>export performance barriers</td>
+      <td>formulate SME policies</td>
+      <td>network moderation effects</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>The International Trade Journal</td>
+      <td>Assess</td>
+      <td>environmental certification impact</td>
+      <td>reduce information frictions</td>
+      <td>firm level data</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>The International Trade Journal</td>
+      <td>Analyze</td>
+      <td>salary evolution USMCA</td>
+      <td>understand agreement influence</td>
+      <td>quantitative descriptive methodology</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>The International Trade Journal</td>
+      <td>Propose</td>
+      <td>human capital policies</td>
+      <td>promote economic growth</td>
+      <td>systematic literature analysis</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>The International Trade Journal</td>
+      <td>Mitigate</td>
+      <td>competitive threats impact</td>
+      <td>enhance firm value</td>
+      <td>strategic R&D deployment</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>World Customs Journal</td>
+      <td>Enhance</td>
+      <td>Customs roles economy</td>
+      <td>Foster sustainable trade</td>
+      <td>Aligning UN SDGs commitments</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>World Customs Journal</td>
+      <td>Implement</td>
+      <td>Federated learning systems</td>
+      <td>Strengthen trade management</td>
+      <td>Secure data collaboration globally</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>World Customs Journal</td>
+      <td>Analyze</td>
+      <td>International customs law</td>
+      <td>Understand historical contributions</td>
+      <td>Applying historical research methods</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>World Customs Journal</td>
+      <td>Apply</td>
+      <td>Data driven technology</td>
+      <td>Mitigate supply risks</td>
+      <td>Enhancing customs operations efficiency</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>World Customs Journal</td>
+      <td>Assess</td>
+      <td>Customs valuation agreements</td>
+      <td>Enhance trade controls</td>
+      <td>Amidst national regulation differences</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>World Trade Review</td>
+      <td>Redefine</td>
+      <td>Trade policy objectives</td>
+      <td>Address global disruptions</td>
+      <td>Amid re-globalization challenges</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>World Trade Review</td>
+      <td>Promote</td>
+      <td>International policy cooperation</td>
+      <td>Attain shared objectives</td>
+      <td>Mitigate adverse trade impacts</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>World Trade Review</td>
+      <td>Facilitate</td>
+      <td>International GIP cooperation</td>
+      <td>Mitigate trade disruptions</td>
+      <td>Ensure decarbonization efforts alignment</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>World Trade Review</td>
+      <td>Integrate</td>
+      <td>Environmental sustainability trade</td>
+      <td>Advance development goals</td>
+      <td>Through green regionalism frameworks</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>World Trade Review</td>
+      <td>Leverage</td>
+      <td>Free trade agreements</td>
+      <td>Shape international standards</td>
+      <td>For sustainable development uptake</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>World Trade Review</td>
+      <td>Adapt</td>
+      <td>Environmental services negotiations</td>
+      <td>Engage developing countries</td>
+      <td>To serve sustainable development</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>World Trade Review</td>
+      <td>Reconfigure</td>
+      <td>Trade climate governance</td>
+      <td>Achieve transnational decarbonization</td>
+      <td>Overcoming securitization pitfalls</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>World Trade Review</td>
+      <td>Engage</td>
+      <td>Global supply chains</td>
+      <td>Effectively address risks</td>
+      <td>Through international collaboration</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>World Trade Review</td>
+      <td>Design</td>
+      <td>Innovation support policies</td>
+      <td>Mitigate leakage risks</td>
+      <td>For net-zero transition</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>World Trade Review</td>
+      <td>Enhance</td>
+      <td>Local mRNA production</td>
+      <td>Foster equitable health</td>
+      <td>Addressing intellectual property</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>World Trade Review</td>
+      <td>Assess</td>
+      <td>Trade agreement impact</td>
+      <td>Improve economic modeling</td>
+      <td>Using realistic utilization data</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>World Trade Review</td>
+      <td>Strengthen</td>
+      <td>Environmental agreement enforceability</td>
+      <td>Ensure effective dispute resolution</td>
+      <td>Within trade court system</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>World Trade Review</td>
+      <td>Implement</td>
+      <td>Mediation dispute resolution</td>
+      <td>Expedite trade disputes</td>
+      <td>Structuring WTO DSM reforms</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>World Trade Review</td>
+      <td>Balance</td>
+      <td>Trade security regulations</td>
+      <td>Prevent economic protectionism</td>
+      <td>Governing dual-use items</td>
+    </tr>
+    <tr>
+      <td>ComEx</td>
+      <td>World Trade Review</td>
+      <td>Reinterpret</td>
+      <td>Legal stability obligations</td>
+      <td>Accommodate regulatory changes</td>
+      <td>In renewable energy arbitration</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Journal of Business Logistics</td>
+      <td>Optimize</td>
+      <td>Research communication impact</td>
+      <td>Enhance perceived quality</td>
+      <td>Avoiding paradox pitfalls</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Journal of Business Logistics</td>
+      <td>Analyze</td>
+      <td>New order dynamics</td>
+      <td>Predict shortage impacts</td>
+      <td>During pronounced supply shocks</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Journal of Business Logistics</td>
+      <td>Integrate</td>
+      <td>Transparency visibility strategies</td>
+      <td>Improve firm performance</td>
+      <td>Across manufacturing service sectors</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Journal of Business Logistics</td>
+      <td>Leverage</td>
+      <td>Supply chain finance</td>
+      <td>Drive sustainable development</td>
+      <td>With digital transition support</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Journal of Business Logistics</td>
+      <td>Enhance</td>
+      <td>Supply chain resilience</td>
+      <td>Through digitalization capabilities</td>
+      <td>Adapting to uncertain environments</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Journal of Business Logistics</td>
+      <td>Design</td>
+      <td>Blockchain system solutions</td>
+      <td>Monitor ex-post opportunism</td>
+      <td>Within food supply chains</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Journal of Business Logistics</td>
+      <td>Strengthen</td>
+      <td>Employee retention bonds</td>
+      <td>Through shared hardships</td>
+      <td>Aligning firm employee incentives</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Journal of Business Logistics</td>
+      <td>Reshape</td>
+      <td>Global trade finance</td>
+      <td>Enhance supply certainty</td>
+      <td>Utilizing digital SCF platforms</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Journal of Business Logistics</td>
+      <td>Synchronize</td>
+      <td>Digital technology adoption</td>
+      <td>Improve financial performance</td>
+      <td>Across supply chain partners</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Journal of Business Logistics</td>
+      <td>Manage</td>
+      <td>Supply chain digitalization</td>
+      <td>Optimize firm performance</td>
+      <td>Addressing resource specificity paradox</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Journal of Business Logistics</td>
+      <td>Develop</td>
+      <td>Supply chain executive careers</td>
+      <td>Spread expertise awareness</td>
+      <td>Fostering cross-functional profession</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Journal of Business Logistics</td>
+      <td>Implement</td>
+      <td>Socially responsible initiatives</td>
+      <td>Respond stakeholder pressures</td>
+      <td>Balancing alignment adaptability</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Journal of Business Logistics</td>
+      <td>Navigate</td>
+      <td>Heterogeneous regulatory compliance</td>
+      <td>Adapt adoption behaviors</td>
+      <td>Facing policy enforcement uncertainty</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Journal of Business Logistics</td>
+      <td>Innovate</td>
+      <td>SCF platform solutions</td>
+      <td>Generate competitive advantage</td>
+      <td>Evolving customer needs</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Journal of Business Logistics</td>
+      <td>Influence</td>
+      <td>Responsible sourcing decisions</td>
+      <td>Enhance social responsibility</td>
+      <td>Aligning managerial top management beliefs</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Journal of Business Logistics</td>
+      <td>Overcome</td>
+      <td>Knowledge mobilization barriers</td>
+      <td>Enhance supply knowledge</td>
+      <td>Within dynamic agri-food environment</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Journal of Business Logistics</td>
+      <td>Foster</td>
+      <td>Cross-tier supplier collaboration</td>
+      <td>Drive buyer innovation</td>
+      <td>Considering distance relationship longevity</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Journal of Business Logistics</td>
+      <td>Implement</td>
+      <td>AI-supported robotics</td>
+      <td>Increase supply chain responsiveness</td>
+      <td>Adapting to labor shortages</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Journal of Business Logistics</td>
+      <td>Optimize</td>
+      <td>Secondary packaging design</td>
+      <td>Improve order picking</td>
+      <td>Considering product warehouse characteristics</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Journal of Business Logistics</td>
+      <td>Formulate</td>
+      <td>Public policy strategies</td>
+      <td>Enhance supply resilience</td>
+      <td>Understanding policy-resilience connections</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Journal of Business Logistics</td>
+      <td>Analyze</td>
+      <td>Supply chain network evolution</td>
+      <td>Build multidimensional understanding</td>
+      <td>Employing cross-disciplinary approaches</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Journal of Business Logistics</td>
+      <td>Apply</td>
+      <td>Green technology solutions</td>
+      <td>Improve firm performance</td>
+      <td>Through innovation cooperation</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Journal of Business Logistics</td>
+      <td>Develop</td>
+      <td>Triple-A capabilities</td>
+      <td>Achieve supply resilience</td>
+      <td>Navigating disruption phases</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Journal of Business Logistics</td>
+      <td>Drive</td>
+      <td>Supply chain agility</td>
+      <td>Through firm innovation</td>
+      <td>Leveraging supply digitalization</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Journal of Business Logistics</td>
+      <td>Evaluate</td>
+      <td>Carbon finance investments</td>
+      <td>Promote sustainability initiatives</td>
+      <td>Utilizing blockchain technology</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Journal of Business Logistics</td>
+      <td>Assess</td>
+      <td>E-logistics service quality</td>
+      <td>Understand customer appraisals</td>
+      <td>In crowdsourced delivery models</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Journal of Business Logistics</td>
+      <td>Understand</td>
+      <td>Logistics discipline evolution</td>
+      <td>Guide future research</td>
+      <td>Learning from founding figures</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Journal of Business Logistics</td>
+      <td>Adopt</td>
+      <td>Additive manufacturing solutions</td>
+      <td>Address after-sales challenges</td>
+      <td>Based on shortage context</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Journal of Business Logistics</td>
+      <td>Justify</td>
+      <td>IT investment decisions</td>
+      <td>Improve supply efficiency</td>
+      <td>Considering decision-maker context</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Journal of Business Logistics</td>
+      <td>Manage</td>
+      <td>Last-mile demand surges</td>
+      <td>Optimize delivery efficiency</td>
+      <td>In volatile operating conditions</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Logistics, Supply Chain, Sustainability and Global Challenges</td>
+      <td>Implement</td>
+      <td>ethical business practices</td>
+      <td>foster sustainable environment</td>
+      <td>through strong organizational culture</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Logistics, Supply Chain, Sustainability and Global Challenges</td>
+      <td>Negotiate</td>
+      <td>supplier relationships</td>
+      <td>ensure business success</td>
+      <td>using integrative strategies</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Logistics, Supply Chain, Sustainability and Global Challenges</td>
+      <td>Integrate</td>
+      <td>ICT solutions</td>
+      <td>improve supply efficiency</td>
+      <td>for manufacturing SMEs</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Logistics, Supply Chain, Sustainability and Global Challenges</td>
+      <td>Optimize</td>
+      <td>complex logistics decisions</td>
+      <td>enhance financial performance</td>
+      <td>using MCDM methods</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Logistics, Supply Chain, Sustainability and Global Challenges</td>
+      <td>Design</td>
+      <td>sustainable transportation finance</td>
+      <td>reduce traffic congestion</td>
+      <td>addressing equity issues</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Logistics, Supply Chain, Sustainability and Global Challenges</td>
+      <td>Strategize</td>
+      <td>sustainable supply chains</td>
+      <td>achieve economic growth</td>
+      <td>mitigating environmental impact</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Logistics, Supply Chain, Sustainability and Global Challenges</td>
+      <td>Implement</td>
+      <td>Industry 4.0 technologies</td>
+      <td>enhance environmental sustainability</td>
+      <td>within competitive business</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Logistics, Supply Chain, Sustainability and Global Challenges</td>
+      <td>Develop</td>
+      <td>beekeeping value chain</td>
+      <td>foster regional innovation</td>
+      <td>addressing regulatory gaps</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Logistics, Supply Chain, Sustainability and Global Challenges</td>
+      <td>Define</td>
+      <td>sustainable supply chain</td>
+      <td>enhance energy efficiency</td>
+      <td>for building insulation</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Logistics, Supply Chain, Sustainability and Global Challenges</td>
+      <td>Select</td>
+      <td>optimal logistics software</td>
+      <td>boost operational efficiency</td>
+      <td>for outsourcing initiatives</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Logistics, Supply Chain, Sustainability and Global Challenges</td>
+      <td>Analyze</td>
+      <td>economic-environmental determinants</td>
+      <td>foster sustainable growth</td>
+      <td>within EU policies</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Logistics, Supply Chain, Sustainability and Global Challenges</td>
+      <td>Formulate</td>
+      <td>circular economy goals</td>
+      <td>ensure long-term sustainability</td>
+      <td>integrating circularity aspects</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Logistics Research</td>
+      <td>Manage</td>
+      <td>technology adoption process</td>
+      <td>enhance operational efficiency</td>
+      <td>considering user behavior insights</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Logistics Research</td>
+      <td>Adapt</td>
+      <td>retail supply chains</td>
+      <td>mitigate disruptive impacts</td>
+      <td>leveraging crisis lessons</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Logistics Research</td>
+      <td>Integrate</td>
+      <td>circular economy principles</td>
+      <td>optimize supply chain</td>
+      <td>leveraging research insights</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Logistics Research</td>
+      <td>Classify</td>
+      <td>heterogeneous logistics items</td>
+      <td>optimize automated handling</td>
+      <td>using advanced clustering methods</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Logistics Research</td>
+      <td>Leverage</td>
+      <td>artificial intelligence</td>
+      <td>enhance supply collaboration</td>
+      <td>based on research trends</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Logistics Research</td>
+      <td>Strategize</td>
+      <td>logistics outsourcing services</td>
+      <td>expand market presence</td>
+      <td>adapting technological advancements</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Logistics Research</td>
+      <td>Optimize</td>
+      <td>warehouse yard operations</td>
+      <td>enhance logistics efficiency</td>
+      <td>prioritizing critical subprocesses</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Logistics Research</td>
+      <td>Mitigate</td>
+      <td>supply chain risks</td>
+      <td>bolster organizational competitiveness</td>
+      <td>through strategic innovation</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Evaluate</td>
+      <td>Drone delivery systems</td>
+      <td>Improve LMD process</td>
+      <td>Given complex stakeholder considerations</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Develop</td>
+      <td>Managerial competence profile</td>
+      <td>Enhance individual performance</td>
+      <td>Amidst evolving supply chain demands</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Navigate</td>
+      <td>Supply chain paradoxes</td>
+      <td>Achieve sustainability goals</td>
+      <td>In unpredictable multi-tier environments</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Align</td>
+      <td>Supply chain practices</td>
+      <td>Support sustainable development</td>
+      <td>Post-pandemic scenario research agenda</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Optimize</td>
+      <td>Food redistribution balance</td>
+      <td>Ensure supply chain viability</td>
+      <td>Across diverse supply chain actors</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Balance</td>
+      <td>Cognitive congruence flexibility</td>
+      <td>Improve process innovation</td>
+      <td>For complex supply chain security</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Transform</td>
+      <td>CSC capabilities</td>
+      <td>Maintain market competitiveness</td>
+      <td>Facing for-profit competition</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Manage</td>
+      <td>Supply chain complexities</td>
+      <td>Ensure dual performance</td>
+      <td>In defense industry context</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Assess</td>
+      <td>Blockchain information enhancement</td>
+      <td>Improve data quality</td>
+      <td>Within inter-organizational supply chains</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Influence</td>
+      <td>Automation workforce upskilling</td>
+      <td>Enhance supplier performance</td>
+      <td>Under buyer competition pressure</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Facilitate</td>
+      <td>Logistics robot adoption</td>
+      <td>Increase operator acceptance</td>
+      <td>Through trust technology integration</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Enhance</td>
+      <td>Supply chain performance</td>
+      <td>Build resilience agility</td>
+      <td>Using digital twin technology</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Design</td>
+      <td>Intervention research methods</td>
+      <td>Address grand challenges</td>
+      <td>For Global South suppliers</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Understand</td>
+      <td>Supply chain circularity</td>
+      <td>Boost CE principles</td>
+      <td>Influenced by path dependence</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Identify</td>
+      <td>Consumer adoption drivers</td>
+      <td>Promote ULS acceptance</td>
+      <td>Leveraging gratification theories</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Leverage</td>
+      <td>Blockchain for CSR</td>
+      <td>Improve social responsibility</td>
+      <td>Through supply chain transparency</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Implement</td>
+      <td>Closed-loop supply chain</td>
+      <td>Enhance sustainability performance</td>
+      <td>With environmental proactivity integration</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Drive</td>
+      <td>Healthcare supply chain</td>
+      <td>Improve operational efficiency</td>
+      <td>Via analytics supply chain strategies</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Design</td>
+      <td>Green warehouse model</td>
+      <td>Reduce sector emissions</td>
+      <td>Tailored to warehousing specific needs</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Improve</td>
+      <td>Customer repurchase intention</td>
+      <td>Enhance e-commerce performance</td>
+      <td>Through SC agility service quality</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Address</td>
+      <td>LMD logistical barriers</td>
+      <td>Promote delivery equity</td>
+      <td>For urban informal settlements</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Maximize</td>
+      <td>Digitalization benefits</td>
+      <td>Improve employee performance</td>
+      <td>With paradoxical leader behavior</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Implement</td>
+      <td>Due diligence practices</td>
+      <td>Enhance supply chain performance</td>
+      <td>With trust organizational culture</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Strategize</td>
+      <td>Agriculture logistics resilience</td>
+      <td>Manage logistical disruptions</td>
+      <td>For food supply stability</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Evaluate</td>
+      <td>Digital maturity effects</td>
+      <td>Achieve sustainable performance</td>
+      <td>In agri-food supply chains</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Redefine</td>
+      <td>Supply chain flows</td>
+      <td>Expand SCM understanding</td>
+      <td>By identifying overlooked elements</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Overcome</td>
+      <td>EV adoption barriers</td>
+      <td>Achieve sustainable transport</td>
+      <td>For last-mile deliveries globally</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Mitigate</td>
+      <td>Truck-sharing resistance</td>
+      <td>Promote service adoption</td>
+      <td>Addressing shipper perceptions</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Strengthen</td>
+      <td>Triple-A capabilities</td>
+      <td>Overcome global SC challenges</td>
+      <td>Through HR top management support</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Implement</td>
+      <td>AI in demand planning</td>
+      <td>Improve SCM performance</td>
+      <td>For effective data processing</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Foster</td>
+      <td>Supply chain collaboration</td>
+      <td>Gain competitive advantage</td>
+      <td>Through organizational culture types</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Identify</td>
+      <td>Construction SME risks</td>
+      <td>Systematically assess vulnerabilities</td>
+      <td>In multi-stage project environments</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Innovate</td>
+      <td>Food business models</td>
+      <td>Recover from disruptions</td>
+      <td>To foster organizational resilience</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Overcome</td>
+      <td>Digital traceability barriers</td>
+      <td>Improve food supply</td>
+      <td>In Industry 5.0 context</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Develop</td>
+      <td>Food supply resilience</td>
+      <td>Improve performance outcomes</td>
+      <td>Through digital transformation strategies</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Facilitate</td>
+      <td>Regional food supply</td>
+      <td>Enhance hospitality catering</td>
+      <td>Using digital logistics platforms</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Implement</td>
+      <td>Digital tuna traceability</td>
+      <td>Combat IUU fishing</td>
+      <td>Addressing fisher literacy infrastructure</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Enhance</td>
+      <td>Agri-food productivity</td>
+      <td>Support smallholder producers</td>
+      <td>Via mobile phone literacy</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Utilize</td>
+      <td>Blockchain technology</td>
+      <td>Boost AFSC performance</td>
+      <td>For enhanced sustainability outcomes</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Build</td>
+      <td>Sustainable business value</td>
+      <td>Enable market viability</td>
+      <td>Through smart digital supply chains</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Identify</td>
+      <td>DT adoption challenges</td>
+      <td>Achieve sustainable development</td>
+      <td>In agri-food supply chains</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Evaluate</td>
+      <td>IoT warehousing startups</td>
+      <td>Enhance food safety</td>
+      <td>For unorganized food sector</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Implement</td>
+      <td>AI circular economy</td>
+      <td>Achieve sustainable transformation</td>
+      <td>In food beverage sector</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Assess</td>
+      <td>Industry 4.0 impact</td>
+      <td>Increase AFSC sustainability</td>
+      <td>Focusing market competitiveness knowledge</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Optimize</td>
+      <td>Order picking tasks</td>
+      <td>Reduce task time</td>
+      <td>Using human-robot collaboration</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Design</td>
+      <td>Strategic sustainability systems</td>
+      <td>Enhance initiative success</td>
+      <td>Navigating transformational tensions</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Orchestrate</td>
+      <td>Social assistance supplychains</td>
+      <td>Resolve food insecurity</td>
+      <td>Through NPO collaboration</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Build</td>
+      <td>SC resilience capabilities</td>
+      <td>Navigate disruptive events</td>
+      <td>By repurposing latent functions</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Enhance</td>
+      <td>Financial performance</td>
+      <td>Improve SC partnerships</td>
+      <td>Through IT supplier integration</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Advance</td>
+      <td>LSCM research methods</td>
+      <td>Enhance theoretical rigor</td>
+      <td>By comparing AR DS</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Adapt</td>
+      <td>Supply chain structure</td>
+      <td>Achieve profitable growth</td>
+      <td>In volatile unpredictable environments</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Apply</td>
+      <td>Mediated power strategies</td>
+      <td>Manage supplier disruptions</td>
+      <td>Contingent on supplier size type</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Boost</td>
+      <td>Enterprise competitiveness</td>
+      <td>Leverage ESG performance</td>
+      <td>In digitalized logistics context</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Manage</td>
+      <td>Humanitarian aid risks</td>
+      <td>Facilitate effective delivery</td>
+      <td>Under diverse crisis contexts</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Mitigate</td>
+      <td>Information asymmetry</td>
+      <td>Improve AFSC management</td>
+      <td>Through social behavior monitoring</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Harness</td>
+      <td>AI for logistics</td>
+      <td>Elevate operational efficiency</td>
+      <td>In e-commerce environment</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>The International Journal of Logistics Management</td>
+      <td>Build</td>
+      <td>Agile SC ecosystem</td>
+      <td>Promote corporate performance</td>
+      <td>During disruptive events</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Journal</td>
+      <td>Analyze</td>
+      <td>Diversity initiatives impact</td>
+      <td>Assess representation change</td>
+      <td>In frontline occupations context</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Journal</td>
+      <td>Formulate</td>
+      <td>Infrastructure investment strategies</td>
+      <td>Attract foreign capital</td>
+      <td>Utilizing economic signals</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Journal</td>
+      <td>Evaluate</td>
+      <td>EV emissions reduction</td>
+      <td>Inform policy decisions</td>
+      <td>Considering energy mix</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Journal</td>
+      <td>Optimize</td>
+      <td>Product recall timing</td>
+      <td>Mitigate market impact</td>
+      <td>Relative competitor actions</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Journal</td>
+      <td>Systematize</td>
+      <td>Air cargo knowledge</td>
+      <td>Guide future research</td>
+      <td>Through bibliometric analysis</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Journal</td>
+      <td>Integrate</td>
+      <td>Military logistics capabilities</td>
+      <td>Enhance global trade</td>
+      <td>Facing conflict disruptions</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Journal</td>
+      <td>Model</td>
+      <td>Airline network resilience</td>
+      <td>Reduce failure impacts</td>
+      <td>With ground transportation integration</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Journal</td>
+      <td>Design</td>
+      <td>AGV routing algorithms</td>
+      <td>Reduce battery downtime</td>
+      <td>Optimizing station queues</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Journal</td>
+      <td>Leverage</td>
+      <td>Supply chain analytics</td>
+      <td>Improve financial outcomes</td>
+      <td>In agri-food sector</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Journal</td>
+      <td>Classify</td>
+      <td>Raw material risks</td>
+      <td>Strengthen supply chains</td>
+      <td>Amidst geopolitical factors</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Journal</td>
+      <td>Differentiate</td>
+      <td>Household VMT drivers</td>
+      <td>Understand vehicle usage</td>
+      <td>Across powertrain types</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Research Part E: Logistics and Transportation Review</td>
+      <td>Analyze</td>
+      <td>urban freight patterns</td>
+      <td>inform area planning</td>
+      <td>geospatial dynamics data</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Research Part E: Logistics and Transportation Review</td>
+      <td>Optimize</td>
+      <td>cargo delivery routes</td>
+      <td>reduce total costs</td>
+      <td>modular vehicles utilization</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Research Part E: Logistics and Transportation Review</td>
+      <td>Design</td>
+      <td>resilient logistics systems</td>
+      <td>ensure essential supply</td>
+      <td>emergency lockdown conditions</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Research Part E: Logistics and Transportation Review</td>
+      <td>Evaluate</td>
+      <td>combined transport bottlenecks</td>
+      <td>promote system improvement</td>
+      <td>international logistics context</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Research Part E: Logistics and Transportation Review</td>
+      <td>Measure</td>
+      <td>port congestion risk</td>
+      <td>evaluate port performance</td>
+      <td>cargo choice equilibrium</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Research Part E: Logistics and Transportation Review</td>
+      <td>Apply</td>
+      <td>machine learning techniques</td>
+      <td>analyze AIS data</td>
+      <td>maritime research domain</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Research Part E: Logistics and Transportation Review</td>
+      <td>Plan</td>
+      <td>driver-preferred routes</td>
+      <td>enhance route matching</td>
+      <td>meta-IRL methods application</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Research Part E: Logistics and Transportation Review</td>
+      <td>Assess</td>
+      <td>SLZ impact</td>
+      <td>reduce traffic congestion</td>
+      <td>causal analysis approach</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Research Part E: Logistics and Transportation Review</td>
+      <td>Prioritize</td>
+      <td>net-zero shipping research</td>
+      <td>achieve sustainability goals</td>
+      <td>expert input analysis</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Research Part E: Logistics and Transportation Review</td>
+      <td>Implement</td>
+      <td>metaverse framework</td>
+      <td>facilitate transport operations</td>
+      <td>AI-supported digital technology</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Research Part E: Logistics and Transportation Review</td>
+      <td>Determine</td>
+      <td>optimal matching radius</td>
+      <td>maximize system performance</td>
+      <td>ride-hailing service context</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Research Part E: Logistics and Transportation Review</td>
+      <td>Leverage</td>
+      <td>generative AI</td>
+      <td>improve supply sustainability</td>
+      <td>practical application scenarios</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Research Part E: Logistics and Transportation Review</td>
+      <td>Incorporate</td>
+      <td>resource responsibility</td>
+      <td>enhance financial performance</td>
+      <td>production logistics management</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Research Part E: Logistics and Transportation Review</td>
+      <td>Analyze</td>
+      <td>road accident risk</td>
+      <td>improve public safety</td>
+      <td>XAI model application</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Research Part E: Logistics and Transportation Review</td>
+      <td>Model</td>
+      <td>last-mile logistics</td>
+      <td>inform strategic planning</td>
+      <td>multi-scale modeling approach</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Research Part E: Logistics and Transportation Review</td>
+      <td>Formulate</td>
+      <td>pricing strategies</td>
+      <td>promote green mobility</td>
+      <td>ride-hailing platform operations</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Research Part E: Logistics and Transportation Review</td>
+      <td>Drive</td>
+      <td>societal impact</td>
+      <td>advance logistics technology</td>
+      <td>sustainable SCM integration</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Research Part E: Logistics and Transportation Review</td>
+      <td>Foster</td>
+      <td>logistics innovation</td>
+      <td>navigate geopolitical disruptions</td>
+      <td>leadership style influence</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Research Part E: Logistics and Transportation Review</td>
+      <td>Address</td>
+      <td>supply-demand imbalance</td>
+      <td>optimize SAEV operation</td>
+      <td>multi-agent RL framework</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Science</td>
+      <td>Manage</td>
+      <td>Traffic congestion systems</td>
+      <td>Achieve fair efficiency</td>
+      <td>Heterogeneous commuter behavior</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Science</td>
+      <td>Model</td>
+      <td>Transportation network equilibrium</td>
+      <td>Predict traffic states</td>
+      <td>Multi-day traffic observations</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Science</td>
+      <td>Construct</td>
+      <td>Agricultural trade models</td>
+      <td>Quantify disaster disruptions</td>
+      <td>Multi-period commodity flows</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Science</td>
+      <td>Calibrate</td>
+      <td>Metro route models</td>
+      <td>Optimize passenger flow</td>
+      <td>Complex urban metro systems</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Science</td>
+      <td>Learn</td>
+      <td>Decision makers' preferences</td>
+      <td>Replicate human routing</td>
+      <td>Historical routing data</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Science</td>
+      <td>Design</td>
+      <td>Dynamic scheduling strategies</td>
+      <td>Enhance meal delivery</td>
+      <td>Temporally spatially dispersed demand</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Science</td>
+      <td>Develop</td>
+      <td>Online assignment policies</td>
+      <td>Maximize efficiency fairness</td>
+      <td>Ride-hailing system operations</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Science</td>
+      <td>Manage</td>
+      <td>Driver repositioning behavior</td>
+      <td>Maximize order fulfillment</td>
+      <td>Crowdsourced delivery platforms</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Science</td>
+      <td>Predict</td>
+      <td>Vehicle trajectories</td>
+      <td>Enhance autonomous safety</td>
+      <td>Complex dynamic traffic</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Science</td>
+      <td>Optimize</td>
+      <td>Hierarchical routing problems</td>
+      <td>Expedite algorithm development</td>
+      <td>Neural cost prediction</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Science</td>
+      <td>Optimize</td>
+      <td>Delivery system pricing</td>
+      <td>Maximize customer profit</td>
+      <td>Integrated same-next-day orders</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Science</td>
+      <td>Predict</td>
+      <td>Spatiotemporal graph data</td>
+      <td>Address OOD generalization</td>
+      <td>Diffusion-augmented invariant learning</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Science</td>
+      <td>Estimate</td>
+      <td>Traffic flow errors</td>
+      <td>Recover traffic flow</td>
+      <td>Unknown error distributions</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Science</td>
+      <td>Design</td>
+      <td>OOH delivery policies</td>
+      <td>Improve logistics profitability</td>
+      <td>Dynamic customer behavior</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Science</td>
+      <td>Integrate</td>
+      <td>Combined transportation services</td>
+      <td>Enhance company profitability</td>
+      <td>Dynamic stochastic environment</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Science</td>
+      <td>Allocate</td>
+      <td>Scarce relief supplies</td>
+      <td>Manage disaster uncertainties</td>
+      <td>Trucks UAVs deployment</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Science</td>
+      <td>Design</td>
+      <td>Multimodal transit systems</td>
+      <td>Maximize social welfare</td>
+      <td>Commuter choice optimization</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Science</td>
+      <td>Forecast</td>
+      <td>Multimodal transport demand</td>
+      <td>Optimize service planning</td>
+      <td>Missing data challenges</td>
+    </tr>
+    <tr>
+      <td>Logística</td>
+      <td>Transportation Science</td>
+      <td>Solve</td>
+      <td>Fixed-charge problems</td>
+      <td>Reduce problem complexity</td>
+      <td>Machine learning integration</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Optimize</td>
+      <td>waste collection CLSCs</td>
+      <td>boost environmental performance</td>
+      <td>using economic incentive models</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Integrate</td>
+      <td>propulsion port optimization</td>
+      <td>minimize maritime emissions</td>
+      <td>combining wind energy technologies</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Develop</td>
+      <td>resilient supply chains</td>
+      <td>mitigate disruption impacts</td>
+      <td>addressing stakeholder resource constraints</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Design</td>
+      <td>risk mitigation frameworks</td>
+      <td>improve project performance</td>
+      <td>enhancing visibility collaboration innovation</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Analyze</td>
+      <td>fossil-free freight support</td>
+      <td>enable road decarbonization</td>
+      <td>understanding actor support types</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Evaluate</td>
+      <td>PLM system sustainability</td>
+      <td>support sustainable development</td>
+      <td>using multi-dimensional framework</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Influence</td>
+      <td>green consumer behavior</td>
+      <td>foster sustainable consumption</td>
+      <td>leveraging personal social norms</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Optimize</td>
+      <td>CLSC inventory pricing</td>
+      <td>enhance economic sustainability</td>
+      <td>integrating remanufacturing processes</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Implement</td>
+      <td>circular economy framework</td>
+      <td>enhance supply chain sustainability</td>
+      <td>leveraging Industry 4.0 technologies</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Mitigate</td>
+      <td>green hydrogen risks</td>
+      <td>enhance supply chain sustainability</td>
+      <td>implementing blockchain technology solutions</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Implement</td>
+      <td>integrated information systems</td>
+      <td>improve market performance</td>
+      <td>leveraging Industry 4.0 PLM</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Enhance</td>
+      <td>halal organization performance</td>
+      <td>foster sustainable competitiveness</td>
+      <td>through HLSP incubator role</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Adapt</td>
+      <td>logistics processes requirements</td>
+      <td>improve firm performance</td>
+      <td>within wood biomass supply</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Prioritize</td>
+      <td>circular supply measures</td>
+      <td>overcome implementation barriers</td>
+      <td>using grey decision models</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Analyze</td>
+      <td>carbon trading impact</td>
+      <td>optimize airline decisions</td>
+      <td>under cap-and-trade systems</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Optimize</td>
+      <td>natural gas transportation</td>
+      <td>improve supply efficiency</td>
+      <td>under steady-state conditions</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Model</td>
+      <td>EV battery remanufacturing</td>
+      <td>manage supply demand</td>
+      <td>ensuring economic viability sustainability</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Design</td>
+      <td>resilient sustainable CLSCs</td>
+      <td>reduce waste pollution</td>
+      <td>under various risk parameters</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Implement</td>
+      <td>circular economy principles</td>
+      <td>enhance seaport cybersecurity</td>
+      <td>fostering digital sustainability resilience</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Apply</td>
+      <td>lean manufacturing practices</td>
+      <td>enhance environmental performance</td>
+      <td>analyzing cause effect relationships</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Develop</td>
+      <td>dynamic matching strategies</td>
+      <td>optimize intelligent supply</td>
+      <td>under carbon emission constraints</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Model</td>
+      <td>cross-docking inventory systems</td>
+      <td>optimize costs emissions</td>
+      <td>considering imperfect quality stockouts</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Optimize</td>
+      <td>maritime shipping routes</td>
+      <td>reduce emissions costs</td>
+      <td>under emission trading system</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Forecast</td>
+      <td>food demand accurately</td>
+      <td>reduce waste preventatively</td>
+      <td>applying ensemble stacking models</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Implement</td>
+      <td>halal food traceability</td>
+      <td>enhance consumer confidence</td>
+      <td>leveraging integrated acceptance models</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Mitigate</td>
+      <td>ocean health impacts</td>
+      <td>promote marine sustainability</td>
+      <td>implementing supply chain practices</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Implement</td>
+      <td>just-in-time arrivals</td>
+      <td>reduce fuel consumption</td>
+      <td>for maritime shipping operations</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Model</td>
+      <td>CaaS market dynamics</td>
+      <td>guide urban development</td>
+      <td>under competitive pricing scenarios</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Design</td>
+      <td>reverse logistics networks</td>
+      <td>reduce carbon footprint</td>
+      <td>through simulation fashion industry</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Measure</td>
+      <td>supply chain sustainability resilience</td>
+      <td>inform strategic decisions</td>
+      <td>using composite indicators</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Analyze</td>
+      <td>freight receivers willingness</td>
+      <td>evaluate city hub viability</td>
+      <td>from system dynamics perspective</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Optimize</td>
+      <td>coal procurement logistics</td>
+      <td>enhance sustainability efficiency</td>
+      <td>under maritime transport uncertainty</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Develop</td>
+      <td>green coal supply</td>
+      <td>minimize emissions costs</td>
+      <td>integrating blending transportation requirements</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Manage</td>
+      <td>reverse supply returns</td>
+      <td>mitigate purchase uncertainty</td>
+      <td>through policy product descriptions</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Optimize</td>
+      <td>vehicle routing schedules</td>
+      <td>minimize costs emissions</td>
+      <td>considering labor environmental factors</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Implement</td>
+      <td>dynamic driving solutions</td>
+      <td>enhance port efficiency</td>
+      <td>reducing fuel emissions</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Integrate</td>
+      <td>Industry 5.0 GSCM</td>
+      <td>achieve sustainable development</td>
+      <td>in textile manufacturing</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Develop</td>
+      <td>resilient electrified transport</td>
+      <td>mitigate disruption risks</td>
+      <td>focusing on H-BEV adoption</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Design</td>
+      <td>CLSC networks robustly</td>
+      <td>optimize economic environmental</td>
+      <td>under uncertainty flexible constraints</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Cleaner Logistics and Supply Chain</td>
+      <td>Predict</td>
+      <td>ship fuel power</td>
+      <td>enable maritime decarbonization</td>
+      <td>utilizing machine learning models</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Purchasing and Supply Management</td>
+      <td>Develop</td>
+      <td>Supply chain leaders</td>
+      <td>Drive sustainability innovation</td>
+      <td>Global supply chain context</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Purchasing and Supply Management</td>
+      <td>Assess</td>
+      <td>Supply chain resilience</td>
+      <td>Inform decision-making</td>
+      <td>Using network performance indicators</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Purchasing and Supply Management</td>
+      <td>Implement</td>
+      <td>Public procurement education</td>
+      <td>Enhance student learning</td>
+      <td>Using real-world case studies</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Purchasing and Supply Management</td>
+      <td>Negotiate</td>
+      <td>Buyer supplier deals</td>
+      <td>Optimize economic outcomes</td>
+      <td>Using AI-based chatbots</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Purchasing and Supply Management</td>
+      <td>Manage</td>
+      <td>Supply chain relationships</td>
+      <td>Balance efficiency dynamics</td>
+      <td>Adopting blockchain technology</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Purchasing and Supply Management</td>
+      <td>Facilitate</td>
+      <td>SME public procurement</td>
+      <td>Improve marketplace outcomes</td>
+      <td>Addressing systemic organizational factors</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Purchasing and Supply Management</td>
+      <td>Promote</td>
+      <td>Supply market development</td>
+      <td>Foster public innovation</td>
+      <td>Leveraging dynamic capabilities</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Purchasing and Supply Management</td>
+      <td>Innovate</td>
+      <td>PSM education pedagogy</td>
+      <td>Improve student outcomes</td>
+      <td>Through novel teaching methods</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Purchasing and Supply Management</td>
+      <td>Integrate</td>
+      <td>Supplier relationships processes</td>
+      <td>Enhance firm performance</td>
+      <td>Prioritizing relational integration</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Purchasing and Supply Management</td>
+      <td>Develop</td>
+      <td>Innovative procurement competences</td>
+      <td>Support strategic objectives</td>
+      <td>Through network collaboration</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Purchasing and Supply Management</td>
+      <td>Optimize</td>
+      <td>Spend classification practices</td>
+      <td>Support strategic purchasing</td>
+      <td>Adopting artificial intelligence</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Purchasing and Supply Management</td>
+      <td>Improve</td>
+      <td>SME supply decisions</td>
+      <td>Overcome attention constraints</td>
+      <td>Considering supplier agency</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Purchasing and Supply Management</td>
+      <td>Address</td>
+      <td>Modern slavery incidents</td>
+      <td>Drive substantive change</td>
+      <td>Implementing remediation policies</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Purchasing and Supply Management</td>
+      <td>Conduct</td>
+      <td>Total cost analysis</td>
+      <td>Inform purchasing decisions</td>
+      <td>Following structured two-step approach</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Purchasing and Supply Management</td>
+      <td>Implement</td>
+      <td>Green supply chains</td>
+      <td>Enhance environmental performance</td>
+      <td>Through downstream digitalization</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Purchasing and Supply Management</td>
+      <td>Respond</td>
+      <td>Crisis supply disruptions</td>
+      <td>Ensure critical procurement</td>
+      <td>Through organizational mindfulness improvisation</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Purchasing and Supply Management</td>
+      <td>Implement</td>
+      <td>Corporate sustainability diligence</td>
+      <td>Ensure value chain standards</td>
+      <td>Applying design principles</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Purchasing and Supply Management</td>
+      <td>Facilitate</td>
+      <td>Buyer-supplier self-organization</td>
+      <td>Improve relational performance</td>
+      <td>Using LSP-brokered learning</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Purchasing and Supply Management</td>
+      <td>Develop</td>
+      <td>Supplier innovation partnerships</td>
+      <td>Achieve innovation goals</td>
+      <td>Balancing trust interdependence</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Purchasing and Supply Management</td>
+      <td>Enhance</td>
+      <td>Circular economy performance</td>
+      <td>Through supply chain collaboration</td>
+      <td>Leveraging organizational capabilities</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Purchasing and Supply Management</td>
+      <td>Foster</td>
+      <td>NPD team collaboration</td>
+      <td>Enhance advice seeking</td>
+      <td>Building inter-organizational trust</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Purchasing and Supply Management</td>
+      <td>Analyze</td>
+      <td>Supply chain relationships</td>
+      <td>Understand interorganizational symbiosis</td>
+      <td>Applying holobiont theory</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Purchasing and Supply Management</td>
+      <td>Manage</td>
+      <td>Supply chain network</td>
+      <td>Boost operational resilience</td>
+      <td>Adapting to natural disasters</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Purchasing and Supply Management</td>
+      <td>Optimize</td>
+      <td>Supplier customer interdependence</td>
+      <td>Enhance supplier productivity</td>
+      <td>Managing mutual relative dependence</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Purchasing and Supply Management</td>
+      <td>Accelerate</td>
+      <td>Procurement value contribution</td>
+      <td>Improve performance agility</td>
+      <td>Leveraging capability microfoundations</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Purchasing and Supply Management</td>
+      <td>Implement</td>
+      <td>Performance-based contracting</td>
+      <td>Realize procurement advantages</td>
+      <td>Achieving strategy-structure fit</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Purchasing and Supply Management</td>
+      <td>Coordinate</td>
+      <td>Supplier induced disruptions</td>
+      <td>Ensure relationship stability</td>
+      <td>Applying governance mechanisms</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Purchasing and Supply Management</td>
+      <td>Manage</td>
+      <td>Buyer supplier dynamics</td>
+      <td>Curb supplier opportunism</td>
+      <td>Adapting trust contract interplay</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Purchasing and Supply Management</td>
+      <td>Analyze</td>
+      <td>Supplier embeddedness mechanisms</td>
+      <td>Understand buyer influence</td>
+      <td>In status-asymmetric relationships</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management</td>
+      <td>Apply</td>
+      <td>research method toolkit</td>
+      <td>capture supply complexities</td>
+      <td>building robust SCM theories</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management</td>
+      <td>Calibrate</td>
+      <td>inter-organizational justice</td>
+      <td>foster NPD collaboration</td>
+      <td>within complex network structures</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management</td>
+      <td>Influence</td>
+      <td>supplier negotiation outcomes</td>
+      <td>achieve favorable terms</td>
+      <td>utilizing persuasive narratives effectively</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management</td>
+      <td>Address</td>
+      <td>modern slavery risks</td>
+      <td>embed accountability systems</td>
+      <td>through meta-organizational purchasing structures</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management</td>
+      <td>Develop</td>
+      <td>supply chain resilience</td>
+      <td>manage disruptive changes</td>
+      <td>based PPS configurations</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management</td>
+      <td>Reconfigure</td>
+      <td>supply chain structures</td>
+      <td>enable rapid recovery</td>
+      <td>after complete shutdowns</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management</td>
+      <td>Reduce</td>
+      <td>supply chain emissions</td>
+      <td>drive sustainability impact</td>
+      <td>through corporate interventions</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management</td>
+      <td>Lead</td>
+      <td>transformative supply chains</td>
+      <td>respond extreme conditions</td>
+      <td>leveraging diverse ecosystem partners</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management</td>
+      <td>Manage</td>
+      <td>firm idiosyncratic risk</td>
+      <td>reduce information asymmetry</td>
+      <td>through supplier carbon management</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management</td>
+      <td>Adapt</td>
+      <td>sourcing supply base</td>
+      <td>navigate policy uncertainty</td>
+      <td>adjusting onshore geographic diversification</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management</td>
+      <td>Innovate</td>
+      <td>sustainable supply chains</td>
+      <td>prioritize social impact</td>
+      <td>by foregrounding people communities</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management, Logistics & Procurement</td>
+      <td>Develop</td>
+      <td>autonomous planning capabilities</td>
+      <td>achieve supply chain benefits</td>
+      <td>overcome organisational resistance barriers</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management Logistics and Procurement</td>
+      <td>Implement</td>
+      <td>sourcing analytics playbook</td>
+      <td>globally select critical suppliers</td>
+      <td>utilizing public data analytics</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management, Logistics & Procurement</td>
+      <td>Envision</td>
+      <td>autonomous supply chain</td>
+      <td>orchestrate end-to-end processes</td>
+      <td>minimal human AI intervention</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management Logistics and Procurement</td>
+      <td>Design</td>
+      <td>autonomous supply chains</td>
+      <td>manage end-to-end processes</td>
+      <td>leveraging AI minimal human</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management Logistics and Procurement</td>
+      <td>Leverage</td>
+      <td>open innovation ecosystems</td>
+      <td>drive supply chain value</td>
+      <td>foster collaboration co-creation</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management Logistics and Procurement</td>
+      <td>Analyze</td>
+      <td>supplier ramped capacity</td>
+      <td>ensure enterprise success</td>
+      <td>considering lean supply disruptions</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management Logistics and Procurement</td>
+      <td>Optimize</td>
+      <td>driver retention strategies</td>
+      <td>increase driver satisfaction</td>
+      <td>balancing multi-objective planning</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management Logistics and Procurement</td>
+      <td>Integrate</td>
+      <td>supply quality management</td>
+      <td>ensure delivery excellence</td>
+      <td>aligning processes technology</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management Logistics and Procurement</td>
+      <td>Manage</td>
+      <td>global transportation liability</td>
+      <td>mitigate cargo risks</td>
+      <td>understanding international national law</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management Logistics and Procurement</td>
+      <td>Measure</td>
+      <td>CO2 emissions</td>
+      <td>assess environmental cost</td>
+      <td>retail returns supply chain</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management Logistics and Procurement</td>
+      <td>Drive</td>
+      <td>organisational cultural transformation</td>
+      <td>foster adaptive innovative culture</td>
+      <td>leveraging supply chain management</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management Logistics and Procurement</td>
+      <td>Mitigate</td>
+      <td>AI implementation risks</td>
+      <td>ensure legal compliance</td>
+      <td>establish robust AI governance</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management Logistics and Procurement</td>
+      <td>Develop</td>
+      <td>proactive demand planning</td>
+      <td>optimize business performance</td>
+      <td>leveraging advanced AI analytics</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management Logistics & Procurement</td>
+      <td>Adapt</td>
+      <td>supply chain planning</td>
+      <td>navigate VUCA world</td>
+      <td>applying innovative flow methodology</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management Logistics and Procurement</td>
+      <td>Bridge</td>
+      <td>leadership innovation gap</td>
+      <td>maximize investment return</td>
+      <td>fostering innovative culture</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management Logistics and Procurement</td>
+      <td>Implement</td>
+      <td>data-driven demand planning</td>
+      <td>enhance forecasting accuracy</td>
+      <td>leveraging AI real-time data</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management Logistics and Procurement</td>
+      <td>Deploy</td>
+      <td>AI trade compliance</td>
+      <td>streamline compliance activities</td>
+      <td>upskilling teams mitigating risks</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management Logistics and Procurement</td>
+      <td>Choose</td>
+      <td>optimal sourcing model</td>
+      <td>optimize 3PL outsourcing</td>
+      <td>understanding contract continuum</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management</td>
+      <td>Transform</td>
+      <td>procurement risk management</td>
+      <td>enhance supply chain resilience</td>
+      <td>leveraging digital analytics collaboration</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management Logistics and Procurement</td>
+      <td>Detect</td>
+      <td>supply chain fraud</td>
+      <td>improve internal controls</td>
+      <td>proactively monitoring transaction origin</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management Logistics and Procurement</td>
+      <td>Build</td>
+      <td>agile resilient supply chains</td>
+      <td>withstand future disruptions</td>
+      <td>leveraging real-time data AI</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management Logistics and Procurement</td>
+      <td>Enhance</td>
+      <td>customer experience strategy</td>
+      <td>increase customer satisfaction</td>
+      <td>integrating supply chain operations</td>
+    </tr>
+    <tr>
+      <td>SCM</td>
+      <td>Journal of Supply Chain Management Logistics and Procurement</td>
+      <td>Deliver</td>
+      <td>consistent reliable innovation</td>
+      <td>meet evolving customer needs</td>
+      <td>prioritizing strategic technology investment</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+
+  <div class="footer">
+    Reporte generado automáticamente | 2025-08-09 19:13
+  </div>
+</body>
+</html>

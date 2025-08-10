@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sankey Interactivo</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .slider-container { margin: 20px 0; width: 80%; }
+    .slider-label { display: inline-block; width: 150px; }
+    #sankey-chart { width: 100%; height: 800px; }
+  </style>
+</head>
+<body>
+  <h1>Flujo de Similitud Semántica entre Revistas</h1>
+  
+  <div class="slider-container">
+    <span class="slider-label">Umbral de similitud:</span>
+    <input type="range" min="0" max="1" step="0.01" value="0.7" id="threshold-slider">
+    <span id="threshold-value">0.7</span>
+  </div>
+  
+  <div class="slider-container">
+    <span class="slider-label">Opacidad de enlaces:</span>
+    <input type="range" min="0" max="1" step="0.1" value="0.6" id="opacity-slider">
+    <span id="opacity-value">0.6</span>
+  </div>
+  
+  <div id="sankey-chart"></div>
+
+  <script>
+    // Datos proporcionados
+    const data = {
+      'acción': {
+        'Comercio Exterior': {'Comercio Exterior': 1.00, 'Logística': 0.96, 'Supply Chain Management': 0.94},
+        'Logística': {'Comercio Exterior': 0.96, 'Logística': 1.00, 'Supply Chain Management': 0.99},
+        'Supply Chain Management': {'Comercio Exterior': 0.94, 'Logística': 0.99, 'Supply Chain Management': 1.00}
+      },
+      'objeto': {
+        'Comercio Exterior': {'Comercio Exterior': 1.00, 'Logística': 0.76, 'Supply Chain Management': 0.72},
+        'Logística': {'Comercio Exterior': 0.76, 'Logística': 1.00, 'Supply Chain Management': 0.94},
+        'Supply Chain Management': {'Comercio Exterior': 0.72, 'Logística': 0.94, 'Supply Chain Management': 1.00}
+      },
+      'finalidad': {
+        'Comercio Exterior': {'Comercio Exterior': 1.00, 'Logística': 0.86, 'Supply Chain Management': 0.83},
+        'Logística': {'Comercio Exterior': 0.86, 'Logística': 1.00, 'Supply Chain Management': 0.96},
+        'Supply Chain Management': {'Comercio Exterior': 0.83, 'Logística': 0.96, 'Supply Chain Management': 1.00}
+      },
+      'condición': {
+        'Comercio Exterior': {'Comercio Exterior': 1.00, 'Logística': 0.84, 'Supply Chain Management': 0.79},
+        'Logística': {'Comercio Exterior': 0.84, 'Logística': 1.00, 'Supply Chain Management': 0.93},
+        'Supply Chain Management': {'Comercio Exterior': 0.79, 'Logística': 0.93, 'Supply Chain Management': 1.00}
+      }
+    };
+
+    const dimensionColors = {
+      'acción': 'rgba(31, 119, 180, 0.6)',
+      'objeto': 'rgba(255, 127, 14, 0.6)',
+      'finalidad': 'rgba(44, 160, 44, 0.6)',
+      'condición': 'rgba(214, 39, 40, 0.6)'
+    };
+
+    let currentThreshold = 0.7;
+    let currentOpacity = 0.6;
+
+    // Inicializar gráfico
+    function initSankey() {
+      updateSankey(currentThreshold, currentOpacity);
+    }
+
+    // Actualizar gráfico con parámetros
+    function updateSankey(threshold, opacity) {
+      const nodes = [];
+      const labels = [];
+      const nodeMap = {};
+      
+      // Añadir nodos de revistas
+      const revistas = ['Comercio Exterior', 'Logística', 'Supply Chain Management'];
+      revistas.forEach(revista => {
+        nodeMap[revista] = nodes.length;
+        nodes.push({ label: revista });
+        labels.push(revista);
+      });
+      
+      // Añadir nodos de dimensiones
+      const dimensiones = ['acción', 'objeto', 'finalidad', 'condición'];
+      dimensiones.forEach(dim => {
+        const dimId = `Dim_${dim}`;
+        nodeMap[dimId] = nodes.length;
+        nodes.push({ label: `Dim. ${dim.charAt(0).toUpperCase() + dim.slice(1)}` });
+        labels.push(`Dim. ${dim.charAt(0).toUpperCase() + dim.slice(1)}`);
+      });
+
+      // Crear enlaces
+      const links = {
+        source: [],
+        target: [],
+        value: [],
+        color: [],
+        hoverinfo: []
+      };
+
+      dimensiones.forEach(dimension => {
+        const dimId = `Dim_${dimension}`;
+        const colorBase = dimensionColors[dimension].replace(/[\d\.]+\)$/, ''); // Extraer la parte base del color
+        
+        for (let i = 0; i < revistas.length; i++) {
+          for (let j = i + 1; j < revistas.length; j++) {
+            const revista1 = revistas[i];
+            const revista2 = revistas[j];
+            const similitud = data[dimension][revista1][revista2];
+            
+            if (similitud >= threshold) {
+              // Enlace revista1 -> dimensión
+              links.source.push(nodeMap[revista1]);
+              links.target.push(nodeMap[dimId]);
+              links.value.push(similitud);
+              links.color.push(`${colorBase}${opacity})`);
+              
+              // Enlace dimensión -> revista2
+              links.source.push(nodeMap[dimId]);
+              links.target.push(nodeMap[revista2]);
+              links.value.push(similitud);
+              links.color.push(`${colorBase}${opacity})`);
+            }
+          }
+        }
+      });
+
+      // Configuración del gráfico
+      const layout = {
+        title: `Flujo de Similitud Semántica (Umbral ≥ ${threshold})`,
+        font: { size: 18 },
+        height: 1100,
+        margin: { t: 50, l: 10, r: 10, b: 10 }
+      };
+
+      Plotly.react('sankey-chart', [{
+        type: 'sankey',
+        node: {
+          pad: 15,
+          thickness: 30,
+          line: { color: 'black', width: 0.5 },
+          label: labels,
+          color: 'blue'
+        },
+        link: links
+      }], layout);
+    }
+
+    // Configurar sliders
+    document.getElementById('threshold-slider').addEventListener('input', function(e) {
+      currentThreshold = parseFloat(e.target.value);
+      document.getElementById('threshold-value').textContent = currentThreshold.toFixed(2);
+      updateSankey(currentThreshold, currentOpacity);
+    });
+
+    document.getElementById('opacity-slider').addEventListener('input', function(e) {
+      currentOpacity = parseFloat(e.target.value);
+      document.getElementById('opacity-value').textContent = currentOpacity.toFixed(1);
+      updateSankey(currentThreshold, currentOpacity);
+    });
+
+    // Inicializar
+    window.onload = initSankey;
+  </script>
+</body>
+</html>
