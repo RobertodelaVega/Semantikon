@@ -1,0 +1,202 @@
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+	<title>Business Publisher</title>
+	<link rel="STYLESHEET" type="text/css" href="styles.css">
+	<script src="properties.js"></script>
+	<script src="exportedObjects.js"></script>
+	<script src="exportedModels.js"></script>
+<script>
+var selectedLangTag = "es";
+
+function JS_List_Jump(){
+	document.location.href=document.frm.cbo.options[document.frm.cbo.selectedIndex].value;
+}
+
+function loadObjectPages(url, target) {
+	if (searchObject(url) == false) {
+		alert(properties[selectedLangTag]['wp_objectNotExported']);
+	}
+        else {
+		if (target == "model") {
+			top.model.location.href=url + "_nav.htm";
+		}
+		else if (target == "info") {
+			top.info.location.href=url + "_inf.htm";
+		}
+		else if (target == "data") {
+			top.data.location.href=url + "_gfx.htm";
+		}
+		
+	}		
+		
+}
+function loadModelPages(url, target) {
+	if (searchModel(url) == false) {
+		alert(properties[selectedLangTag]['wp_modelNotExported']);
+	}
+        else {
+		if (target == "model") {
+			top.model.location.href=url + "_nav.htm";
+		}
+		else if (target == "info") {
+			top.info.location.href=url + "_inf.htm";
+		}
+		else if (target == "data") {
+			top.data.location.href=url + "_gfx.htm";
+		}
+		
+	}		
+		
+}
+</script>
+
+</head>
+<body  bgcolor='#FFFFFF'>
+
+<p class="name">&nbsp;<script>document.write(properties[selectedLangTag]['wp_model']);</script></p>
+
+<div id="auswahl"><font face="Arial">
+	<form name="frm" action="#none" method="POST"><table><tr><td valign="middle">
+	<select name="cbo" onChange="javascript: JS_List_Jump(); return true;">
+	<option value="#Attributes"><script>document.write(properties[selectedLangTag]['wp_attributes']);</script></option>
+        <option value="#Feedback"><script>document.write(properties[selectedLangTag]['wp_feedback']);</script></option>
+	<option value="#Hierarchy"><script>document.write(properties[selectedLangTag]['wp_assignments']);</script></option>
+	<option value="#Objects"><script>document.write(properties[selectedLangTag]['wp_objects']);</script></option>
+	<option value="#Master"><script>document.write(properties[selectedLangTag]['wp_master']);</script></option>
+        <option value="#Variants"><script>document.write(properties[selectedLangTag]['wp_variants']);</script></option></select>
+        </td></tr></table></form></font>
+</div>
+
+<table class="dataTable">
+<tr>
+	<th colspan="2"><a name="Attributes"></a>&nbsp;<b><script>document.write(properties['es']['wp_attributes']);</script></b></th>
+</tr>
+<tr>
+	<td>Creator</td>
+	<td>system</td>
+</tr>
+<tr>
+	<td>Last change</td>
+	<td>09-ago-2025 16:59:02</td>
+</tr>
+<tr>
+	<td>Last user</td>
+	<td>system</td>
+</tr>
+<tr>
+	<td>Name</td>
+	<td>Supply Chain Management</td>
+</tr>
+<tr>
+	<td>Time of generation</td>
+	<td>04-ago-2025 9:08:48</td>
+</tr>
+<ARIS LIST>
+
+
+
+
+
+</table>
+
+<ARIS MOD_INF_FEEDBACK>
+<ARIS OBJ_INF_HIERARCHY>
+<table class="dataTable">
+<tr>
+	<th colspan="2"><a name="Objects"></a>&nbsp;<b><script>document.write(properties['es']['wp_objects']);</script></b></th>
+</tr>
+<tr>
+	<td>Function</td>
+	<td><a href="o7922fed0-7134-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Abastecimiento  responsable:</a></td>
+</tr>
+<tr>
+	<td>Function</td>
+	<td><a href="oe5206a3c-7129-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Abastecimiento  sostenible</a></td>
+</tr>
+<tr>
+	<td>Cluster/Data model</td>
+	<td><a href="oe5206a55-7129-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Coordinar rutas compartidas entre   competidores para reducir   huella de carbono.  (Transportation Research Part E).</a></td>
+</tr>
+<tr>
+	<td>Cluster/Data model</td>
+	<td><a href="oe5206a57-7129-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Desarrollar mercados secundarios   para componentes remanufacturados  (Cleaner Logistics and Supply Chain).</a></td>
+</tr>
+<tr>
+	<td>Function</td>
+	<td><a href="oe5206a39-7129-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Diseño  estratégico de red</a></td>
+</tr>
+<tr>
+	<td>Function</td>
+	<td><a href="oe5206a41-7129-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Distribución colaborativa</a></td>
+</tr>
+<tr>
+	<td>Cluster/Data model</td>
+	<td><a href="oe5206a4e-7129-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Implementar manufactura aditiva   para reducir desperdicios en   línea de producción.   (Journal of Supply Chain  Management)</a></td>
+</tr>
+<tr>
+	<td>Function</td>
+	<td><a href="o4c6ca064-7138-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Logística inversa</a></td>
+</tr>
+<tr>
+	<td>Objective</td>
+	<td><a href="oe5206a32-7129-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Mejorar Gestión  integral de  flujos con foco en  sostenibilidad  y resiliencia</a></td>
+</tr>
+<tr>
+	<td>Cluster/Data model</td>
+	<td><a href="oe5206a50-7129-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Modelar redes CLSC  (Circular Supply  Chains)  para baterías de vehículos  eléctricos"   (Cleaner Logistics  and Supply Chain).</a></td>
+</tr>
+<tr>
+	<td>Function</td>
+	<td><a href="oe5206a3f-7129-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Producción ágil</a></td>
+</tr>
+<tr>
+	<td>Function</td>
+	<td><a href="oe5206a43-7129-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Recuperación de valor</a></td>
+</tr>
+<tr>
+	<td>Function</td>
+	<td><a href="o4c6ca061-7138-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Reducción de residuos</a></td>
+</tr>
+<tr>
+	<td>Function</td>
+	<td><a href="o7922fecb-7134-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">SCM Chile</a></td>
+</tr>
+<tr>
+	<td>Cluster/Data model</td>
+	<td><a href="oe5206a53-7129-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Seleccionar proveedores con   certificación carbono-neutral  usando  blockchain.  (Journal of Purchasing and  Supply Management).</a></td>
+</tr>
+<tr>
+	<td>Objective</td>
+	<td><a href="o7922fecd-7134-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Sostenibilidad y  economía circular</a></td>
+</tr>
+<tr>
+	<td>Function</td>
+	<td><a href="oe5206a30-7129-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">SUPPLY CHAIN  MANAGEMENT  (SCM)</a></td>
+</tr>
+<ARIS LIST>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</table>
+
+<ARIS MOD_INF_MASTER>
+<ARIS MOD_INF_VARIANTS>
+
+</body>
+</html>
+
