@@ -1,0 +1,377 @@
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+	<title>Business Publisher</title>
+	<script src="properties.js"></script>
+	<link rel="STYLESHEET" type="text/css" href="styles.css">
+</head>
+
+<SCRIPT LANGUAGE="JavaScript" TYPE="text/javascript">
+<!--
+var selectedLangTag = "es";
+
+var JS_Array_Entries = new Array(' Recolectar datos históricos de ventas','--','Alianzas con distribuidores locales en Miami para e ntregas rápidas con vehículos  eléctricos (inspirado en DHL).','Aplicar modelos predictivos (IA/ML)','Automatizar picking con robots  colaborativos en centros de  distribución (The International  Journal of Logistics  Management).','Competencia clave: Análisis de datos comerciales (similar a ejemplos del Journal of Business Logistics).','Competencia: Gestión de algoritmos predictivos (como en Transportation Science).','Competencia: Integración de sistemas de planificación (como en Journal of Supply Chain Management).','Competencia: Trabajo en equipo interfuncional (ej. The International Journal of Logistics Management).','Datos recolectado ','Design  sustainable  transportation  finance','Diseñar  financiamiento  para  transporte  sostenible','Entrega clientes','Evaluate  Drone delivery  systems','Exportadora de Salmón  de Puerto Montt  (Región de Los Lagos)','Financiamento  diseñado','Gestionar almacenes','Gestionar picos  de demanda  en la última milla','Implement  AI-supported  robotics','Implementar  sistemas de  entrega  con drones','Implementar lockers  inteligentes  para reducir intentos fallidos  de entrega" (Transportation Journal).','Implementar sensores IoT  en contenedores para  monitorear temperatura en  tiempo real (como Maersk).','Inicio proceso','Integrar pronóstico en el SCM','Integrar robótica  en los procesos  de transporte','Logistica','Manage  last-mile  demand surges','Modelo aplicado','Operación optimizada','Optimizar las  operaciones de los  centros de  distribución','Optimizar operativa  basada en tecnología  y eficiencia','Optimizar rutas de última  milla con algoritmos de  aprendizaje reforzado (Transportation Science).','Optimize  warehouse  yard operations','Predecir demanda  estacional con IA para  ajustar inventarios en retail (Journal of Business Logistics).','Previsión  de la demanda','Previsión de la  demanda','Proceso iniciado','Pronostico validado','Pronóstico integrado','Robótica integrada','Sistema implmentado','Tecnología para  eficiencia en frío y  trazabilidad','Transporte  Inteligente','Transporte  refrigerado','Usar IA para predecir demanda  de salmón ahumado  en EE.UU. basado  en tendencias de consumo  (similar a Amazon Logistics).','Validar pronósticos con equipos comerciales','Última milla', "");
+
+var keycode = 0;
+var Netscape = new Boolean();
+
+function MyTaste(Ereignis) {
+	if(Netscape) {
+		keycode = Ereignis.which;
+		JS_Index_SearchEntry();
+	}
+} 
+function JS_Index_FillCombo(){
+var i;
+var str = new String();
+	JS_Array_Entries.length -=1;
+	for(i=0; i<JS_Array_Entries.length; i++) {
+		str=JS_Array_Entries[i];
+		JS_Array_Entries[i]=str.toLowerCase();
+	}
+	document.frm.cbo.options.selectedIndex=0;
+}
+
+function JS_Index_Jump(){
+	document.frm.search.value=JS_Array_Entries[document.frm.cbo.options.selectedIndex];
+	document.location.href="#E_"+document.frm.cbo.selectedIndex;
+}
+
+function getPrefixLen(such, comp) {
+	var len = (such.length < comp.length) ? such.length : comp.length;
+	for(var i=0; i<len; i++) {
+		z1 = such.charCodeAt(i);
+		z2 = comp.charCodeAt(i);
+		if (z1 != z2) { return i; }
+	}
+	return len;
+}
+
+function JS_Index_SearchEntry(){
+var pos=0;
+var i=0;
+var such=new String(document.frm.search.value.toLowerCase());
+	oldInput=such;
+	var longestPrefixLen = 0;
+	var longestPrefixPos = 0;
+	if(such != "") {
+		var erg;
+		while (i<JS_Array_Entries.length) {
+			var pre = getPrefixLen(such, JS_Array_Entries[i]);
+			if (pre > longestPrefixLen) {
+				longestPrefixLen = pre;
+				longestPrefixPos = i;
+			}
+			i++;
+		}
+		if(such.length<1) {longestPrefixPos=0;}
+		if (longestPrefixLen == 0) {
+			for(var i=0; i<JS_Array_Entries.length; i++) {
+				longestPrefixPos = i;
+				if (such < JS_Array_Entries[i]) {
+					document.frm.cbo.options.selectedIndex=longestPrefixPos;
+					return;
+				}
+			}
+			
+		}
+		document.frm.cbo.options.selectedIndex=longestPrefixPos;
+	}
+	else {
+		document.frm.cbo.options.selectedIndex=0;
+	}
+}
+//-->
+</SCRIPT>
+
+<body  bgcolor='#FFFFFF' onLoad="javascript: JS_Index_FillCombo(); return true;">
+
+<a name="LINK_TOP">&nbsp;</a>
+<form name="frm" action="javascript: JS_Index_Jump();" method="POST">
+<input type="Text" class="text" name="search" onKeyup="javascript: JS_Index_SearchEntry(); return false;">
+<script>document.write('<input type="Submit" class="button" name="go" value="' + properties[selectedLangTag]['wp_search'] + '" />');</script>
+<span style="line-height:8px"><br /><br /></span>
+<select class="idx" name="cbo" size="4" onChange="javascript: JS_Index_Jump(); return false;";>
+<option> Recolectar datos históricos de ventas</option><option>--</option><option>Alianzas con distribuidores locales en Miami para e ntregas rápidas con vehículos  eléctricos (inspirado en DHL).</option><option>Aplicar modelos predictivos (IA/ML)</option><option>Automatizar picking con robots  colaborativos en centros de  distribución (The International  Journal of Logistics  Management).</option><option>Competencia clave: Análisis de datos comerciales (similar a ejemplos del Journal of Business Logistics).</option><option>Competencia: Gestión de algoritmos predictivos (como en Transportation Science).</option><option>Competencia: Integración de sistemas de planificación (como en Journal of Supply Chain Management).</option><option>Competencia: Trabajo en equipo interfuncional (ej. The International Journal of Logistics Management).</option><option>Datos recolectado </option><option>Design  sustainable  transportation  finance</option><option>Diseñar  financiamiento  para  transporte  sostenible</option><option>Entrega clientes</option><option>Evaluate  Drone delivery  systems</option><option>Exportadora de Salmón  de Puerto Montt  (Región de Los Lagos)</option><option>Financiamento  diseñado</option><option>Gestionar almacenes</option><option>Gestionar picos  de demanda  en la última milla</option><option>Implement  AI-supported  robotics</option><option>Implementar  sistemas de  entrega  con drones</option><option>Implementar lockers  inteligentes  para reducir intentos fallidos  de entrega" (Transportation Journal).</option><option>Implementar sensores IoT  en contenedores para  monitorear temperatura en  tiempo real (como Maersk).</option><option>Inicio proceso</option><option>Integrar pronóstico en el SCM</option><option>Integrar robótica  en los procesos  de transporte</option><option>Logistica</option><option>Manage  last-mile  demand surges</option><option>Modelo aplicado</option><option>Operación optimizada</option><option>Optimizar las  operaciones de los  centros de  distribución</option><option>Optimizar operativa  basada en tecnología  y eficiencia</option><option>Optimizar rutas de última  milla con algoritmos de  aprendizaje reforzado (Transportation Science).</option><option>Optimize  warehouse  yard operations</option><option>Predecir demanda  estacional con IA para  ajustar inventarios en retail (Journal of Business Logistics).</option><option>Previsión  de la demanda</option><option>Previsión de la  demanda</option><option>Proceso iniciado</option><option>Pronostico validado</option><option>Pronóstico integrado</option><option>Robótica integrada</option><option>Sistema implmentado</option><option>Tecnología para  eficiencia en frío y  trazabilidad</option><option>Transporte  Inteligente</option><option>Transporte  refrigerado</option><option>Usar IA para predecir demanda  de salmón ahumado  en EE.UU. basado  en tendencias de consumo  (similar a Amazon Logistics).</option><option>Validar pronósticos con equipos comerciales</option><option>Última milla</option>
+</select></form>
+
+<table class="dataTable"><tr><th colspan="2">
+<a name="<ARIS LINK>"></a><a class='head' href='#L_1'> </a>&nbsp;<a class='head' href='#L_2'>-</a>&nbsp;<a class='head' href='#L_3'>A</a>&nbsp;<a class='head' href='#L_4'>C</a>&nbsp;<a class='head' href='#L_5'>D</a>&nbsp;<a class='head' href='#L_6'>E</a>&nbsp;<a class='head' href='#L_7'>F</a>&nbsp;<a class='head' href='#L_8'>G</a>&nbsp;<a class='head' href='#L_9'>I</a>&nbsp;<a class='head' href='#L_11'>M</a>&nbsp;<a class='head' href='#L_12'>O</a>&nbsp;<a class='head' href='#L_13'>P</a>&nbsp;<a class='head' href='#L_14'>R</a>&nbsp;<a class='head' href='#L_15'>S</a>&nbsp;<a class='head' href='#L_16'>T</a>&nbsp;<a class='head' href='#L_17'>U</a>&nbsp;<a class='head' href='#L_18'>V</a>&nbsp;<a class='head' href='#L_19'>Ú</a>&nbsp;&nbsp;</th></tr><table class="dataTable"><tr><th colspan="2">
+<a name="#L_1"></a>&nbsp;&nbsp;</th></tr><tr>
+<td><a name="E_0"></a><a href="o6662e1b1-713f-11f0-24ea-5cb47e4f1a87_inf.htm" target="info"> Recolectar datos históricos de ventas</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_2"></a>-&nbsp;</th></tr><tr>
+<td><a name="E_1"></a><a href="o65bc09a9-7244-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">--</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_3"></a>A&nbsp;</th></tr><tr>
+<td><a name="E_2"></a><a href="o7922feb9-7134-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Alianzas con distribuidores locales en Miami para e ntregas rápidas con vehículos  eléctricos (inspirado en DHL).</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_3"></a><a href="o13c89ca7-7142-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Aplicar modelos predictivos (IA/ML)</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_4"></a><a href="of0ee9550-712d-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Automatizar picking con robots  colaborativos en centros de  distribución (The International  Journal of Logistics  Management).</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_4"></a>C&nbsp;</th></tr><tr>
+<td><a name="E_5"></a><a href="o13c89cbc-7142-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Competencia clave: Análisis de datos comerciales (similar a ejemplos del Journal of Business Logistics).</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_6"></a><a href="o13c89cbe-7142-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Competencia: Gestión de algoritmos predictivos (como en Transportation Science).</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_7"></a><a href="o13c89cc6-7142-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Competencia: Integración de sistemas de planificación (como en Journal of Supply Chain Management).</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_8"></a><a href="o13c89cc0-7142-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Competencia: Trabajo en equipo interfuncional (ej. The International Journal of Logistics Management).</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_5"></a>D&nbsp;</th></tr><tr>
+<td><a name="E_9"></a><a href="o13c89ca4-7142-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Datos recolectado </a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_10"></a><a href="o65bc09a3-7244-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Design  sustainable  transportation  finance</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_11"></a><a href="o65bc0999-7244-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Diseñar  financiamiento  para  transporte  sostenible</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_6"></a>E&nbsp;</th></tr><tr>
+<td><a name="E_12"></a><a href="of0ee954a-712d-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Entrega clientes</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_13"></a><a href="o65bc099b-7244-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Evaluate  Drone delivery  systems</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_14"></a><a href="o7922fea9-7134-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Exportadora de Salmón  de Puerto Montt  (Región de Los Lagos)</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_7"></a>F&nbsp;</th></tr><tr>
+<td><a name="E_15"></a><a href="o65bc09ab-7244-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Financiamento  diseñado</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_8"></a>G&nbsp;</th></tr><tr>
+<td><a name="E_16"></a><a href="of0ee9544-712d-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Gestionar almacenes</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_17"></a><a href="o65bc0995-7244-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Gestionar picos  de demanda  en la última milla</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_9"></a>I&nbsp;</th></tr><tr>
+<td><a name="E_18"></a><a href="o65bc09a1-7244-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Implement  AI-supported  robotics</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_19"></a><a href="o65bc0991-7244-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Implementar  sistemas de  entrega  con drones</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_20"></a><a href="of0ee954d-712d-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Implementar lockers  inteligentes  para reducir intentos fallidos  de entrega" (Transportation Journal).</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_21"></a><a href="o7922feb2-7134-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Implementar sensores IoT  en contenedores para  monitorear temperatura en  tiempo real (como Maersk).</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_22"></a><a href="o4f9b6c41-723e-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Inicio proceso</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_23"></a><a href="o13c89cb3-7142-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Integrar pronóstico en el SCM</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_24"></a><a href="o65bc0997-7244-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Integrar robótica  en los procesos  de transporte</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_10"></a>L&nbsp;</th></tr><tr>
+<td><a name="E_25"></a><a href="oe706360d-6f0c-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Logistica</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_11"></a>M&nbsp;</th></tr><tr>
+<td><a name="E_26"></a><a href="o65bc099f-7244-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Manage  last-mile  demand surges</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_27"></a><a href="o13c89caa-7142-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Modelo aplicado</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_12"></a>O&nbsp;</th></tr><tr>
+<td><a name="E_28"></a><a href="o65bc09a7-7244-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Operación optimizada</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_29"></a><a href="o65bc0993-7244-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Optimizar las  operaciones de los  centros de  distribución</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_30"></a><a href="oe5206a5d-7129-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Optimizar operativa  basada en tecnología  y eficiencia</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_31"></a><a href="of0ee9553-712d-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Optimizar rutas de última  milla con algoritmos de  aprendizaje reforzado (Transportation Science).</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_32"></a><a href="o65bc099d-7244-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Optimize  warehouse  yard operations</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_13"></a>P&nbsp;</th></tr><tr>
+<td><a name="E_33"></a><a href="of0ee9541-712d-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Predecir demanda  estacional con IA para  ajustar inventarios en retail (Journal of Business Logistics).</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_34"></a><a href="o7922fea4-7134-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Previsión  de la demanda</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_35"></a><a href="oe5206a60-7129-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Previsión de la  demanda</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_36"></a><a href="o4c6ca070-7138-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Proceso iniciado</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_37"></a><a href="o13c89cb0-7142-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Pronostico validado</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_38"></a><a href="o13c89cc3-7142-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Pronóstico integrado</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_14"></a>R&nbsp;</th></tr><tr>
+<td><a name="E_39"></a><a href="o65bc09ad-7244-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Robótica integrada</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_15"></a>S&nbsp;</th></tr><tr>
+<td><a name="E_40"></a><a href="o65bc09a5-7244-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Sistema implmentado</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_16"></a>T&nbsp;</th></tr><tr>
+<td><a name="E_41"></a><a href="o7922fea6-7134-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Tecnología para  eficiencia en frío y  trazabilidad</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_42"></a><a href="of0ee9547-712d-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Transporte  Inteligente</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_43"></a><a href="o7922feaf-7134-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Transporte  refrigerado</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_17"></a>U&nbsp;</th></tr><tr>
+<td><a name="E_44"></a><a href="o7922feac-7134-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Usar IA para predecir demanda  de salmón ahumado  en EE.UU. basado  en tendencias de consumo  (similar a Amazon Logistics).</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_18"></a>V&nbsp;</th></tr><tr>
+<td><a name="E_45"></a><a href="o13c89cad-7142-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Validar pronósticos con equipos comerciales</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_19"></a>Ú&nbsp;</th></tr><tr>
+<td><a name="E_46"></a><a href="o7922feb5-7134-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Última milla</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+
+</table>
+
+</table>
+
+</table>
+
+
+
+</table>
+
+</table>
+
+</table>
+
+
+
+
+
+
+</table>
+
+
+
+
+
+</table>
+
+
+</table>
+
+</table>
+
+
+
+
+
+
+
+</table>
+
+
+</table>
+
+</table>
+
+
+
+</table>
+
+
+
+</table>
+
+
+
+
+</table>
+
+
+
+</table>
+
+</table>
+
+</table>
+</table>
+
+
+
+</body>
+</html>
