@@ -1,0 +1,455 @@
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+	<title>Business Publisher</title>
+	<script src="properties.js"></script>
+	<link rel="STYLESHEET" type="text/css" href="styles.css">
+</head>
+
+<SCRIPT LANGUAGE="JavaScript" TYPE="text/javascript">
+<!--
+var selectedLangTag = "es";
+
+var JS_Array_Entries = new Array(' Norma EN 50625 para tratamiento de  RAEE (Residuos de Aparatos Eléctricos y Electrónicos). Ejemplo chileno: Planta Reciclos en Rancagua  recupera 85% de materiales de refrigeradores.','(Extended Producer Responsibility  - EPR) de la Unión Europea  es un referente global en logística  inversa, especialmente  para manejo de residuos  electrónicos, envases y baterías.','Abastecimiento  responsable:','Abastecimiento  sostenible','Análisis de  Demanda y  Mercado ','Aplicar software de  optimización  de redes ','Blockchain para  documentar  cada etapa ','con GPS y  sensores de  peso','Coordinar rutas compartidas entre   competidores para reducir   huella de carbono.  (Transportation Research Part E).','Costos de transporte,  aranceles y tiempos  de entrega evaluado','Demanda de mercado iniciada','Desarrollar mercados secundarios   para componentes remanufacturados  (Cleaner Logistics  and Supply Chain).','Diseñar para el  Desensamblaje  (Ecodiseño)','Diseñar productos  con  materiales  fácilmente  separables ','Diseño  estratégico de red','Distribución colaborativa','Ejemplo UE: Ley francesa  Anti-Waste obliga a etiquetar  componentes de electrodomésticos. Adaptación Chile: Regulación MMA (Ley REP)  exige ecodiseño en envases y electrónicos desde 2023.','Establecer puntos  limpios en  municipios y  retailers','Estándar ESCO: Directiva UE *2023/2055* exige pasaportes digitales de productos. Herramienta local: SIGRE (Sistema Integrado d e Gestión de Residuos) en desarrollo por el MMA.','Etapa  documentada','Evento','fabricante','Función','Gases refrigerantes amacenado','Implementar manufactura aditiva   para reducir desperdicios en   línea de producción.   (Journal of Supply Chain  Management)','Inicio','Llamasoft,  AnyLogistix) ','Logística inversa','Mapa de calor de  demanda con  nodos prioritarios.','Mapear patrones de  demanda  por región','Material cobre aislado','Mejorar Gestión  integral de  flujos con foco en  sostenibilidad  y resiliencia','Modelar redes CLSC  (Circular Supply  Chains)  para baterías de vehículos  eléctricos"   (Cleaner Logistics  and Supply Chain).','Modelo de impacto del crecimiento de e-commerce  en CDMX v s. Bogotá usando  algoritmos predictivos.','Modelo UE: Plataforma Circularise (Holanda)  rastra materiales reciclados para nuevos productos. Oportunidad Chile: Empresas como Kunstmann  usan aluminio reciclado de RAEE para  fabricar nuevos productos.','motores de  compresores o  vender materiales a industrias locales.','Patrones mapeados','peso de residuos  tratados, huella de  carbono evitada).','Pieza  refabricada','Plasticos clasificado','PowerBI','Proceso iniciado','Producción ágil','Productos  diseñados','Puntos limpios establecidos','Recuperación de valor','Reducción de residuos','Refabricar  pieza usable ','Regla Y','SCM Chile','Seleccionar proveedores con   certificación carbono-neutral  usando  blockchain.  (Journal of Purchasing and  Supply Management).','Seleccionar Rutas  optimizadas  para camiones ','Separar componentes  peligrosos (ej.: gases refrigerantes) y materiales reciclables  (cobre, plástico).','Sistemas colectivos como Ecotic (España) o ERP (Europa) gestionan  contenedores especializados. Ejemplo local: Chile tiene Sistema  de Gestión de  Envases y Empaques liderado por  empresas como Cempre Chile.','Skill ESCO:  Data Analytics','Skill ESCO:  Operations  Research','Sostenibilidad y  economía circular','SUPPLY CHAIN  MANAGEMENT  (SCM)','Tableau','tornillos estándar  en lugar  de adhesivos','Usar variables  como estacionalidad y  densidad  poblacional.','Variables implementadas','Viajes semivacíos evitados', "");
+
+var keycode = 0;
+var Netscape = new Boolean();
+
+function MyTaste(Ereignis) {
+	if(Netscape) {
+		keycode = Ereignis.which;
+		JS_Index_SearchEntry();
+	}
+} 
+function JS_Index_FillCombo(){
+var i;
+var str = new String();
+	JS_Array_Entries.length -=1;
+	for(i=0; i<JS_Array_Entries.length; i++) {
+		str=JS_Array_Entries[i];
+		JS_Array_Entries[i]=str.toLowerCase();
+	}
+	document.frm.cbo.options.selectedIndex=0;
+}
+
+function JS_Index_Jump(){
+	document.frm.search.value=JS_Array_Entries[document.frm.cbo.options.selectedIndex];
+	document.location.href="#E_"+document.frm.cbo.selectedIndex;
+}
+
+function getPrefixLen(such, comp) {
+	var len = (such.length < comp.length) ? such.length : comp.length;
+	for(var i=0; i<len; i++) {
+		z1 = such.charCodeAt(i);
+		z2 = comp.charCodeAt(i);
+		if (z1 != z2) { return i; }
+	}
+	return len;
+}
+
+function JS_Index_SearchEntry(){
+var pos=0;
+var i=0;
+var such=new String(document.frm.search.value.toLowerCase());
+	oldInput=such;
+	var longestPrefixLen = 0;
+	var longestPrefixPos = 0;
+	if(such != "") {
+		var erg;
+		while (i<JS_Array_Entries.length) {
+			var pre = getPrefixLen(such, JS_Array_Entries[i]);
+			if (pre > longestPrefixLen) {
+				longestPrefixLen = pre;
+				longestPrefixPos = i;
+			}
+			i++;
+		}
+		if(such.length<1) {longestPrefixPos=0;}
+		if (longestPrefixLen == 0) {
+			for(var i=0; i<JS_Array_Entries.length; i++) {
+				longestPrefixPos = i;
+				if (such < JS_Array_Entries[i]) {
+					document.frm.cbo.options.selectedIndex=longestPrefixPos;
+					return;
+				}
+			}
+			
+		}
+		document.frm.cbo.options.selectedIndex=longestPrefixPos;
+	}
+	else {
+		document.frm.cbo.options.selectedIndex=0;
+	}
+}
+//-->
+</SCRIPT>
+
+<body  bgcolor='#FFFFFF' onLoad="javascript: JS_Index_FillCombo(); return true;">
+
+<a name="LINK_TOP">&nbsp;</a>
+<form name="frm" action="javascript: JS_Index_Jump();" method="POST">
+<input type="Text" class="text" name="search" onKeyup="javascript: JS_Index_SearchEntry(); return false;">
+<script>document.write('<input type="Submit" class="button" name="go" value="' + properties[selectedLangTag]['wp_search'] + '" />');</script>
+<span style="line-height:8px"><br /><br /></span>
+<select class="idx" name="cbo" size="4" onChange="javascript: JS_Index_Jump(); return false;";>
+<option> Norma EN 50625 para tratamiento de  RAEE (Residuos de Aparatos Eléctricos y Electrónicos). Ejemplo chileno: Planta Reciclos en Rancagua  recupera 85% de materiales de refrigeradores.</option><option>(Extended Producer Responsibility  - EPR) de la Unión Europea  es un referente global en logística  inversa, especialmente  para manejo de residuos  electrónicos, envases y baterías.</option><option>Abastecimiento  responsable:</option><option>Abastecimiento  sostenible</option><option>Análisis de  Demanda y  Mercado </option><option>Aplicar software de  optimización  de redes </option><option>Blockchain para  documentar  cada etapa </option><option>con GPS y  sensores de  peso</option><option>Coordinar rutas compartidas entre   competidores para reducir   huella de carbono.  (Transportation Research Part E).</option><option>Costos de transporte,  aranceles y tiempos  de entrega evaluado</option><option>Demanda de mercado iniciada</option><option>Desarrollar mercados secundarios   para componentes remanufacturados  (Cleaner Logistics  and Supply Chain).</option><option>Diseñar para el  Desensamblaje  (Ecodiseño)</option><option>Diseñar productos  con  materiales  fácilmente  separables </option><option>Diseño  estratégico de red</option><option>Distribución colaborativa</option><option>Ejemplo UE: Ley francesa  Anti-Waste obliga a etiquetar  componentes de electrodomésticos. Adaptación Chile: Regulación MMA (Ley REP)  exige ecodiseño en envases y electrónicos desde 2023.</option><option>Establecer puntos  limpios en  municipios y  retailers</option><option>Estándar ESCO: Directiva UE *2023/2055* exige pasaportes digitales de productos. Herramienta local: SIGRE (Sistema Integrado d e Gestión de Residuos) en desarrollo por el MMA.</option><option>Etapa  documentada</option><option>Evento</option><option>fabricante</option><option>Función</option><option>Gases refrigerantes amacenado</option><option>Implementar manufactura aditiva   para reducir desperdicios en   línea de producción.   (Journal of Supply Chain  Management)</option><option>Inicio</option><option>Llamasoft,  AnyLogistix) </option><option>Logística inversa</option><option>Mapa de calor de  demanda con  nodos prioritarios.</option><option>Mapear patrones de  demanda  por región</option><option>Material cobre aislado</option><option>Mejorar Gestión  integral de  flujos con foco en  sostenibilidad  y resiliencia</option><option>Modelar redes CLSC  (Circular Supply  Chains)  para baterías de vehículos  eléctricos"   (Cleaner Logistics  and Supply Chain).</option><option>Modelo de impacto del crecimiento de e-commerce  en CDMX v s. Bogotá usando  algoritmos predictivos.</option><option>Modelo UE: Plataforma Circularise (Holanda)  rastra materiales reciclados para nuevos productos. Oportunidad Chile: Empresas como Kunstmann  usan aluminio reciclado de RAEE para  fabricar nuevos productos.</option><option>motores de  compresores o  vender materiales a industrias locales.</option><option>Patrones mapeados</option><option>peso de residuos  tratados, huella de  carbono evitada).</option><option>Pieza  refabricada</option><option>Plasticos clasificado</option><option>PowerBI</option><option>Proceso iniciado</option><option>Producción ágil</option><option>Productos  diseñados</option><option>Puntos limpios establecidos</option><option>Recuperación de valor</option><option>Reducción de residuos</option><option>Refabricar  pieza usable </option><option>Regla Y</option><option>SCM Chile</option><option>Seleccionar proveedores con   certificación carbono-neutral  usando  blockchain.  (Journal of Purchasing and  Supply Management).</option><option>Seleccionar Rutas  optimizadas  para camiones </option><option>Separar componentes  peligrosos (ej.: gases refrigerantes) y materiales reciclables  (cobre, plástico).</option><option>Sistemas colectivos como Ecotic (España) o ERP (Europa) gestionan  contenedores especializados. Ejemplo local: Chile tiene Sistema  de Gestión de  Envases y Empaques liderado por  empresas como Cempre Chile.</option><option>Skill ESCO:  Data Analytics</option><option>Skill ESCO:  Operations  Research</option><option>Sostenibilidad y  economía circular</option><option>SUPPLY CHAIN  MANAGEMENT  (SCM)</option><option>Tableau</option><option>tornillos estándar  en lugar  de adhesivos</option><option>Usar variables  como estacionalidad y  densidad  poblacional.</option><option>Variables implementadas</option><option>Viajes semivacíos evitados</option>
+</select></form>
+
+<table class="dataTable"><tr><th colspan="2">
+<a name="<ARIS LINK>"></a><a class='head' href='#L_1'> </a>&nbsp;<a class='head' href='#L_2'>(</a>&nbsp;<a class='head' href='#L_3'>A</a>&nbsp;<a class='head' href='#L_4'>B</a>&nbsp;<a class='head' href='#L_5'>C</a>&nbsp;<a class='head' href='#L_6'>D</a>&nbsp;<a class='head' href='#L_7'>E</a>&nbsp;<a class='head' href='#L_8'>F</a>&nbsp;<a class='head' href='#L_9'>G</a>&nbsp;<a class='head' href='#L_10'>I</a>&nbsp;<a class='head' href='#L_12'>M</a>&nbsp;<a class='head' href='#L_13'>P</a>&nbsp;<a class='head' href='#L_14'>R</a>&nbsp;<a class='head' href='#L_15'>S</a>&nbsp;<a class='head' href='#L_16'>T</a>&nbsp;<a class='head' href='#L_17'>U</a>&nbsp;<a class='head' href='#L_18'>V</a>&nbsp;&nbsp;</th></tr><table class="dataTable"><tr><th colspan="2">
+<a name="#L_1"></a>&nbsp;&nbsp;</th></tr><tr>
+<td><a name="E_0"></a><a href="o8f48c91a-77a0-11f0-24ea-5cb47e4f1a87_inf.htm" target="info"> Norma EN 50625 para tratamiento de  RAEE (Residuos de Aparatos Eléctricos y Electrónicos). Ejemplo chileno: Planta Reciclos en Rancagua  recupera 85% de materiales de refrigeradores.</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_2"></a>(&nbsp;</th></tr><tr>
+<td><a name="E_1"></a><a href="o4c6ca069-7138-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">(Extended Producer Responsibility  - EPR) de la Unión Europea  es un referente global en logística  inversa, especialmente  para manejo de residuos  electrónicos, envases y baterías.</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_3"></a>A&nbsp;</th></tr><tr>
+<td><a name="E_2"></a><a href="o7922fed0-7134-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Abastecimiento  responsable:</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_3"></a><a href="oe5206a3c-7129-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Abastecimiento  sostenible</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_4"></a><a href="o61d08fad-713c-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Análisis de  Demanda y  Mercado </a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_5"></a><a href="o6662e19f-713f-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Aplicar software de  optimización  de redes </a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_4"></a>B&nbsp;</th></tr><tr>
+<td><a name="E_6"></a><a href="o61d08fa3-713c-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Blockchain para  documentar  cada etapa </a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_5"></a>C&nbsp;</th></tr><tr>
+<td><a name="E_7"></a><a href="o4c6ca08e-7138-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">con GPS y  sensores de  peso</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_8"></a><a href="oe5206a55-7129-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Coordinar rutas compartidas entre   competidores para reducir   huella de carbono.  (Transportation Research Part E).</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_9"></a><a href="o6662e1a8-713f-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Costos de transporte,  aranceles y tiempos  de entrega evaluado</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_6"></a>D&nbsp;</th></tr><tr>
+<td><a name="E_10"></a><a href="o6662e188-713f-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Demanda de mercado iniciada</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_11"></a><a href="oe5206a57-7129-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Desarrollar mercados secundarios   para componentes remanufacturados  (Cleaner Logistics  and Supply Chain).</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_12"></a><a href="o4c6ca06b-7138-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Diseñar para el  Desensamblaje  (Ecodiseño)</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_13"></a><a href="o4c6ca073-7138-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Diseñar productos  con  materiales  fácilmente  separables </a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_14"></a><a href="oe5206a39-7129-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Diseño  estratégico de red</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_15"></a><a href="oe5206a41-7129-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Distribución colaborativa</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_7"></a>E&nbsp;</th></tr><tr>
+<td><a name="E_16"></a><a href="o8f48c91d-77a0-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Ejemplo UE: Ley francesa  Anti-Waste obliga a etiquetar  componentes de electrodomésticos. Adaptación Chile: Regulación MMA (Ley REP)  exige ecodiseño en envases y electrónicos desde 2023.</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_17"></a><a href="o4c6ca082-7138-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Establecer puntos  limpios en  municipios y  retailers</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_18"></a><a href="o8f48c914-77a0-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Estándar ESCO: Directiva UE *2023/2055* exige pasaportes digitales de productos. Herramienta local: SIGRE (Sistema Integrado d e Gestión de Residuos) en desarrollo por el MMA.</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_19"></a><a href="o61d08faa-713c-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Etapa  documentada</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_20"></a><a href="oe278fcb9-7562-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Evento</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_8"></a>F&nbsp;</th></tr><tr>
+<td><a name="E_21"></a><a href="o4c6ca07c-7138-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">fabricante</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_22"></a><a href="o6662e1ae-713f-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Función</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_9"></a>G&nbsp;</th></tr><tr>
+<td><a name="E_23"></a><a href="o61d08f82-713c-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Gases refrigerantes amacenado</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_10"></a>I&nbsp;</th></tr><tr>
+<td><a name="E_24"></a><a href="oe5206a4e-7129-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Implementar manufactura aditiva   para reducir desperdicios en   línea de producción.   (Journal of Supply Chain  Management)</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_25"></a><a href="o13c89ca1-7142-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Inicio</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_11"></a>L&nbsp;</th></tr><tr>
+<td><a name="E_26"></a><a href="o6662e1ab-713f-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Llamasoft,  AnyLogistix) </a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_27"></a><a href="o4c6ca064-7138-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Logística inversa</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_12"></a>M&nbsp;</th></tr><tr>
+<td><a name="E_28"></a><a href="o6662e198-713f-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Mapa de calor de  demanda con  nodos prioritarios.</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_29"></a><a href="o6662e180-713f-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Mapear patrones de  demanda  por región</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_30"></a><a href="o61d08f84-713c-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Material cobre aislado</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_31"></a><a href="oe5206a32-7129-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Mejorar Gestión  integral de  flujos con foco en  sostenibilidad  y resiliencia</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_32"></a><a href="oe5206a50-7129-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Modelar redes CLSC  (Circular Supply  Chains)  para baterías de vehículos  eléctricos"   (Cleaner Logistics  and Supply Chain).</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_33"></a><a href="o6662e195-713f-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Modelo de impacto del crecimiento de e-commerce  en CDMX v s. Bogotá usando  algoritmos predictivos.</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_34"></a><a href="o8f48c917-77a0-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Modelo UE: Plataforma Circularise (Holanda)  rastra materiales reciclados para nuevos productos. Oportunidad Chile: Empresas como Kunstmann  usan aluminio reciclado de RAEE para  fabricar nuevos productos.</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_35"></a><a href="o4f9b6c10-723e-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">motores de  compresores o  vender materiales a industrias locales.</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_13"></a>P&nbsp;</th></tr><tr>
+<td><a name="E_36"></a><a href="o6662e18a-713f-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Patrones mapeados</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_37"></a><a href="o61d08fa5-713c-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">peso de residuos  tratados, huella de  carbono evitada).</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_38"></a><a href="o61d08fa1-713c-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Pieza  refabricada</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_39"></a><a href="o61d08f86-713c-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Plasticos clasificado</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_40"></a><a href="o6662e184-713f-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">PowerBI</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_41"></a><a href="o4c6ca070-7138-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Proceso iniciado</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_42"></a><a href="oe5206a3f-7129-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Producción ágil</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_43"></a><a href="o4c6ca06d-7138-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Productos  diseñados</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_44"></a><a href="o4c6ca08a-7138-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Puntos limpios establecidos</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_14"></a>R&nbsp;</th></tr><tr>
+<td><a name="E_45"></a><a href="oe5206a43-7129-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Recuperación de valor</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_46"></a><a href="o4c6ca061-7138-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Reducción de residuos</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_47"></a><a href="o61d08f97-713c-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Refabricar  pieza usable </a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_48"></a><a href="o61d08f88-713c-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Regla Y</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_15"></a>S&nbsp;</th></tr><tr>
+<td><a name="E_49"></a><a href="o7922fecb-7134-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">SCM Chile</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_50"></a><a href="oe5206a53-7129-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Seleccionar proveedores con   certificación carbono-neutral  usando  blockchain.  (Journal of Purchasing and  Supply Management).</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_51"></a><a href="o4c6ca085-7138-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Seleccionar Rutas  optimizadas  para camiones </a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_52"></a><a href="o4c6ca091-7138-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Separar componentes  peligrosos (ej.: gases refrigerantes) y materiales reciclables  (cobre, plástico).</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_53"></a><a href="o61d08f8e-713c-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Sistemas colectivos como Ecotic (España) o ERP (Europa) gestionan  contenedores especializados. Ejemplo local: Chile tiene Sistema  de Gestión de  Envases y Empaques liderado por  empresas como Cempre Chile.</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_54"></a><a href="o61d08faf-713c-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Skill ESCO:  Data Analytics</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_55"></a><a href="o6662e1a5-713f-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Skill ESCO:  Operations  Research</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_56"></a><a href="o7922fecd-7134-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Sostenibilidad y  economía circular</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_57"></a><a href="oe5206a30-7129-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">SUPPLY CHAIN  MANAGEMENT  (SCM)</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_16"></a>T&nbsp;</th></tr><tr>
+<td><a name="E_58"></a><a href="o6662e182-713f-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Tableau</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_59"></a><a href="o4c6ca07f-7138-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">tornillos estándar  en lugar  de adhesivos</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_17"></a>U&nbsp;</th></tr><tr>
+<td><a name="E_60"></a><a href="o6662e186-713f-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Usar variables  como estacionalidad y  densidad  poblacional.</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<table class="dataTable"><tr><th colspan="2">
+<a name="#L_18"></a>V&nbsp;</th></tr><tr>
+<td><a name="E_61"></a><a href="o6662e1a1-713f-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Variables implementadas</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+<tr>
+<td><a name="E_62"></a><a href="o4c6ca087-7138-11f0-24ea-5cb47e4f1a87_inf.htm" target="info">Viajes semivacíos evitados</a></td>
+<td class="arrow"><a href="#LINK_TOP"><img src="images/up_arrow.gif" width="16" height="16" alt="TOP" border="0"></a></td>
+</tr><tr><td colspan="2"><i><ARIS OBJECT_TYPE></i>&nbsp;&nbsp;</td></tr>
+
+
+</table>
+
+</table>
+
+
+</table>
+
+
+
+
+
+
+
+
+
+</table>
+
+
+
+
+</table>
+
+
+
+
+
+
+
+
+
+</table>
+
+
+
+
+
+
+
+
+</table>
+
+
+</table>
+
+
+</table>
+
+</table>
+
+
+</table>
+
+
+
+
+
+</table>
+
+
+
+
+
+
+</table>
+
+
+
+</table>
+
+</table>
+
+
+
+
+</table>
+
+</table>
+
+</table>
+</table>
+
+
+
+</body>
+</html>

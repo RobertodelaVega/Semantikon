@@ -1,0 +1,1480 @@
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+	<title>Business Publisher</title>
+	<link rel="STYLESHEET" type="text/css" href="styles.css">
+	<link rel="STYLESHEET"  href="CascadeMenu.css">
+	
+	
+
+
+<style type=text/css>
+
+@media screen{ 
+	
+	#print {
+		display:none;
+		
+	}
+	
+		
+}
+ 
+@media print {
+	
+	#imageDiv {
+		display:none;
+		
+	}
+	#modLinks {
+		display:none;
+	}
+	#screen {
+		display:none;
+	}
+
+	
+}
+
+
+
+
+</style>
+
+<script src="zoom.js"></script>
+<script src='helper.js'></script>
+<script src="properties.js"></script>
+<script src="exportedModels.js"></script>
+
+<script src="tree_logic.js"></script>
+
+
+
+<script>
+
+var selectedLangTag = "es";
+var menu = 'general';
+var objMenu = 'obj';
+var hasToHide = 'true';
+var hasToShowModelInfo = 'true';
+var menuArray = new Array();
+var objMenuArray = new Array();
+var index = 0;
+var modIndex = 0;
+var newPage = true;
+
+function setAssignForMenu(p_menuEntra) {
+	menuArray[index] = p_menuEntra; 
+	index = index + 1;
+}
+
+function setObjForMenu(p_menuEntra) {
+	objMenuArray[modIndex] = p_menuEntra; 
+	modIndex = modIndex + 1;
+}
+
+
+var divMenu = null;
+function showContextMenu(p_objectID){
+
+	if ((parent.info != null) && (parent.info != undefined)) {
+	
+		// bring element visible to ensure its initialized
+		if (document.getElementById) {
+			divMenu = document.getElementById(p_objectID);
+		}
+		else if (document.all) {
+			divMenu = document.all(p_objectID);
+		}
+		else if (document.layers) {
+			divMenu = document.layers(p_objectID);
+		}
+		divMenu.style.left = -1000;
+		divMenu.style.top = -1000;
+		divMenu.style.display = '';
+		divMenu.style.position = 'absolute';
+		var mouse = null;
+		if (isNN) {
+			mouse = getMousePointInWindow(popupEvent);
+		}
+		else {
+			mouse = getMousePointInWindow();
+		}
+				
+		var mx = mouse.getX() - 5;
+    	var my = mouse.getY() - 5;
+
+    	var obj = getObjectBounds(p_objectID);
+    	var wnd = getVisibleRectOfWindow();
+
+    	//correct x:
+    	var scrollWidth = 20; // width of the scrollbar
+    	if((mx + obj.width + scrollWidth)  > wnd.right) {
+        	mx -= (mx + obj.width + scrollWidth) - wnd.right;
+    	}
+
+    	//correct y:
+    	if((my + obj.height + scrollWidth) > wnd.bottom) {
+        	my -= (my + obj.height + scrollWidth) - wnd.bottom;
+    	}
+
+    	// set to final position
+    	divMenu.style.left = mx;
+    	divMenu.style.top = my;
+	}
+	
+}
+
+function closeContextMenu(p_objectID) {
+	document.getElementById('printFunctions').style.visibility = "hidden";
+	document.getElementById('zoomFunctions').style.visibility = "hidden";
+    	var div = document.getElementById(p_objectID);
+    	if (div != null) {
+    		div.style.display = 'none';
+    	}
+}
+
+function loadPages(url, menuid) {
+	if (url == 'null') {
+		showContextMenu(menuid);
+	}
+	else if (searchModel(url) == false) {
+	}
+        else if (opener != null) {
+		closeContextMenu(menuid);
+		opener.parent.info.location.href=url + "_inf.htm";
+		opener.parent.data.location.href=url + "_gfx.htm";
+		opener.parent.model.location.href=url + "_nav.htm";		
+		opener.focus();				
+	} else {
+		top.info.location.href=url + "_inf.htm";
+		top.data.location.href=url + "_gfx.htm";
+		top.model.location.href=url + "_nav.htm";
+	}
+}
+
+function loadObjectPage(url, menuid) {
+	newPage = false;
+	if (opener != null) {
+		closeContextMenu(menuid);
+		opener.parent.info.location.href=url + "_inf.htm";
+		opener.focus();				
+	} else {	
+		top.info.location.href=url + "_inf.htm";
+	}
+}
+
+function loadModelPage(url, menuid) {
+	if (hasToShowModelInfo == 'true') { 
+		if (opener != null) {
+			opener.parent.info.location.href=url + "_inf.htm";
+			opener.focus();				
+		} else {	
+			top.info.location.href=url + "_inf.htm";
+		}
+	}
+}
+
+
+var zoom = new zoomManager("m687e2f20-7139-11f0-24ea-5cb47e4f1a87", new Array("25","50","100","125"), "2");
+
+function ZoomOut() {
+	zoom.zoomOut();
+}
+
+function ZoomIn() {
+	zoom.zoomIn();
+}
+
+function ZoomOrig() {
+	zoom.zoomOrig();
+}
+
+function ZoomOptimalSize() {
+	zoom.doOptimalZoom(document.body.clientHeight, document.body.clientWidth, document.getElementById('zoomFunctions'));
+}
+
+function Zoom(code, submenu) {
+	document.getElementById(submenu).style.visibility = "hidden";
+	if (code == 0) {
+		ZoomIn();
+	}
+	else if (code == 1) {
+		ZoomOut();
+	}
+	else if (code == 2) {
+		ZoomOrig();
+	}
+	else if (code == 3) {
+		ZoomOptimalSize();
+	}
+}
+
+
+function Print(singlePage, submenu) {
+
+	document.getElementById(submenu).style.visibility = "hidden";
+
+	var zoomFactor = zoom.getZoomValue();
+
+	var constPageHeight = 842;
+	var constPageWidth = 595;
+	var constDoubleMargin = 136;
+	var constFullPageHeight = constPageHeight + constDoubleMargin;
+	var constFullPageWidth = constPageWidth  + 54;
+	var imageHeight = document.getElementById("m687e2f20-7139-11f0-24ea-5cb47e4f1a87").offsetHeight;
+	var imageWidth = document.getElementById("m687e2f20-7139-11f0-24ea-5cb47e4f1a87").offsetWidth;
+	var heightSteps = Math.ceil(imageHeight/constPageHeight);
+	var widthSteps = Math.ceil(imageWidth/constPageWidth);
+	var constFullPageHeightStep = constFullPageHeight * heightSteps;
+	var i = 0;
+	var j = 0;
+	
+	var div = document.getElementById('print');
+
+	removeAllChildren(div);
+
+	var hCorr = constFullPageHeight/imageHeight;
+	var wCorr = constFullPageWidth/imageWidth;
+	
+	if ((imageHeight <= constPageHeight) && (imageWidth <= constPageWidth)) {
+			var p = document.createElement('p');
+			p.innerHTML = '<img id=\"m687e2f20-7139-11f0-24ea-5cb47e4f1a87\"src=\"m687e2f20-7139-11f0-24ea-5cb47e4f1a87_'+zoomFactor+'.png\" style=\"width='+imageWidth+'; height='+imageHeight+';\"></img>';		
+			div.appendChild(p);
+		}
+
+	else if (singlePage) {
+			if (hCorr < wCorr) {
+				var p = document.createElement('p');
+				var h = imageHeight * hCorr;
+				var w = imageWidth * hCorr;
+				p.innerHTML = '<img id=\"m687e2f20-7139-11f0-24ea-5cb47e4f1a87\"src=\"m687e2f20-7139-11f0-24ea-5cb47e4f1a87_'+zoomFactor+'.png\" style=\"width='+w+'; height='+h+';\"></img>';		
+				div.appendChild(p);
+			}
+			else {
+				var p = document.createElement('p');
+				var h = imageHeight * wCorr;
+				var w = imageWidth * wCorr;
+				p.innerHTML = '<img id=\"m687e2f20-7139-11f0-24ea-5cb47e4f1a87\"src=\"m687e2f20-7139-11f0-24ea-5cb47e4f1a87_'+zoomFactor+'.png\" style=\"width='+w+'; height='+h+';\"></img>';		
+				div.appendChild(p);
+			}
+		
+	}
+	else {	
+		while(i < widthSteps) {
+			while(j < heightSteps) {
+				var p = document.createElement('p');
+				if (isIE) {
+					p.style.setAttribute('position', 'static');
+					p.style.setAttribute('page-break-after', '');
+				}
+				else {
+					p.setAttribute('style', 'position:static');
+					p.setAttribute('style', "page-break-after:''");
+				}
+				p.innerHTML = '<img id=\"m687e2f20-7139-11f0-24ea-5cb47e4f1a87\"src=\"m687e2f20-7139-11f0-24ea-5cb47e4f1a87_'+zoomFactor+'.png\" style=\"position:absolute; top:'+i*constFullPageHeightStep+' px; left:-'+i*constFullPageWidth+' px; overflow:hidden;clip:rect('+j*constPageHeight+' px,  '+(i+1)*constFullPageWidth +' px,  '+(j+1)*constPageHeight+' px,  '+i*constFullPageWidth+' px )\"></img>';		
+				div.appendChild(p);
+				j=j+1;
+				
+			}
+			j=0;
+			i=i+1;
+		}
+	}
+	
+	top.data.focus();
+	window.print();
+	
+}
+
+function removeAllChildren(targetElement) {
+    if (targetElement && targetElement.childNodes) {
+        for (var rloop = targetElement.childNodes.length -1; rloop >= 0 ; rloop--) {
+            targetElement.removeChild(targetElement.childNodes[rloop]);
+        }
+    }
+}
+
+function showOverviewIfNeeded() {
+	if ((parent.frames["tree"] != "undefined") && (parent.frames["tree"] != null))	{
+		var treeTab = parent.frames["tree"].document.getElementById("treeTab");	
+		if (treeTab.className == "tabinactive") {
+			var overview = parent.frames["tree"].document.getElementById("overviewTab");	
+    			if (overview.style.display == '') {
+				setOverview();
+			}
+		}
+	}
+}
+
+function setOverview() {
+	var id = zoom.getId();
+	var img = parent.data.document.getElementById(id);
+	if (img != null) {
+		parent.frames["tree"].showOverview(false);
+  	}
+	else {
+      		setTimeout("setOverview()", 100);
+	}
+
+}
+
+function keyPressed (e) {
+  	if (!e) {
+    		e = window.event;
+	}
+  	if (e.which) {
+    		kCode = e.which;
+  	} 	
+	else if (e.keyCode) {
+    		kCode = e.keyCode;
+  	}
+	if (kCode == 43) {
+		ZoomIn();
+	}
+	else if (kCode == 45) {
+		ZoomOut();
+	}
+	else if (kCode == 42) {
+		ZoomOrig();
+	}
+  	
+}
+
+document.onkeypress = keyPressed;
+
+isIE=document.all;
+isNN=!document.all&&document.getElementById;
+isN4=document.layers;
+
+
+if (isIE||isNN){
+document.oncontextmenu=showPopup;
+document.onclick=hidePopup;
+}else{
+document.captureEvents(Event.MOUSEDOWN || Event.MOUSEUP);
+document.onmousedown=showPopup;
+document.onclick=hidePopup;
+}
+
+var popupEvent = null;
+
+function showPopup(e) {
+	if (isNN) {
+	
+		popupEvent = e;
+	}
+
+	hidePopup(2);
+	showContextMenu(menu);
+	return false;
+/*
+if (isN4){
+if (e.which==2||e.which==3){
+    hidePopup(2);
+	showContextMenu(menu);
+
+return false;
+}else {
+    hidePopup(2);
+return false;
+}
+}else{
+    //hidePopup(2);
+	showContextMenu(menu);
+
+return false;
+
+}
+*/
+}
+
+function showPopup2(e){
+if (isN4){
+if (e.which==2||e.which==3){
+	hidePopup(2);
+	showContextMenu(menu);
+
+return false;
+}else {
+	hidePopup(2);
+return false;
+}
+}else{
+	hidePopup(2);
+	showContextMenu(menu);
+
+return false;
+
+}
+}
+
+function hidePopup(e) {
+	var ret = false;
+    	if (hasToHide == 'true') {
+		document.getElementById('printFunctions').style.visibility = "hidden";
+		document.getElementById('zoomFunctions').style.visibility = "hidden";
+		if (isN4){
+			if (e.which==1){
+				closeContextMenu(menu);
+    				closeContextMenu(objMenu);
+				for (var i = 0; i < menuArray.length; i++) {
+					closeContextMenu(menuArray[i]);
+				}
+    				for (var i = 0; i < objMenuArray.length; i++) {
+					closeContextMenu(objMenuArray[i]);
+				}
+				ret = newPage;
+				newPage = true;  
+				return ret;
+			}else {
+				closeContextMenu(menu);
+    				closeContextMenu(objMenu);
+				for (var i = 0; i < menuArray.length; i++) {
+					closeContextMenu(menuArray[i]);
+				}
+    				for (var i = 0; i < objMenuArray.length; i++) {
+					closeContextMenu(objMenuArray[i]);
+				}
+				ret = newPage;
+				newPage = true;  
+				return ret;
+			}
+		}
+		else{
+			closeContextMenu(menu);
+    			closeContextMenu(objMenu);
+			for (var i = 0; i < menuArray.length; i++) {
+				closeContextMenu(menuArray[i]);
+			}
+    			for (var i = 0; i < objMenuArray.length; i++) {
+				closeContextMenu(objMenuArray[i]);
+			}
+			ret = newPage;
+			newPage = true;  
+			return ret;
+
+		}
+	}
+	else {
+		setHasToHide('true') ;
+		ret = newPage;
+			newPage = true;  
+			return ret;
+	}
+}
+
+function setMenu(p_menu) {
+	menu = p_menu;
+}
+
+function setObjMenu(p_menu) {
+	objMenu = p_menu;
+}
+
+function setHasToHide(p_hide) {
+	hasToHide = p_hide;
+}
+
+function setModelInfoToShow(p_modInfo) {
+	hasToShowModelInfo = p_modInfo;
+}
+
+function frameScroll() {
+	var wnd = getVisibleRectOfWindow();
+	parent.tree.setRectPositionAfterModelScroll(wnd.x, wnd.y);
+}
+
+function ShowSubMenu(obj, menu) {
+	document.getElementById('printFunctions').style.visibility = "hidden";
+	document.getElementById('zoomFunctions').style.visibility = "hidden";
+	
+	if (menu == 'zoom') {
+		menu = document.getElementById('zoomFunctions');
+	}
+	else {
+		menu = document.getElementById('printFunctions');
+	}
+	
+	if(menu != null) {
+		if (isIE) {
+			menu.style.visibility = "visible";
+			menu.style.pixelTop = obj.getBoundingClientRect().top + document.body.scrollTop; 
+			menu.style.pixelLeft = divMenu.style.pixelLeft + divMenu.offsetWidth -5;
+			
+			var x = menu.style.pixelLeft + menu.offsetWidth;
+			if(x > document.body.clientWidth + document.body.scrollLeft) {
+				menu.style.pixelLeft = divMenu.style.pixelLeft - menu.offsetWidth+5;
+			}
+		}
+		else {
+			menu.style.visibility = "visible";
+			if (obj.getBoundingClientRect) {
+				menu.style.top = obj.getBoundingClientRect().top + document.body.scrollTop;
+			}
+			else {
+				menu.style.top = document.getBoxObjectFor(obj).y + document.documentElement.scrollTop;
+			}
+			menu.style.left = parseInt(divMenu.style.left) + divMenu.offsetWidth -5;// + document.body.scrollLeft;
+			var x = menu.style.left + menu.offsetWidth;
+			// muss noch korrigiert werden!!!
+			if(x > parseInt(document.body.clientWidth + document.body.scrollLeft)) {
+				menu.style.left = parseInt(divMenu.style.left) - menu.offsetWidth+5;// + document.body.scrollLeft;
+			}
+		}
+    }
+	
+}
+
+function hidePrintFunctions() {
+	document.getElementById('printFunctions').style.visibility = "hidden";
+}
+
+function hideZoomFunctions() {
+	document.getElementById('zoomFunctions').style.visibility = "hidden";
+}
+
+function showPrintFunctions() {
+	document.getElementById('printFunctions').style.visibility = "visible";
+}
+
+function showZoomFunctions() {
+	document.getElementById('zoomFunctions').style.visibility = "visible";
+}
+
+
+function setHighlightForArrow1() {
+	document.getElementById('arrowSign1').style.backgroundColor = "#EFECE6";
+	document.getElementById('zoomMenu').style.backgroundColor = "#EFECE6";
+}
+
+function setNoHighlightForArrow1() {
+	document.getElementById('arrowSign1').style.backgroundColor = "#FFFFFF";
+	document.getElementById('zoomMenu').style.backgroundColor = "#FFFFFF";
+}
+
+function setHighlightForArrow2() {
+	document.getElementById('arrowSign2').style.backgroundColor = "#EFECE6";
+	document.getElementById('printMenu').style.backgroundColor = "#EFECE6";
+}
+
+function setNoHighlightForArrow2() {
+	document.getElementById('arrowSign2').style.backgroundColor = "#FFFFFF";
+	document.getElementById('printMenu').style.backgroundColor = "#FFFFFF";
+}
+
+function setHighlightForLinks(id1, id2) {
+	document.getElementById(id1).style.backgroundColor = "#EFECE6";
+	document.getElementById(id2).style.backgroundColor = "#EFECE6";
+}
+
+function setNoHighlightForLinks(id1, id2) {
+	document.getElementById(id1).style.backgroundColor = "#FFFFFF";
+	document.getElementById(id2).style.backgroundColor = "#FFFFFF";
+}
+
+
+
+</script>		
+</head>
+
+<body onLoad='javascript: showOverviewIfNeeded();' onscroll="javascript:frameScroll();">
+
+
+   
+<div id="screen" class="data">
+
+<div id="general" class="menu" style="display:none;"><table width="110%"><tr><td id='zoomMenu' menu="zoomFunctions" onmouseout="this.className=''; setNoHighlightForArrow1(); hideZoomFunctions()"  onmouseover="this.className='highlight'; ShowSubMenu(this, 'zoom'); setHighlightForArrow1()" ><script>document.write(properties[selectedLangTag]['wp_view']);</script></td><td id='arrowSign1' menu="zoomFunctions" onmouseout="this.className=''; setNoHighlightForArrow1(); hideZoomFunctions()"  onmouseover="this.className='highlight'; ShowSubMenu(this, 'zoom'); setHighlightForArrow1()"><Span>&#9654</Span></td></tr><tr><td id='printMenu' menu="printFunctions" onmouseout="this.className=''; setNoHighlightForArrow2(); hidePrintFunctions()"  onmouseover="this.className='highlight'; ShowSubMenu(this, 'print'); setHighlightForArrow2()" ><script>document.write(properties[selectedLangTag]['wp_print']);</script></td><td id='arrowSign2' menu="printFunctions" onmouseout="this.className=''; setNoHighlightForArrow2(); hideZoomFunctions()"  onmouseover="this.className='highlight'; ShowSubMenu(this, 'print'); setHighlightForArrow2()"><Span>&#9654</Span></td></tr></table></div><div id="occ_obj0" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj0')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o8f48c91d-77a0-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj1" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj1')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o8f48c91a-77a0-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj2" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj2')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o8f48c917-77a0-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj3" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj3')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o8f48c914-77a0-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj4" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj4')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o4f9b6c10-723e-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj5" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj5')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o61d08faa-713c-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj6" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj6')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o61d08fa5-713c-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj7" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj7')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o61d08fa3-713c-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj8" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj8')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o61d08fa1-713c-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj9" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj9')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o61d08f97-713c-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj10" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj10')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o61d08f8e-713c-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj11" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj11')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o61d08f88-713c-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj12" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj12')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o61d08f86-713c-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj13" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj13')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o61d08f84-713c-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj14" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj14')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o61d08f82-713c-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj15" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj15')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o4c6ca091-7138-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj16" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj16')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o4c6ca08e-7138-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj17" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj17')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o4c6ca08a-7138-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj18" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj18')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o4c6ca087-7138-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj19" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj19')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o4c6ca085-7138-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj20" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj20')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o4c6ca082-7138-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj21" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj21')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o4c6ca07f-7138-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj22" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj22')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o4c6ca07c-7138-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj23" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj23')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o4c6ca073-7138-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj24" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj24')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o4c6ca070-7138-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj25" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj25')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o4c6ca06d-7138-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj26" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj26')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o4c6ca069-7138-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj27" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj27')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o61d08f88-713c-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj28" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj28')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o4c6ca06b-7138-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div>
+
+
+<div>  
+	<map name="ObjectMap25">
+	<area shape="rect" coords="87,122,170,147" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj0'); setObjMenu('occ_obj0')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o8f48c91d-77a0-11f0-24ea-5cb47e4f1a87', 'general')"href="o8f48c91d-77a0-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Ejemplo UE: Ley francesa 
+Anti-Waste obliga a etiquetar 
+componentes de electrodomésticos.
+Adaptación Chile: Regulación MMA (Ley REP) 
+exige ecodiseño en envases y electrónicos desde 2023.
+Time of generation: 12-ago-2025 13:30:33
+Last change: 12-ago-2025 13:30:33
+"/>
+<area shape="rect" coords="396,52,475,77" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj1'); setObjMenu('occ_obj1')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o8f48c91a-77a0-11f0-24ea-5cb47e4f1a87', 'general')"href="o8f48c91a-77a0-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name:  Norma EN 50625 para tratamiento de 
+RAEE (Residuos de Aparatos Eléctricos y Electrónicos).
+Ejemplo chileno: Planta Reciclos en Rancagua 
+recupera 85% de materiales de refrigeradores.
+Time of generation: 12-ago-2025 13:30:33
+Last change: 12-ago-2025 13:30:33
+"/>
+<area shape="rect" coords="566,53,652,77" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj2'); setObjMenu('occ_obj2')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o8f48c917-77a0-11f0-24ea-5cb47e4f1a87', 'general')"href="o8f48c917-77a0-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Modelo UE: Plataforma Circularise (Holanda) 
+rastra materiales reciclados para nuevos productos.
+Oportunidad Chile: Empresas como Kunstmann 
+usan aluminio reciclado de RAEE para
+ fabricar nuevos productos.
+Time of generation: 12-ago-2025 13:30:33
+Last change: 12-ago-2025 13:30:33
+"/>
+<area shape="rect" coords="745,55,823,77" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj3'); setObjMenu('occ_obj3')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o8f48c914-77a0-11f0-24ea-5cb47e4f1a87', 'general')"href="o8f48c914-77a0-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Estándar ESCO: Directiva UE *2023/2055*
+exige pasaportes digitales de productos.
+Herramienta local: SIGRE (Sistema Integrado d
+e Gestión de Residuos) en desarrollo por el MMA.
+Time of generation: 12-ago-2025 13:30:33
+Last change: 12-ago-2025 13:30:33
+"/>
+<area shape="rect" coords="594,116,625,138" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj4'); setObjMenu('occ_obj4')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4f9b6c10-723e-11f0-24ea-5cb47e4f1a87', 'general')"href="o4f9b6c10-723e-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: motores de 
+compresores o 
+vender materiales a
+industrias locales.
+Time of generation: 05-ago-2025 16:55:28
+Last change: 05-ago-2025 16:55:28
+"/>
+<area shape="rect" coords="833,87,864,106" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj5'); setObjMenu('occ_obj5')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08faa-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08faa-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Etapa 
+documentada
+Time of generation: 04-ago-2025 10:18:34
+Last change: 05-ago-2025 16:55:28
+"/>
+<area shape="rect" coords="704,55,735,77" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj6'); setObjMenu('occ_obj6')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08fa5-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08fa5-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: peso de residuos 
+tratados, huella de 
+carbono evitada).
+Time of generation: 04-ago-2025 10:16:22
+Last change: 04-ago-2025 10:16:22
+"/>
+<area shape="rect" coords="748,87,779,106" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj7'); setObjMenu('occ_obj7')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08fa3-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08fa3-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Blockchain para 
+documentar 
+cada etapa 
+Time of generation: 04-ago-2025 10:16:22
+Last change: 04-ago-2025 10:16:22
+"/>
+<area shape="rect" coords="663,87,694,106" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj8'); setObjMenu('occ_obj8')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08fa1-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08fa1-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Pieza 
+refabricada
+Time of generation: 04-ago-2025 10:14:33
+Last change: 05-ago-2025 16:55:28
+"/>
+<area shape="rect" coords="594,87,625,106" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj9'); setObjMenu('occ_obj9')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08f97-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08f97-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Refabricar 
+pieza usable 
+Time of generation: 04-ago-2025 10:14:33
+Last change: 05-ago-2025 16:55:28
+"/>
+<area shape="rect" coords="211,45,263,77" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj10'); setObjMenu('occ_obj10')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08f8e-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08f8e-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Sistemas colectivos como Ecotic
+(España) o ERP (Europa) gestionan 
+contenedores especializados.
+Ejemplo local: Chile tiene Sistema 
+de Gestión de 
+Envases y Empaques liderado por 
+empresas como Cempre Chile.
+Time of generation: 04-ago-2025 10:10:42
+Last change: 12-ago-2025 13:30:33
+"/>
+<area shape="rect" coords="485,92,495,102" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj11'); setObjMenu('occ_obj11')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08f88-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08f88-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Regla Y
+Time of generation: 04-ago-2025 10:09:38
+Last change: 04-ago-2025 10:09:46
+"/>
+<area shape="rect" coords="505,58,536,77" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj12'); setObjMenu('occ_obj12')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08f86-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08f86-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Plasticos
+clasificado
+Time of generation: 04-ago-2025 10:10:42
+Last change: 04-ago-2025 10:10:42
+"/>
+<area shape="rect" coords="505,87,536,106" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj13'); setObjMenu('occ_obj13')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08f84-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08f84-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Material
+cobre
+aislado
+Time of generation: 04-ago-2025 10:10:42
+Last change: 04-ago-2025 10:10:42
+"/>
+<area shape="rect" coords="505,117,536,136" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj14'); setObjMenu('occ_obj14')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08f82-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08f82-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Gases
+refrigerantes
+amacenado
+Time of generation: 04-ago-2025 10:10:42
+Last change: 04-ago-2025 10:10:42
+"/>
+<area shape="rect" coords="420,87,451,106" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj15'); setObjMenu('occ_obj15')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca091-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca091-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Separar componentes 
+peligrosos
+(ej.: gases refrigerantes) y
+materiales reciclables
+ (cobre, plástico).
+Time of generation: 04-ago-2025 10:10:42
+Last change: 04-ago-2025 10:10:42
+"/>
+<area shape="rect" coords="317,62,342,77" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj16'); setObjMenu('occ_obj16')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca08e-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca08e-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: con GPS y 
+sensores de 
+peso
+Time of generation: 04-ago-2025 10:07:14
+Last change: 04-ago-2025 10:07:14
+"/>
+<area shape="rect" coords="273,87,304,106" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj17'); setObjMenu('occ_obj17')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca08a-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca08a-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Puntos limpios
+establecidos
+Time of generation: 04-ago-2025 10:05:40
+Last change: 05-ago-2025 16:55:28
+"/>
+<area shape="rect" coords="355,87,386,106" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj18'); setObjMenu('occ_obj18')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca087-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca087-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Viajes semivacíos
+evitados
+Time of generation: 04-ago-2025 10:05:40
+Last change: 04-ago-2025 10:05:40
+"/>
+<area shape="rect" coords="314,87,345,106" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj19'); setObjMenu('occ_obj19')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca085-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca085-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Seleccionar Rutas 
+optimizadas 
+para camiones 
+Time of generation: 04-ago-2025 10:05:40
+Last change: 04-ago-2025 10:07:14
+"/>
+<area shape="rect" coords="221,87,252,106" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj20'); setObjMenu('occ_obj20')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca082-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca082-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Establecer puntos 
+limpios en
+ municipios y 
+retailers
+Time of generation: 04-ago-2025 10:05:40
+Last change: 04-ago-2025 10:05:40
+"/>
+<area shape="rect" coords="87,62,112,77" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj21'); setObjMenu('occ_obj21')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca07f-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca07f-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: tornillos estándar 
+en lugar 
+de adhesivos
+Time of generation: 04-ago-2025 10:00:28
+Last change: 04-ago-2025 10:00:28
+"/>
+<area shape="rect" coords="122,62,159,74" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj22'); setObjMenu('occ_obj22')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca07c-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca07c-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: fabricante
+Time of generation: 04-ago-2025 10:00:28
+Last change: 04-ago-2025 10:00:28
+"/>
+<area shape="rect" coords="108,87,139,106" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj23'); setObjMenu('occ_obj23')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca073-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca073-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Diseñar productos 
+con  materiales 
+fácilmente 
+separables 
+Time of generation: 04-ago-2025 9:56:16
+Last change: 12-ago-2025 13:30:33
+"/>
+<area shape="rect" coords="46,87,77,106" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj24'); setObjMenu('occ_obj24')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca070-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca070-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Proceso iniciado
+Time of generation: 04-ago-2025 9:54:51
+Last change: 05-ago-2025 16:55:28
+"/>
+<area shape="rect" coords="170,87,201,106" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj25'); setObjMenu('occ_obj25')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca06d-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca06d-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Productos 
+diseñados
+Time of generation: 04-ago-2025 9:54:51
+Last change: 05-ago-2025 16:55:28
+"/>
+<area shape="rect" coords="5,5,112,35" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj26'); setObjMenu('occ_obj26')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca069-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca069-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: (Extended Producer Responsibility
+ - EPR) de la Unión Europea 
+es un referente global en logística
+ inversa, especialmente 
+para manejo de residuos 
+electrónicos, envases y baterías.
+Time of generation: 04-ago-2025 9:52:21
+Last change: 04-ago-2025 10:00:28
+"/>
+<area shape="rect" coords="546,92,556,102" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj27'); setObjMenu('occ_obj27')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08f88-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08f88-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Regla Y
+Time of generation: 04-ago-2025 10:09:38
+Last change: 04-ago-2025 10:09:46
+"/>
+<area shape="rect" coords="5,87,36,106" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj28'); setObjMenu('occ_obj28')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca06b-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca06b-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Diseñar para el 
+Desensamblaje 
+(Ecodiseño)
+Time of generation: 04-ago-2025 9:54:51
+Last change: 04-ago-2025 10:00:28
+"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</map>
+<map name="ObjectMap50">
+	<area shape="rect" coords="173,243,338,294" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj0'); setObjMenu('occ_obj0')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o8f48c91d-77a0-11f0-24ea-5cb47e4f1a87', 'general')"href="o8f48c91d-77a0-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Ejemplo UE: Ley francesa 
+Anti-Waste obliga a etiquetar 
+componentes de electrodomésticos.
+Adaptación Chile: Regulación MMA (Ley REP) 
+exige ecodiseño en envases y electrónicos desde 2023.
+Time of generation: 12-ago-2025 13:30:33
+Last change: 12-ago-2025 13:30:33
+"/>
+<area shape="rect" coords="793,105,951,154" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj1'); setObjMenu('occ_obj1')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o8f48c91a-77a0-11f0-24ea-5cb47e4f1a87', 'general')"href="o8f48c91a-77a0-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name:  Norma EN 50625 para tratamiento de 
+RAEE (Residuos de Aparatos Eléctricos y Electrónicos).
+Ejemplo chileno: Planta Reciclos en Rancagua 
+recupera 85% de materiales de refrigeradores.
+Time of generation: 12-ago-2025 13:30:33
+Last change: 12-ago-2025 13:30:33
+"/>
+<area shape="rect" coords="1133,107,1305,154" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj2'); setObjMenu('occ_obj2')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o8f48c917-77a0-11f0-24ea-5cb47e4f1a87', 'general')"href="o8f48c917-77a0-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Modelo UE: Plataforma Circularise (Holanda) 
+rastra materiales reciclados para nuevos productos.
+Oportunidad Chile: Empresas como Kunstmann 
+usan aluminio reciclado de RAEE para
+ fabricar nuevos productos.
+Time of generation: 12-ago-2025 13:30:33
+Last change: 12-ago-2025 13:30:33
+"/>
+<area shape="rect" coords="1489,110,1645,154" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj3'); setObjMenu('occ_obj3')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o8f48c914-77a0-11f0-24ea-5cb47e4f1a87', 'general')"href="o8f48c914-77a0-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Estándar ESCO: Directiva UE *2023/2055*
+exige pasaportes digitales de productos.
+Herramienta local: SIGRE (Sistema Integrado d
+e Gestión de Residuos) en desarrollo por el MMA.
+Time of generation: 12-ago-2025 13:30:33
+Last change: 12-ago-2025 13:30:33
+"/>
+<area shape="rect" coords="1188,233,1250,277" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj4'); setObjMenu('occ_obj4')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4f9b6c10-723e-11f0-24ea-5cb47e4f1a87', 'general')"href="o4f9b6c10-723e-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: motores de 
+compresores o 
+vender materiales a
+industrias locales.
+Time of generation: 05-ago-2025 16:55:28
+Last change: 05-ago-2025 16:55:28
+"/>
+<area shape="rect" coords="1665,174,1727,213" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj5'); setObjMenu('occ_obj5')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08faa-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08faa-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Etapa 
+documentada
+Time of generation: 04-ago-2025 10:18:34
+Last change: 05-ago-2025 16:55:28
+"/>
+<area shape="rect" coords="1407,110,1469,154" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj6'); setObjMenu('occ_obj6')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08fa5-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08fa5-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: peso de residuos 
+tratados, huella de 
+carbono evitada).
+Time of generation: 04-ago-2025 10:16:22
+Last change: 04-ago-2025 10:16:22
+"/>
+<area shape="rect" coords="1495,174,1557,213" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj7'); setObjMenu('occ_obj7')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08fa3-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08fa3-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Blockchain para 
+documentar 
+cada etapa 
+Time of generation: 04-ago-2025 10:16:22
+Last change: 04-ago-2025 10:16:22
+"/>
+<area shape="rect" coords="1325,174,1387,213" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj8'); setObjMenu('occ_obj8')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08fa1-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08fa1-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Pieza 
+refabricada
+Time of generation: 04-ago-2025 10:14:33
+Last change: 05-ago-2025 16:55:28
+"/>
+<area shape="rect" coords="1188,174,1250,213" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj9'); setObjMenu('occ_obj9')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08f97-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08f97-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Refabricar 
+pieza usable 
+Time of generation: 04-ago-2025 10:14:33
+Last change: 05-ago-2025 16:55:28
+"/>
+<area shape="rect" coords="421,90,525,154" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj10'); setObjMenu('occ_obj10')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08f8e-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08f8e-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Sistemas colectivos como Ecotic
+(España) o ERP (Europa) gestionan 
+contenedores especializados.
+Ejemplo local: Chile tiene Sistema 
+de Gestión de 
+Envases y Empaques liderado por 
+empresas como Cempre Chile.
+Time of generation: 04-ago-2025 10:10:42
+Last change: 12-ago-2025 13:30:33
+"/>
+<area shape="rect" coords="971,183,991,203" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj11'); setObjMenu('occ_obj11')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08f88-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08f88-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Regla Y
+Time of generation: 04-ago-2025 10:09:38
+Last change: 04-ago-2025 10:09:46
+"/>
+<area shape="rect" coords="1011,115,1073,154" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj12'); setObjMenu('occ_obj12')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08f86-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08f86-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Plasticos
+clasificado
+Time of generation: 04-ago-2025 10:10:42
+Last change: 04-ago-2025 10:10:42
+"/>
+<area shape="rect" coords="1011,174,1073,213" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj13'); setObjMenu('occ_obj13')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08f84-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08f84-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Material
+cobre
+aislado
+Time of generation: 04-ago-2025 10:10:42
+Last change: 04-ago-2025 10:10:42
+"/>
+<area shape="rect" coords="1011,233,1073,272" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj14'); setObjMenu('occ_obj14')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08f82-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08f82-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Gases
+refrigerantes
+amacenado
+Time of generation: 04-ago-2025 10:10:42
+Last change: 04-ago-2025 10:10:42
+"/>
+<area shape="rect" coords="841,174,903,213" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj15'); setObjMenu('occ_obj15')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca091-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca091-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Separar componentes 
+peligrosos
+(ej.: gases refrigerantes) y
+materiales reciclables
+ (cobre, plástico).
+Time of generation: 04-ago-2025 10:10:42
+Last change: 04-ago-2025 10:10:42
+"/>
+<area shape="rect" coords="634,123,684,154" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj16'); setObjMenu('occ_obj16')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca08e-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca08e-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: con GPS y 
+sensores de 
+peso
+Time of generation: 04-ago-2025 10:07:14
+Last change: 04-ago-2025 10:07:14
+"/>
+<area shape="rect" coords="546,174,608,213" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj17'); setObjMenu('occ_obj17')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca08a-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca08a-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Puntos limpios
+establecidos
+Time of generation: 04-ago-2025 10:05:40
+Last change: 05-ago-2025 16:55:28
+"/>
+<area shape="rect" coords="710,174,772,213" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj18'); setObjMenu('occ_obj18')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca087-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca087-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Viajes semivacíos
+evitados
+Time of generation: 04-ago-2025 10:05:40
+Last change: 04-ago-2025 10:05:40
+"/>
+<area shape="rect" coords="628,174,690,213" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj19'); setObjMenu('occ_obj19')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca085-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca085-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Seleccionar Rutas 
+optimizadas 
+para camiones 
+Time of generation: 04-ago-2025 10:05:40
+Last change: 04-ago-2025 10:07:14
+"/>
+<area shape="rect" coords="443,174,505,213" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj20'); setObjMenu('occ_obj20')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca082-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca082-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Establecer puntos 
+limpios en
+ municipios y 
+retailers
+Time of generation: 04-ago-2025 10:05:40
+Last change: 04-ago-2025 10:05:40
+"/>
+<area shape="rect" coords="175,123,225,154" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj21'); setObjMenu('occ_obj21')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca07f-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca07f-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: tornillos estándar 
+en lugar 
+de adhesivos
+Time of generation: 04-ago-2025 10:00:28
+Last change: 04-ago-2025 10:00:28
+"/>
+<area shape="rect" coords="245,123,320,147" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj22'); setObjMenu('occ_obj22')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca07c-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca07c-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: fabricante
+Time of generation: 04-ago-2025 10:00:28
+Last change: 04-ago-2025 10:00:28
+"/>
+<area shape="rect" coords="216,174,278,213" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj23'); setObjMenu('occ_obj23')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca073-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca073-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Diseñar productos 
+con  materiales 
+fácilmente 
+separables 
+Time of generation: 04-ago-2025 9:56:16
+Last change: 12-ago-2025 13:30:33
+"/>
+<area shape="rect" coords="93,174,155,213" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj24'); setObjMenu('occ_obj24')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca070-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca070-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Proceso iniciado
+Time of generation: 04-ago-2025 9:54:51
+Last change: 05-ago-2025 16:55:28
+"/>
+<area shape="rect" coords="339,174,401,213" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj25'); setObjMenu('occ_obj25')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca06d-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca06d-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Productos 
+diseñados
+Time of generation: 04-ago-2025 9:54:51
+Last change: 05-ago-2025 16:55:28
+"/>
+<area shape="rect" coords="10,10,224,70" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj26'); setObjMenu('occ_obj26')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca069-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca069-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: (Extended Producer Responsibility
+ - EPR) de la Unión Europea 
+es un referente global en logística
+ inversa, especialmente 
+para manejo de residuos 
+electrónicos, envases y baterías.
+Time of generation: 04-ago-2025 9:52:21
+Last change: 04-ago-2025 10:00:28
+"/>
+<area shape="rect" coords="1093,183,1113,203" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj27'); setObjMenu('occ_obj27')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08f88-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08f88-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Regla Y
+Time of generation: 04-ago-2025 10:09:38
+Last change: 04-ago-2025 10:09:46
+"/>
+<area shape="rect" coords="10,174,73,213" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj28'); setObjMenu('occ_obj28')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca06b-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca06b-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Diseñar para el 
+Desensamblaje 
+(Ecodiseño)
+Time of generation: 04-ago-2025 9:54:51
+Last change: 04-ago-2025 10:00:28
+"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</map>
+<map name="ObjectMap100">
+	<area shape="rect" coords="347,486,678,588" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj0'); setObjMenu('occ_obj0')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o8f48c91d-77a0-11f0-24ea-5cb47e4f1a87', 'general')"href="o8f48c91d-77a0-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Ejemplo UE: Ley francesa 
+Anti-Waste obliga a etiquetar 
+componentes de electrodomésticos.
+Adaptación Chile: Regulación MMA (Ley REP) 
+exige ecodiseño en envases y electrónicos desde 2023.
+Time of generation: 12-ago-2025 13:30:33
+Last change: 12-ago-2025 13:30:33
+"/>
+<area shape="rect" coords="1585,210,1901,309" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj1'); setObjMenu('occ_obj1')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o8f48c91a-77a0-11f0-24ea-5cb47e4f1a87', 'general')"href="o8f48c91a-77a0-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name:  Norma EN 50625 para tratamiento de 
+RAEE (Residuos de Aparatos Eléctricos y Electrónicos).
+Ejemplo chileno: Planta Reciclos en Rancagua 
+recupera 85% de materiales de refrigeradores.
+Time of generation: 12-ago-2025 13:30:33
+Last change: 12-ago-2025 13:30:33
+"/>
+<area shape="rect" coords="2266,214,2611,309" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj2'); setObjMenu('occ_obj2')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o8f48c917-77a0-11f0-24ea-5cb47e4f1a87', 'general')"href="o8f48c917-77a0-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Modelo UE: Plataforma Circularise (Holanda) 
+rastra materiales reciclados para nuevos productos.
+Oportunidad Chile: Empresas como Kunstmann 
+usan aluminio reciclado de RAEE para
+ fabricar nuevos productos.
+Time of generation: 12-ago-2025 13:30:33
+Last change: 12-ago-2025 13:30:33
+"/>
+<area shape="rect" coords="2979,220,3291,308" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj3'); setObjMenu('occ_obj3')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o8f48c914-77a0-11f0-24ea-5cb47e4f1a87', 'general')"href="o8f48c914-77a0-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Estándar ESCO: Directiva UE *2023/2055*
+exige pasaportes digitales de productos.
+Herramienta local: SIGRE (Sistema Integrado d
+e Gestión de Residuos) en desarrollo por el MMA.
+Time of generation: 12-ago-2025 13:30:33
+Last change: 12-ago-2025 13:30:33
+"/>
+<area shape="rect" coords="2376,466,2500,555" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj4'); setObjMenu('occ_obj4')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4f9b6c10-723e-11f0-24ea-5cb47e4f1a87', 'general')"href="o4f9b6c10-723e-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: motores de 
+compresores o 
+vender materiales a
+industrias locales.
+Time of generation: 05-ago-2025 16:55:28
+Last change: 05-ago-2025 16:55:28
+"/>
+<area shape="rect" coords="3331,348,3456,426" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj5'); setObjMenu('occ_obj5')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08faa-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08faa-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Etapa 
+documentada
+Time of generation: 04-ago-2025 10:18:34
+Last change: 05-ago-2025 16:55:28
+"/>
+<area shape="rect" coords="2815,220,2939,309" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj6'); setObjMenu('occ_obj6')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08fa5-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08fa5-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: peso de residuos 
+tratados, huella de 
+carbono evitada).
+Time of generation: 04-ago-2025 10:16:22
+Last change: 04-ago-2025 10:16:22
+"/>
+<area shape="rect" coords="2991,349,3115,426" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj7'); setObjMenu('occ_obj7')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08fa3-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08fa3-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Blockchain para 
+documentar 
+cada etapa 
+Time of generation: 04-ago-2025 10:16:22
+Last change: 04-ago-2025 10:16:22
+"/>
+<area shape="rect" coords="2650,348,2775,426" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj8'); setObjMenu('occ_obj8')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08fa1-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08fa1-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Pieza 
+refabricada
+Time of generation: 04-ago-2025 10:14:33
+Last change: 05-ago-2025 16:55:28
+"/>
+<area shape="rect" coords="2376,349,2500,426" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj9'); setObjMenu('occ_obj9')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08f97-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08f97-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Refabricar 
+pieza usable 
+Time of generation: 04-ago-2025 10:14:33
+Last change: 05-ago-2025 16:55:28
+"/>
+<area shape="rect" coords="843,180,1052,308" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj10'); setObjMenu('occ_obj10')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08f8e-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08f8e-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Sistemas colectivos como Ecotic
+(España) o ERP (Europa) gestionan 
+contenedores especializados.
+Ejemplo local: Chile tiene Sistema 
+de Gestión de 
+Envases y Empaques liderado por 
+empresas como Cempre Chile.
+Time of generation: 04-ago-2025 10:10:42
+Last change: 12-ago-2025 13:30:33
+"/>
+<area shape="rect" coords="1941,367,1981,407" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj11'); setObjMenu('occ_obj11')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08f88-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08f88-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Regla Y
+Time of generation: 04-ago-2025 10:09:38
+Last change: 04-ago-2025 10:09:46
+"/>
+<area shape="rect" coords="2021,230,2146,308" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj12'); setObjMenu('occ_obj12')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08f86-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08f86-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Plasticos
+clasificado
+Time of generation: 04-ago-2025 10:10:42
+Last change: 04-ago-2025 10:10:42
+"/>
+<area shape="rect" coords="2021,348,2146,426" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj13'); setObjMenu('occ_obj13')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08f84-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08f84-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Material
+cobre
+aislado
+Time of generation: 04-ago-2025 10:10:42
+Last change: 04-ago-2025 10:10:42
+"/>
+<area shape="rect" coords="2021,466,2146,544" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj14'); setObjMenu('occ_obj14')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08f82-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08f82-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Gases
+refrigerantes
+amacenado
+Time of generation: 04-ago-2025 10:10:42
+Last change: 04-ago-2025 10:10:42
+"/>
+<area shape="rect" coords="1681,349,1805,426" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj15'); setObjMenu('occ_obj15')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca091-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca091-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Separar componentes 
+peligrosos
+(ej.: gases refrigerantes) y
+materiales reciclables
+ (cobre, plástico).
+Time of generation: 04-ago-2025 10:10:42
+Last change: 04-ago-2025 10:10:42
+"/>
+<area shape="rect" coords="1269,247,1369,309" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj16'); setObjMenu('occ_obj16')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca08e-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca08e-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: con GPS y 
+sensores de 
+peso
+Time of generation: 04-ago-2025 10:07:14
+Last change: 04-ago-2025 10:07:14
+"/>
+<area shape="rect" coords="1092,348,1217,426" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj17'); setObjMenu('occ_obj17')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca08a-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca08a-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Puntos limpios
+establecidos
+Time of generation: 04-ago-2025 10:05:40
+Last change: 05-ago-2025 16:55:28
+"/>
+<area shape="rect" coords="1420,348,1545,426" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj18'); setObjMenu('occ_obj18')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca087-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca087-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Viajes semivacíos
+evitados
+Time of generation: 04-ago-2025 10:05:40
+Last change: 04-ago-2025 10:05:40
+"/>
+<area shape="rect" coords="1256,349,1380,426" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj19'); setObjMenu('occ_obj19')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca085-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca085-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Seleccionar Rutas 
+optimizadas 
+para camiones 
+Time of generation: 04-ago-2025 10:05:40
+Last change: 04-ago-2025 10:07:14
+"/>
+<area shape="rect" coords="885,349,1009,426" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj20'); setObjMenu('occ_obj20')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca082-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca082-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Establecer puntos 
+limpios en
+ municipios y 
+retailers
+Time of generation: 04-ago-2025 10:05:40
+Last change: 04-ago-2025 10:05:40
+"/>
+<area shape="rect" coords="350,247,450,309" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj21'); setObjMenu('occ_obj21')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca07f-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca07f-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: tornillos estándar 
+en lugar 
+de adhesivos
+Time of generation: 04-ago-2025 10:00:28
+Last change: 04-ago-2025 10:00:28
+"/>
+<area shape="rect" coords="489,247,638,295" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj22'); setObjMenu('occ_obj22')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca07c-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca07c-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: fabricante
+Time of generation: 04-ago-2025 10:00:28
+Last change: 04-ago-2025 10:00:28
+"/>
+<area shape="rect" coords="432,349,556,426" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj23'); setObjMenu('occ_obj23')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca073-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca073-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Diseñar productos 
+con  materiales 
+fácilmente 
+separables 
+Time of generation: 04-ago-2025 9:56:16
+Last change: 12-ago-2025 13:30:33
+"/>
+<area shape="rect" coords="185,348,310,426" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj24'); setObjMenu('occ_obj24')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca070-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca070-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Proceso iniciado
+Time of generation: 04-ago-2025 9:54:51
+Last change: 05-ago-2025 16:55:28
+"/>
+<area shape="rect" coords="678,348,803,426" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj25'); setObjMenu('occ_obj25')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca06d-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca06d-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Productos 
+diseñados
+Time of generation: 04-ago-2025 9:54:51
+Last change: 05-ago-2025 16:55:28
+"/>
+<area shape="rect" coords="20,20,448,140" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj26'); setObjMenu('occ_obj26')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca069-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca069-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: (Extended Producer Responsibility
+ - EPR) de la Unión Europea 
+es un referente global en logística
+ inversa, especialmente 
+para manejo de residuos 
+electrónicos, envases y baterías.
+Time of generation: 04-ago-2025 9:52:21
+Last change: 04-ago-2025 10:00:28
+"/>
+<area shape="rect" coords="2186,367,2226,407" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj27'); setObjMenu('occ_obj27')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08f88-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08f88-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Regla Y
+Time of generation: 04-ago-2025 10:09:38
+Last change: 04-ago-2025 10:09:46
+"/>
+<area shape="rect" coords="20,348,145,426" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj28'); setObjMenu('occ_obj28')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca06b-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca06b-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Diseñar para el 
+Desensamblaje 
+(Ecodiseño)
+Time of generation: 04-ago-2025 9:54:51
+Last change: 04-ago-2025 10:00:28
+"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</map>
+<map name="ObjectMap125">
+	<area shape="rect" coords="433,608,847,735" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj0'); setObjMenu('occ_obj0')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o8f48c91d-77a0-11f0-24ea-5cb47e4f1a87', 'general')"href="o8f48c91d-77a0-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Ejemplo UE: Ley francesa 
+Anti-Waste obliga a etiquetar 
+componentes de electrodomésticos.
+Adaptación Chile: Regulación MMA (Ley REP) 
+exige ecodiseño en envases y electrónicos desde 2023.
+Time of generation: 12-ago-2025 13:30:33
+Last change: 12-ago-2025 13:30:33
+"/>
+<area shape="rect" coords="1981,262,2376,385" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj1'); setObjMenu('occ_obj1')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o8f48c91a-77a0-11f0-24ea-5cb47e4f1a87', 'general')"href="o8f48c91a-77a0-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name:  Norma EN 50625 para tratamiento de 
+RAEE (Residuos de Aparatos Eléctricos y Electrónicos).
+Ejemplo chileno: Planta Reciclos en Rancagua 
+recupera 85% de materiales de refrigeradores.
+Time of generation: 12-ago-2025 13:30:33
+Last change: 12-ago-2025 13:30:33
+"/>
+<area shape="rect" coords="2832,267,3263,385" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj2'); setObjMenu('occ_obj2')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o8f48c917-77a0-11f0-24ea-5cb47e4f1a87', 'general')"href="o8f48c917-77a0-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Modelo UE: Plataforma Circularise (Holanda) 
+rastra materiales reciclados para nuevos productos.
+Oportunidad Chile: Empresas como Kunstmann 
+usan aluminio reciclado de RAEE para
+ fabricar nuevos productos.
+Time of generation: 12-ago-2025 13:30:33
+Last change: 12-ago-2025 13:30:33
+"/>
+<area shape="rect" coords="3724,275,4114,385" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj3'); setObjMenu('occ_obj3')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o8f48c914-77a0-11f0-24ea-5cb47e4f1a87', 'general')"href="o8f48c914-77a0-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Estándar ESCO: Directiva UE *2023/2055*
+exige pasaportes digitales de productos.
+Herramienta local: SIGRE (Sistema Integrado d
+e Gestión de Residuos) en desarrollo por el MMA.
+Time of generation: 12-ago-2025 13:30:33
+Last change: 12-ago-2025 13:30:33
+"/>
+<area shape="rect" coords="2970,582,3125,693" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj4'); setObjMenu('occ_obj4')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4f9b6c10-723e-11f0-24ea-5cb47e4f1a87', 'general')"href="o4f9b6c10-723e-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: motores de 
+compresores o 
+vender materiales a
+industrias locales.
+Time of generation: 05-ago-2025 16:55:28
+Last change: 05-ago-2025 16:55:28
+"/>
+<area shape="rect" coords="4164,435,4320,532" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj5'); setObjMenu('occ_obj5')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08faa-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08faa-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Etapa 
+documentada
+Time of generation: 04-ago-2025 10:18:34
+Last change: 05-ago-2025 16:55:28
+"/>
+<area shape="rect" coords="3519,275,3674,386" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj6'); setObjMenu('occ_obj6')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08fa5-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08fa5-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: peso de residuos 
+tratados, huella de 
+carbono evitada).
+Time of generation: 04-ago-2025 10:16:22
+Last change: 04-ago-2025 10:16:22
+"/>
+<area shape="rect" coords="3739,436,3894,532" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj7'); setObjMenu('occ_obj7')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08fa3-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08fa3-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Blockchain para 
+documentar 
+cada etapa 
+Time of generation: 04-ago-2025 10:16:22
+Last change: 04-ago-2025 10:16:22
+"/>
+<area shape="rect" coords="3313,435,3469,532" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj8'); setObjMenu('occ_obj8')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08fa1-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08fa1-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Pieza 
+refabricada
+Time of generation: 04-ago-2025 10:14:33
+Last change: 05-ago-2025 16:55:28
+"/>
+<area shape="rect" coords="2970,436,3125,532" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj9'); setObjMenu('occ_obj9')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08f97-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08f97-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Refabricar 
+pieza usable 
+Time of generation: 04-ago-2025 10:14:33
+Last change: 05-ago-2025 16:55:28
+"/>
+<area shape="rect" coords="1054,225,1315,385" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj10'); setObjMenu('occ_obj10')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08f8e-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08f8e-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Sistemas colectivos como Ecotic
+(España) o ERP (Europa) gestionan 
+contenedores especializados.
+Ejemplo local: Chile tiene Sistema 
+de Gestión de 
+Envases y Empaques liderado por 
+empresas como Cempre Chile.
+Time of generation: 04-ago-2025 10:10:42
+Last change: 12-ago-2025 13:30:33
+"/>
+<area shape="rect" coords="2427,459,2477,509" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj11'); setObjMenu('occ_obj11')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08f88-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08f88-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Regla Y
+Time of generation: 04-ago-2025 10:09:38
+Last change: 04-ago-2025 10:09:46
+"/>
+<area shape="rect" coords="2527,288,2683,385" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj12'); setObjMenu('occ_obj12')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08f86-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08f86-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Plasticos
+clasificado
+Time of generation: 04-ago-2025 10:10:42
+Last change: 04-ago-2025 10:10:42
+"/>
+<area shape="rect" coords="2527,435,2683,532" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj13'); setObjMenu('occ_obj13')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08f84-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08f84-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Material
+cobre
+aislado
+Time of generation: 04-ago-2025 10:10:42
+Last change: 04-ago-2025 10:10:42
+"/>
+<area shape="rect" coords="2527,583,2683,680" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj14'); setObjMenu('occ_obj14')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08f82-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08f82-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Gases
+refrigerantes
+amacenado
+Time of generation: 04-ago-2025 10:10:42
+Last change: 04-ago-2025 10:10:42
+"/>
+<area shape="rect" coords="2101,436,2256,532" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj15'); setObjMenu('occ_obj15')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca091-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca091-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Separar componentes 
+peligrosos
+(ej.: gases refrigerantes) y
+materiales reciclables
+ (cobre, plástico).
+Time of generation: 04-ago-2025 10:10:42
+Last change: 04-ago-2025 10:10:42
+"/>
+<area shape="rect" coords="1586,308,1710,385" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj16'); setObjMenu('occ_obj16')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca08e-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca08e-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: con GPS y 
+sensores de 
+peso
+Time of generation: 04-ago-2025 10:07:14
+Last change: 04-ago-2025 10:07:14
+"/>
+<area shape="rect" coords="1364,435,1520,532" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj17'); setObjMenu('occ_obj17')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca08a-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca08a-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Puntos limpios
+establecidos
+Time of generation: 04-ago-2025 10:05:40
+Last change: 05-ago-2025 16:55:28
+"/>
+<area shape="rect" coords="1776,435,1932,532" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj18'); setObjMenu('occ_obj18')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca087-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca087-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Viajes semivacíos
+evitados
+Time of generation: 04-ago-2025 10:05:40
+Last change: 04-ago-2025 10:05:40
+"/>
+<area shape="rect" coords="1570,436,1725,532" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj19'); setObjMenu('occ_obj19')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca085-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca085-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Seleccionar Rutas 
+optimizadas 
+para camiones 
+Time of generation: 04-ago-2025 10:05:40
+Last change: 04-ago-2025 10:07:14
+"/>
+<area shape="rect" coords="1107,436,1262,532" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj20'); setObjMenu('occ_obj20')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca082-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca082-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Establecer puntos 
+limpios en
+ municipios y 
+retailers
+Time of generation: 04-ago-2025 10:05:40
+Last change: 04-ago-2025 10:05:40
+"/>
+<area shape="rect" coords="437,308,561,385" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj21'); setObjMenu('occ_obj21')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca07f-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca07f-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: tornillos estándar 
+en lugar 
+de adhesivos
+Time of generation: 04-ago-2025 10:00:28
+Last change: 04-ago-2025 10:00:28
+"/>
+<area shape="rect" coords="612,308,798,368" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj22'); setObjMenu('occ_obj22')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca07c-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca07c-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: fabricante
+Time of generation: 04-ago-2025 10:00:28
+Last change: 04-ago-2025 10:00:28
+"/>
+<area shape="rect" coords="540,436,695,532" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj23'); setObjMenu('occ_obj23')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca073-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca073-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Diseñar productos 
+con  materiales 
+fácilmente 
+separables 
+Time of generation: 04-ago-2025 9:56:16
+Last change: 12-ago-2025 13:30:33
+"/>
+<area shape="rect" coords="231,435,387,532" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj24'); setObjMenu('occ_obj24')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca070-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca070-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Proceso iniciado
+Time of generation: 04-ago-2025 9:54:51
+Last change: 05-ago-2025 16:55:28
+"/>
+<area shape="rect" coords="848,435,1004,532" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj25'); setObjMenu('occ_obj25')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca06d-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca06d-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Productos 
+diseñados
+Time of generation: 04-ago-2025 9:54:51
+Last change: 05-ago-2025 16:55:28
+"/>
+<area shape="rect" coords="25,25,560,175" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj26'); setObjMenu('occ_obj26')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca069-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca069-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: (Extended Producer Responsibility
+ - EPR) de la Unión Europea 
+es un referente global en logística
+ inversa, especialmente 
+para manejo de residuos 
+electrónicos, envases y baterías.
+Time of generation: 04-ago-2025 9:52:21
+Last change: 04-ago-2025 10:00:28
+"/>
+<area shape="rect" coords="2732,459,2782,509" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj27'); setObjMenu('occ_obj27')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08f88-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08f88-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Regla Y
+Time of generation: 04-ago-2025 10:09:38
+Last change: 04-ago-2025 10:09:46
+"/>
+<area shape="rect" coords="25,435,181,532" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj28'); setObjMenu('occ_obj28')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o4c6ca06b-7138-11f0-24ea-5cb47e4f1a87', 'general')"href="o4c6ca06b-7138-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Diseñar para el 
+Desensamblaje 
+(Ecodiseño)
+Time of generation: 04-ago-2025 9:54:51
+Last change: 04-ago-2025 10:00:28
+"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</map>
+
+
+
+
+
+</div>
+
+<div id="printFunctions" class="menu" style="visibility:hidden; left:-1000; top: -1000"> 
+	<table width="120%">
+    	<tr>
+    	<td onmouseout="this.className=''" onmouseover="this.className='highlight'; showPrintFunctions()" onclick="Print(false, 'printFunctions')"><script>document.write(properties[selectedLangTag]['wp_standard_print']);</script></td>
+    	</tr>
+	<tr>
+    	<td onmouseout="this.className=''" onmouseover="this.className='highlight'; showPrintFunctions()"" onclick="Print(true, 'printFunctions')"><script>document.write(properties[selectedLangTag]['wp_page_print']);</script> </td>
+    	</tr>
+        </table>
+</div>
+
+<div id="zoomFunctions" class="menu" style="visibility:hidden; left:-1000; top: -1000"> 
+	<table width="120%">
+    	<tr>
+    	<td onmouseout="this.className=''" onmouseover="this.className='highlight'; showZoomFunctions()" onclick="Zoom(0, 'zoomFunctions')"><script>document.write(properties[selectedLangTag]['wp_mini_zoomin']);</script></td>
+    	</tr>
+	<tr>
+    	<td onmouseout="this.className=''" onmouseover="this.className='highlight'; showZoomFunctions()" onclick="Zoom(1, 'zoomFunctions')"><script>document.write(properties[selectedLangTag]['wp_mini_zoomout']);</script> </td>
+    	</tr>
+	<tr>
+    	<td onmouseout="this.className=''" onmouseover="this.className='highlight'; showZoomFunctions()" onclick="Zoom(2, 'zoomFunctions')"><script>document.write(properties[selectedLangTag]['wp_mini_zoomhund']);</script> </td>
+    	</tr>
+	<tr>
+    	<td onmouseout="this.className=''" onmouseover="this.className='highlight'; showZoomFunctions()" onclick="Zoom(3, 'zoomFunctions')"><script>document.write(properties[selectedLangTag]['wp_mini_zoomopt']);</script> </td>
+    	</tr>
+        </table>
+</div>
+
+
+
+
+<div class="doc" id="imageDiv" > 
+<img id="m687e2f20-7139-11f0-24ea-5cb47e4f1a87" src="m687e2f20-7139-11f0-24ea-5cb47e4f1a87_100.png" onclick="loadModelPage('m687e2f20-7139-11f0-24ea-5cb47e4f1a87', 'general')" usemap="#ObjectMap100"></img>
+
+</div>
+
+</div>
+
+<div id="modLinks" class="doc"> 
+<MODEL LINKS>
+</div>
+
+<div id="print" >
+</div>
+
+</body>
+</html>
