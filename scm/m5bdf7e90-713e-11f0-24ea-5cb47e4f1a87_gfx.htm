@@ -1,0 +1,1116 @@
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+	<title>Business Publisher</title>
+	<link rel="STYLESHEET" type="text/css" href="styles.css">
+	<link rel="STYLESHEET"  href="CascadeMenu.css">
+	
+	
+
+
+<style type=text/css>
+
+@media screen{ 
+	
+	#print {
+		display:none;
+		
+	}
+	
+		
+}
+ 
+@media print {
+	
+	#imageDiv {
+		display:none;
+		
+	}
+	#modLinks {
+		display:none;
+	}
+	#screen {
+		display:none;
+	}
+
+	
+}
+
+
+
+
+</style>
+
+<script src="zoom.js"></script>
+<script src='helper.js'></script>
+<script src="properties.js"></script>
+<script src="exportedModels.js"></script>
+
+<script src="tree_logic.js"></script>
+
+
+
+<script>
+
+var selectedLangTag = "es";
+var menu = 'general';
+var objMenu = 'obj';
+var hasToHide = 'true';
+var hasToShowModelInfo = 'true';
+var menuArray = new Array();
+var objMenuArray = new Array();
+var index = 0;
+var modIndex = 0;
+var newPage = true;
+
+function setAssignForMenu(p_menuEntra) {
+	menuArray[index] = p_menuEntra; 
+	index = index + 1;
+}
+
+function setObjForMenu(p_menuEntra) {
+	objMenuArray[modIndex] = p_menuEntra; 
+	modIndex = modIndex + 1;
+}
+
+
+var divMenu = null;
+function showContextMenu(p_objectID){
+
+	if ((parent.info != null) && (parent.info != undefined)) {
+	
+		// bring element visible to ensure its initialized
+		if (document.getElementById) {
+			divMenu = document.getElementById(p_objectID);
+		}
+		else if (document.all) {
+			divMenu = document.all(p_objectID);
+		}
+		else if (document.layers) {
+			divMenu = document.layers(p_objectID);
+		}
+		divMenu.style.left = -1000;
+		divMenu.style.top = -1000;
+		divMenu.style.display = '';
+		divMenu.style.position = 'absolute';
+		var mouse = null;
+		if (isNN) {
+			mouse = getMousePointInWindow(popupEvent);
+		}
+		else {
+			mouse = getMousePointInWindow();
+		}
+				
+		var mx = mouse.getX() - 5;
+    	var my = mouse.getY() - 5;
+
+    	var obj = getObjectBounds(p_objectID);
+    	var wnd = getVisibleRectOfWindow();
+
+    	//correct x:
+    	var scrollWidth = 20; // width of the scrollbar
+    	if((mx + obj.width + scrollWidth)  > wnd.right) {
+        	mx -= (mx + obj.width + scrollWidth) - wnd.right;
+    	}
+
+    	//correct y:
+    	if((my + obj.height + scrollWidth) > wnd.bottom) {
+        	my -= (my + obj.height + scrollWidth) - wnd.bottom;
+    	}
+
+    	// set to final position
+    	divMenu.style.left = mx;
+    	divMenu.style.top = my;
+	}
+	
+}
+
+function closeContextMenu(p_objectID) {
+	document.getElementById('printFunctions').style.visibility = "hidden";
+	document.getElementById('zoomFunctions').style.visibility = "hidden";
+    	var div = document.getElementById(p_objectID);
+    	if (div != null) {
+    		div.style.display = 'none';
+    	}
+}
+
+function loadPages(url, menuid) {
+	if (url == 'null') {
+		showContextMenu(menuid);
+	}
+	else if (searchModel(url) == false) {
+	}
+        else if (opener != null) {
+		closeContextMenu(menuid);
+		opener.parent.info.location.href=url + "_inf.htm";
+		opener.parent.data.location.href=url + "_gfx.htm";
+		opener.parent.model.location.href=url + "_nav.htm";		
+		opener.focus();				
+	} else {
+		top.info.location.href=url + "_inf.htm";
+		top.data.location.href=url + "_gfx.htm";
+		top.model.location.href=url + "_nav.htm";
+	}
+}
+
+function loadObjectPage(url, menuid) {
+	newPage = false;
+	if (opener != null) {
+		closeContextMenu(menuid);
+		opener.parent.info.location.href=url + "_inf.htm";
+		opener.focus();				
+	} else {	
+		top.info.location.href=url + "_inf.htm";
+	}
+}
+
+function loadModelPage(url, menuid) {
+	if (hasToShowModelInfo == 'true') { 
+		if (opener != null) {
+			opener.parent.info.location.href=url + "_inf.htm";
+			opener.focus();				
+		} else {	
+			top.info.location.href=url + "_inf.htm";
+		}
+	}
+}
+
+
+var zoom = new zoomManager("m5bdf7e90-713e-11f0-24ea-5cb47e4f1a87", new Array("25","50","100","125"), "2");
+
+function ZoomOut() {
+	zoom.zoomOut();
+}
+
+function ZoomIn() {
+	zoom.zoomIn();
+}
+
+function ZoomOrig() {
+	zoom.zoomOrig();
+}
+
+function ZoomOptimalSize() {
+	zoom.doOptimalZoom(document.body.clientHeight, document.body.clientWidth, document.getElementById('zoomFunctions'));
+}
+
+function Zoom(code, submenu) {
+	document.getElementById(submenu).style.visibility = "hidden";
+	if (code == 0) {
+		ZoomIn();
+	}
+	else if (code == 1) {
+		ZoomOut();
+	}
+	else if (code == 2) {
+		ZoomOrig();
+	}
+	else if (code == 3) {
+		ZoomOptimalSize();
+	}
+}
+
+
+function Print(singlePage, submenu) {
+
+	document.getElementById(submenu).style.visibility = "hidden";
+
+	var zoomFactor = zoom.getZoomValue();
+
+	var constPageHeight = 842;
+	var constPageWidth = 595;
+	var constDoubleMargin = 136;
+	var constFullPageHeight = constPageHeight + constDoubleMargin;
+	var constFullPageWidth = constPageWidth  + 54;
+	var imageHeight = document.getElementById("m5bdf7e90-713e-11f0-24ea-5cb47e4f1a87").offsetHeight;
+	var imageWidth = document.getElementById("m5bdf7e90-713e-11f0-24ea-5cb47e4f1a87").offsetWidth;
+	var heightSteps = Math.ceil(imageHeight/constPageHeight);
+	var widthSteps = Math.ceil(imageWidth/constPageWidth);
+	var constFullPageHeightStep = constFullPageHeight * heightSteps;
+	var i = 0;
+	var j = 0;
+	
+	var div = document.getElementById('print');
+
+	removeAllChildren(div);
+
+	var hCorr = constFullPageHeight/imageHeight;
+	var wCorr = constFullPageWidth/imageWidth;
+	
+	if ((imageHeight <= constPageHeight) && (imageWidth <= constPageWidth)) {
+			var p = document.createElement('p');
+			p.innerHTML = '<img id=\"m5bdf7e90-713e-11f0-24ea-5cb47e4f1a87\"src=\"m5bdf7e90-713e-11f0-24ea-5cb47e4f1a87_'+zoomFactor+'.png\" style=\"width='+imageWidth+'; height='+imageHeight+';\"></img>';		
+			div.appendChild(p);
+		}
+
+	else if (singlePage) {
+			if (hCorr < wCorr) {
+				var p = document.createElement('p');
+				var h = imageHeight * hCorr;
+				var w = imageWidth * hCorr;
+				p.innerHTML = '<img id=\"m5bdf7e90-713e-11f0-24ea-5cb47e4f1a87\"src=\"m5bdf7e90-713e-11f0-24ea-5cb47e4f1a87_'+zoomFactor+'.png\" style=\"width='+w+'; height='+h+';\"></img>';		
+				div.appendChild(p);
+			}
+			else {
+				var p = document.createElement('p');
+				var h = imageHeight * wCorr;
+				var w = imageWidth * wCorr;
+				p.innerHTML = '<img id=\"m5bdf7e90-713e-11f0-24ea-5cb47e4f1a87\"src=\"m5bdf7e90-713e-11f0-24ea-5cb47e4f1a87_'+zoomFactor+'.png\" style=\"width='+w+'; height='+h+';\"></img>';		
+				div.appendChild(p);
+			}
+		
+	}
+	else {	
+		while(i < widthSteps) {
+			while(j < heightSteps) {
+				var p = document.createElement('p');
+				if (isIE) {
+					p.style.setAttribute('position', 'static');
+					p.style.setAttribute('page-break-after', '');
+				}
+				else {
+					p.setAttribute('style', 'position:static');
+					p.setAttribute('style', "page-break-after:''");
+				}
+				p.innerHTML = '<img id=\"m5bdf7e90-713e-11f0-24ea-5cb47e4f1a87\"src=\"m5bdf7e90-713e-11f0-24ea-5cb47e4f1a87_'+zoomFactor+'.png\" style=\"position:absolute; top:'+i*constFullPageHeightStep+' px; left:-'+i*constFullPageWidth+' px; overflow:hidden;clip:rect('+j*constPageHeight+' px,  '+(i+1)*constFullPageWidth +' px,  '+(j+1)*constPageHeight+' px,  '+i*constFullPageWidth+' px )\"></img>';		
+				div.appendChild(p);
+				j=j+1;
+				
+			}
+			j=0;
+			i=i+1;
+		}
+	}
+	
+	top.data.focus();
+	window.print();
+	
+}
+
+function removeAllChildren(targetElement) {
+    if (targetElement && targetElement.childNodes) {
+        for (var rloop = targetElement.childNodes.length -1; rloop >= 0 ; rloop--) {
+            targetElement.removeChild(targetElement.childNodes[rloop]);
+        }
+    }
+}
+
+function showOverviewIfNeeded() {
+	if ((parent.frames["tree"] != "undefined") && (parent.frames["tree"] != null))	{
+		var treeTab = parent.frames["tree"].document.getElementById("treeTab");	
+		if (treeTab.className == "tabinactive") {
+			var overview = parent.frames["tree"].document.getElementById("overviewTab");	
+    			if (overview.style.display == '') {
+				setOverview();
+			}
+		}
+	}
+}
+
+function setOverview() {
+	var id = zoom.getId();
+	var img = parent.data.document.getElementById(id);
+	if (img != null) {
+		parent.frames["tree"].showOverview(false);
+  	}
+	else {
+      		setTimeout("setOverview()", 100);
+	}
+
+}
+
+function keyPressed (e) {
+  	if (!e) {
+    		e = window.event;
+	}
+  	if (e.which) {
+    		kCode = e.which;
+  	} 	
+	else if (e.keyCode) {
+    		kCode = e.keyCode;
+  	}
+	if (kCode == 43) {
+		ZoomIn();
+	}
+	else if (kCode == 45) {
+		ZoomOut();
+	}
+	else if (kCode == 42) {
+		ZoomOrig();
+	}
+  	
+}
+
+document.onkeypress = keyPressed;
+
+isIE=document.all;
+isNN=!document.all&&document.getElementById;
+isN4=document.layers;
+
+
+if (isIE||isNN){
+document.oncontextmenu=showPopup;
+document.onclick=hidePopup;
+}else{
+document.captureEvents(Event.MOUSEDOWN || Event.MOUSEUP);
+document.onmousedown=showPopup;
+document.onclick=hidePopup;
+}
+
+var popupEvent = null;
+
+function showPopup(e) {
+	if (isNN) {
+	
+		popupEvent = e;
+	}
+
+	hidePopup(2);
+	showContextMenu(menu);
+	return false;
+/*
+if (isN4){
+if (e.which==2||e.which==3){
+    hidePopup(2);
+	showContextMenu(menu);
+
+return false;
+}else {
+    hidePopup(2);
+return false;
+}
+}else{
+    //hidePopup(2);
+	showContextMenu(menu);
+
+return false;
+
+}
+*/
+}
+
+function showPopup2(e){
+if (isN4){
+if (e.which==2||e.which==3){
+	hidePopup(2);
+	showContextMenu(menu);
+
+return false;
+}else {
+	hidePopup(2);
+return false;
+}
+}else{
+	hidePopup(2);
+	showContextMenu(menu);
+
+return false;
+
+}
+}
+
+function hidePopup(e) {
+	var ret = false;
+    	if (hasToHide == 'true') {
+		document.getElementById('printFunctions').style.visibility = "hidden";
+		document.getElementById('zoomFunctions').style.visibility = "hidden";
+		if (isN4){
+			if (e.which==1){
+				closeContextMenu(menu);
+    				closeContextMenu(objMenu);
+				for (var i = 0; i < menuArray.length; i++) {
+					closeContextMenu(menuArray[i]);
+				}
+    				for (var i = 0; i < objMenuArray.length; i++) {
+					closeContextMenu(objMenuArray[i]);
+				}
+				ret = newPage;
+				newPage = true;  
+				return ret;
+			}else {
+				closeContextMenu(menu);
+    				closeContextMenu(objMenu);
+				for (var i = 0; i < menuArray.length; i++) {
+					closeContextMenu(menuArray[i]);
+				}
+    				for (var i = 0; i < objMenuArray.length; i++) {
+					closeContextMenu(objMenuArray[i]);
+				}
+				ret = newPage;
+				newPage = true;  
+				return ret;
+			}
+		}
+		else{
+			closeContextMenu(menu);
+    			closeContextMenu(objMenu);
+			for (var i = 0; i < menuArray.length; i++) {
+				closeContextMenu(menuArray[i]);
+			}
+    			for (var i = 0; i < objMenuArray.length; i++) {
+				closeContextMenu(objMenuArray[i]);
+			}
+			ret = newPage;
+			newPage = true;  
+			return ret;
+
+		}
+	}
+	else {
+		setHasToHide('true') ;
+		ret = newPage;
+			newPage = true;  
+			return ret;
+	}
+}
+
+function setMenu(p_menu) {
+	menu = p_menu;
+}
+
+function setObjMenu(p_menu) {
+	objMenu = p_menu;
+}
+
+function setHasToHide(p_hide) {
+	hasToHide = p_hide;
+}
+
+function setModelInfoToShow(p_modInfo) {
+	hasToShowModelInfo = p_modInfo;
+}
+
+function frameScroll() {
+	var wnd = getVisibleRectOfWindow();
+	parent.tree.setRectPositionAfterModelScroll(wnd.x, wnd.y);
+}
+
+function ShowSubMenu(obj, menu) {
+	document.getElementById('printFunctions').style.visibility = "hidden";
+	document.getElementById('zoomFunctions').style.visibility = "hidden";
+	
+	if (menu == 'zoom') {
+		menu = document.getElementById('zoomFunctions');
+	}
+	else {
+		menu = document.getElementById('printFunctions');
+	}
+	
+	if(menu != null) {
+		if (isIE) {
+			menu.style.visibility = "visible";
+			menu.style.pixelTop = obj.getBoundingClientRect().top + document.body.scrollTop; 
+			menu.style.pixelLeft = divMenu.style.pixelLeft + divMenu.offsetWidth -5;
+			
+			var x = menu.style.pixelLeft + menu.offsetWidth;
+			if(x > document.body.clientWidth + document.body.scrollLeft) {
+				menu.style.pixelLeft = divMenu.style.pixelLeft - menu.offsetWidth+5;
+			}
+		}
+		else {
+			menu.style.visibility = "visible";
+			if (obj.getBoundingClientRect) {
+				menu.style.top = obj.getBoundingClientRect().top + document.body.scrollTop;
+			}
+			else {
+				menu.style.top = document.getBoxObjectFor(obj).y + document.documentElement.scrollTop;
+			}
+			menu.style.left = parseInt(divMenu.style.left) + divMenu.offsetWidth -5;// + document.body.scrollLeft;
+			var x = menu.style.left + menu.offsetWidth;
+			// muss noch korrigiert werden!!!
+			if(x > parseInt(document.body.clientWidth + document.body.scrollLeft)) {
+				menu.style.left = parseInt(divMenu.style.left) - menu.offsetWidth+5;// + document.body.scrollLeft;
+			}
+		}
+    }
+	
+}
+
+function hidePrintFunctions() {
+	document.getElementById('printFunctions').style.visibility = "hidden";
+}
+
+function hideZoomFunctions() {
+	document.getElementById('zoomFunctions').style.visibility = "hidden";
+}
+
+function showPrintFunctions() {
+	document.getElementById('printFunctions').style.visibility = "visible";
+}
+
+function showZoomFunctions() {
+	document.getElementById('zoomFunctions').style.visibility = "visible";
+}
+
+
+function setHighlightForArrow1() {
+	document.getElementById('arrowSign1').style.backgroundColor = "#EFECE6";
+	document.getElementById('zoomMenu').style.backgroundColor = "#EFECE6";
+}
+
+function setNoHighlightForArrow1() {
+	document.getElementById('arrowSign1').style.backgroundColor = "#FFFFFF";
+	document.getElementById('zoomMenu').style.backgroundColor = "#FFFFFF";
+}
+
+function setHighlightForArrow2() {
+	document.getElementById('arrowSign2').style.backgroundColor = "#EFECE6";
+	document.getElementById('printMenu').style.backgroundColor = "#EFECE6";
+}
+
+function setNoHighlightForArrow2() {
+	document.getElementById('arrowSign2').style.backgroundColor = "#FFFFFF";
+	document.getElementById('printMenu').style.backgroundColor = "#FFFFFF";
+}
+
+function setHighlightForLinks(id1, id2) {
+	document.getElementById(id1).style.backgroundColor = "#EFECE6";
+	document.getElementById(id2).style.backgroundColor = "#EFECE6";
+}
+
+function setNoHighlightForLinks(id1, id2) {
+	document.getElementById(id1).style.backgroundColor = "#FFFFFF";
+	document.getElementById(id2).style.backgroundColor = "#FFFFFF";
+}
+
+
+
+</script>		
+</head>
+
+<body onLoad='javascript: showOverviewIfNeeded();' onscroll="javascript:frameScroll();">
+
+
+   
+<div id="screen" class="data">
+
+<div id="general" class="menu" style="display:none;"><table width="110%"><tr><td id='zoomMenu' menu="zoomFunctions" onmouseout="this.className=''; setNoHighlightForArrow1(); hideZoomFunctions()"  onmouseover="this.className='highlight'; ShowSubMenu(this, 'zoom'); setHighlightForArrow1()" ><script>document.write(properties[selectedLangTag]['wp_view']);</script></td><td id='arrowSign1' menu="zoomFunctions" onmouseout="this.className=''; setNoHighlightForArrow1(); hideZoomFunctions()"  onmouseover="this.className='highlight'; ShowSubMenu(this, 'zoom'); setHighlightForArrow1()"><Span>&#9654</Span></td></tr><tr><td id='printMenu' menu="printFunctions" onmouseout="this.className=''; setNoHighlightForArrow2(); hidePrintFunctions()"  onmouseover="this.className='highlight'; ShowSubMenu(this, 'print'); setHighlightForArrow2()" ><script>document.write(properties[selectedLangTag]['wp_print']);</script></td><td id='arrowSign2' menu="printFunctions" onmouseout="this.className=''; setNoHighlightForArrow2(); hideZoomFunctions()"  onmouseover="this.className='highlight'; ShowSubMenu(this, 'print'); setHighlightForArrow2()"><Span>&#9654</Span></td></tr></table></div><div id="occ_obj0" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj0')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o6662e182-713f-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj1" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj1')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('oe278fcb9-7562-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj2" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj2')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o6662e1ae-713f-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj3" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj3')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o6662e1ab-713f-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj4" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj4')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o6662e1a8-713f-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj5" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj5')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o6662e1a5-713f-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj6" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj6')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o6662e1a1-713f-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj7" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj7')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o6662e19f-713f-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj8" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj8')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o6662e198-713f-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj9" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj9')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o6662e195-713f-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj10" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj10')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o13c89ca1-7142-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj11" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj11')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o6662e18a-713f-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj12" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj12')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o6662e188-713f-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj13" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj13')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o6662e186-713f-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj14" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj14')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o6662e184-713f-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj15" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj15')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o6662e180-713f-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj16" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj16')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o61d08faf-713c-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div><div id="occ_obj17" class="menu" style="display:none;"><table width="100%"><tr><script>setObjForMenu('occ_obj17')</script><td onmouseout="this.className=''; setHasToHide('true')" onmouseover="this.className='highlight'; setHasToHide('false')"onclick="loadObjectPage('o61d08fad-713c-11f0-24ea-5cb47e4f1a87', 'general')"><script>document.write(properties[selectedLangTag]['wp_object']);</script></td></tr></table></div>
+
+
+<div>  
+	<map name="ObjectMap25">
+	<area shape="rect" coords="144,121,175,140" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj0'); setObjMenu('occ_obj0')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e182-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e182-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Tableau
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+<area shape="rect" coords="504,90,535,109" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj1'); setObjMenu('occ_obj1')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('oe278fcb9-7562-11f0-24ea-5cb47e4f1a87', 'general')"href="oe278fcb9-7562-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Evento
+Time of generation: 09-ago-2025 17:00:09
+Last change: 09-ago-2025 17:00:09
+"/>
+<area shape="rect" coords="459,90,490,109" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj2'); setObjMenu('occ_obj2')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e1ae-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e1ae-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Función
+Time of generation: 04-ago-2025 10:40:12
+Last change: 04-ago-2025 10:40:12
+"/>
+<area shape="rect" coords="369,121,400,140" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj3'); setObjMenu('occ_obj3')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e1ab-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e1ab-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Llamasoft, 
+AnyLogistix) 
+Time of generation: 04-ago-2025 10:39:09
+Last change: 04-ago-2025 10:39:09
+"/>
+<area shape="rect" coords="414,90,445,109" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj4'); setObjMenu('occ_obj4')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e1a8-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e1a8-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Costos de transporte, 
+aranceles y tiempos 
+de entrega evaluado
+Time of generation: 04-ago-2025 10:39:09
+Last change: 04-ago-2025 10:39:09
+"/>
+<area shape="rect" coords="372,62,398,78" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj5'); setObjMenu('occ_obj5')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e1a5-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e1a5-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Skill ESCO: 
+Operations 
+Research
+Time of generation: 04-ago-2025 10:39:09
+Last change: 04-ago-2025 10:39:09
+"/>
+<area shape="rect" coords="324,90,355,109" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj6'); setObjMenu('occ_obj6')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e1a1-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e1a1-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Variables
+implementadas
+Time of generation: 04-ago-2025 10:39:09
+Last change: 09-ago-2025 17:00:09
+"/>
+<area shape="rect" coords="369,90,400,109" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj7'); setObjMenu('occ_obj7')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e19f-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e19f-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Aplicar software de 
+optimización 
+de redes 
+Time of generation: 04-ago-2025 10:39:09
+Last change: 04-ago-2025 10:39:09
+"/>
+<area shape="rect" coords="279,54,310,76" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj8'); setObjMenu('occ_obj8')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e198-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e198-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Mapa de calor de 
+demanda con 
+nodos prioritarios.
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+<area shape="rect" coords="234,54,265,76" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj9'); setObjMenu('occ_obj9')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e195-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e195-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Modelo de impacto del
+crecimiento de e-commerce 
+en CDMX v
+s. Bogotá usando 
+algoritmos predictivos.
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+<area shape="rect" coords="9,90,40,109" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj10'); setObjMenu('occ_obj10')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o13c89ca1-7142-11f0-24ea-5cb47e4f1a87', 'general')"href="o13c89ca1-7142-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Inicio
+Time of generation: 04-ago-2025 10:58:59
+Last change: 05-ago-2025 16:56:47
+"/>
+<area shape="rect" coords="189,90,220,109" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj11'); setObjMenu('occ_obj11')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e18a-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e18a-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Patrones
+mapeados
+Time of generation: 04-ago-2025 10:35:20
+Last change: 09-ago-2025 17:00:09
+"/>
+<area shape="rect" coords="99,90,130,109" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj12'); setObjMenu('occ_obj12')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e188-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e188-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Demanda de
+mercado
+iniciada
+Time of generation: 04-ago-2025 10:35:20
+Last change: 09-ago-2025 17:00:09
+"/>
+<area shape="rect" coords="259,90,290,109" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj13'); setObjMenu('occ_obj13')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e186-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e186-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Usar variables 
+como estacionalidad y 
+densidad 
+poblacional.
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+<area shape="rect" coords="259,121,290,140" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj14'); setObjMenu('occ_obj14')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e184-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e184-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: PowerBI
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+<area shape="rect" coords="144,90,175,109" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj15'); setObjMenu('occ_obj15')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e180-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e180-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Mapear patrones de 
+demanda 
+por región
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+<area shape="rect" coords="57,62,83,78" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj16'); setObjMenu('occ_obj16')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08faf-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08faf-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Skill ESCO: 
+Data Analytics
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+<area shape="rect" coords="54,90,85,109" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj17'); setObjMenu('occ_obj17')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08fad-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08fad-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Análisis de 
+Demanda y 
+Mercado 
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</map>
+<map name="ObjectMap50">
+	<area shape="rect" coords="289,241,351,278" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj0'); setObjMenu('occ_obj0')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e182-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e182-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Tableau
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+<area shape="rect" coords="1008,180,1070,219" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj1'); setObjMenu('occ_obj1')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('oe278fcb9-7562-11f0-24ea-5cb47e4f1a87', 'general')"href="oe278fcb9-7562-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Evento
+Time of generation: 09-ago-2025 17:00:09
+Last change: 09-ago-2025 17:00:09
+"/>
+<area shape="rect" coords="918,181,980,220" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj2'); setObjMenu('occ_obj2')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e1ae-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e1ae-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Función
+Time of generation: 04-ago-2025 10:40:12
+Last change: 04-ago-2025 10:40:12
+"/>
+<area shape="rect" coords="738,241,800,278" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj3'); setObjMenu('occ_obj3')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e1ab-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e1ab-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Llamasoft, 
+AnyLogistix) 
+Time of generation: 04-ago-2025 10:39:09
+Last change: 04-ago-2025 10:39:09
+"/>
+<area shape="rect" coords="828,180,890,219" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj4'); setObjMenu('occ_obj4')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e1a8-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e1a8-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Costos de transporte, 
+aranceles y tiempos 
+de entrega evaluado
+Time of generation: 04-ago-2025 10:39:09
+Last change: 04-ago-2025 10:39:09
+"/>
+<area shape="rect" coords="743,124,795,156" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj5'); setObjMenu('occ_obj5')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e1a5-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e1a5-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Skill ESCO: 
+Operations 
+Research
+Time of generation: 04-ago-2025 10:39:09
+Last change: 04-ago-2025 10:39:09
+"/>
+<area shape="rect" coords="648,180,710,219" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj6'); setObjMenu('occ_obj6')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e1a1-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e1a1-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Variables
+implementadas
+Time of generation: 04-ago-2025 10:39:09
+Last change: 09-ago-2025 17:00:09
+"/>
+<area shape="rect" coords="738,181,800,220" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj7'); setObjMenu('occ_obj7')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e19f-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e19f-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Aplicar software de 
+optimización 
+de redes 
+Time of generation: 04-ago-2025 10:39:09
+Last change: 04-ago-2025 10:39:09
+"/>
+<area shape="rect" coords="559,108,621,152" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj8'); setObjMenu('occ_obj8')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e198-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e198-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Mapa de calor de 
+demanda con 
+nodos prioritarios.
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+<area shape="rect" coords="469,108,531,152" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj9'); setObjMenu('occ_obj9')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e195-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e195-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Modelo de impacto del
+crecimiento de e-commerce 
+en CDMX v
+s. Bogotá usando 
+algoritmos predictivos.
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+<area shape="rect" coords="19,180,81,219" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj10'); setObjMenu('occ_obj10')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o13c89ca1-7142-11f0-24ea-5cb47e4f1a87', 'general')"href="o13c89ca1-7142-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Inicio
+Time of generation: 04-ago-2025 10:58:59
+Last change: 05-ago-2025 16:56:47
+"/>
+<area shape="rect" coords="379,180,441,219" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj11'); setObjMenu('occ_obj11')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e18a-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e18a-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Patrones
+mapeados
+Time of generation: 04-ago-2025 10:35:20
+Last change: 09-ago-2025 17:00:09
+"/>
+<area shape="rect" coords="199,180,261,219" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj12'); setObjMenu('occ_obj12')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e188-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e188-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Demanda de
+mercado
+iniciada
+Time of generation: 04-ago-2025 10:35:20
+Last change: 09-ago-2025 17:00:09
+"/>
+<area shape="rect" coords="519,181,581,220" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj13'); setObjMenu('occ_obj13')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e186-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e186-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Usar variables 
+como estacionalidad y 
+densidad 
+poblacional.
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+<area shape="rect" coords="518,241,580,278" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj14'); setObjMenu('occ_obj14')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e184-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e184-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: PowerBI
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+<area shape="rect" coords="289,181,351,219" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj15'); setObjMenu('occ_obj15')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e180-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e180-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Mapear patrones de 
+demanda 
+por región
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+<area shape="rect" coords="114,124,166,156" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj16'); setObjMenu('occ_obj16')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08faf-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08faf-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Skill ESCO: 
+Data Analytics
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+<area shape="rect" coords="109,181,171,220" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj17'); setObjMenu('occ_obj17')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08fad-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08fad-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Análisis de 
+Demanda y 
+Mercado 
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</map>
+<map name="ObjectMap100">
+	<area shape="rect" coords="577,482,702,557" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj0'); setObjMenu('occ_obj0')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e182-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e182-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Tableau
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+<area shape="rect" coords="2016,361,2141,439" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj1'); setObjMenu('occ_obj1')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('oe278fcb9-7562-11f0-24ea-5cb47e4f1a87', 'general')"href="oe278fcb9-7562-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Evento
+Time of generation: 09-ago-2025 17:00:09
+Last change: 09-ago-2025 17:00:09
+"/>
+<area shape="rect" coords="1837,361,1961,438" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj2'); setObjMenu('occ_obj2')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e1ae-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e1ae-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Función
+Time of generation: 04-ago-2025 10:40:12
+Last change: 04-ago-2025 10:40:12
+"/>
+<area shape="rect" coords="1476,482,1601,557" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj3'); setObjMenu('occ_obj3')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e1ab-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e1ab-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Llamasoft, 
+AnyLogistix) 
+Time of generation: 04-ago-2025 10:39:09
+Last change: 04-ago-2025 10:39:09
+"/>
+<area shape="rect" coords="1656,361,1781,439" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj4'); setObjMenu('occ_obj4')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e1a8-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e1a8-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Costos de transporte, 
+aranceles y tiempos 
+de entrega evaluado
+Time of generation: 04-ago-2025 10:39:09
+Last change: 04-ago-2025 10:39:09
+"/>
+<area shape="rect" coords="1487,247,1591,312" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj5'); setObjMenu('occ_obj5')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e1a5-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e1a5-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Skill ESCO: 
+Operations 
+Research
+Time of generation: 04-ago-2025 10:39:09
+Last change: 04-ago-2025 10:39:09
+"/>
+<area shape="rect" coords="1297,361,1422,439" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj6'); setObjMenu('occ_obj6')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e1a1-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e1a1-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Variables
+implementadas
+Time of generation: 04-ago-2025 10:39:09
+Last change: 09-ago-2025 17:00:09
+"/>
+<area shape="rect" coords="1477,361,1601,438" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj7'); setObjMenu('occ_obj7')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e19f-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e19f-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Aplicar software de 
+optimización 
+de redes 
+Time of generation: 04-ago-2025 10:39:09
+Last change: 04-ago-2025 10:39:09
+"/>
+<area shape="rect" coords="1117,215,1241,304" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj8'); setObjMenu('occ_obj8')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e198-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e198-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Mapa de calor de 
+demanda con 
+nodos prioritarios.
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+<area shape="rect" coords="937,215,1061,304" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj9'); setObjMenu('occ_obj9')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e195-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e195-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Modelo de impacto del
+crecimiento de e-commerce 
+en CDMX v
+s. Bogotá usando 
+algoritmos predictivos.
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+<area shape="rect" coords="38,361,163,439" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj10'); setObjMenu('occ_obj10')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o13c89ca1-7142-11f0-24ea-5cb47e4f1a87', 'general')"href="o13c89ca1-7142-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Inicio
+Time of generation: 04-ago-2025 10:58:59
+Last change: 05-ago-2025 16:56:47
+"/>
+<area shape="rect" coords="757,361,882,439" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj11'); setObjMenu('occ_obj11')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e18a-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e18a-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Patrones
+mapeados
+Time of generation: 04-ago-2025 10:35:20
+Last change: 09-ago-2025 17:00:09
+"/>
+<area shape="rect" coords="397,361,522,439" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj12'); setObjMenu('occ_obj12')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e188-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e188-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Demanda de
+mercado
+iniciada
+Time of generation: 04-ago-2025 10:35:20
+Last change: 09-ago-2025 17:00:09
+"/>
+<area shape="rect" coords="1037,361,1161,438" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj13'); setObjMenu('occ_obj13')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e186-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e186-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Usar variables 
+como estacionalidad y 
+densidad 
+poblacional.
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+<area shape="rect" coords="1037,482,1162,557" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj14'); setObjMenu('occ_obj14')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e184-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e184-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: PowerBI
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+<area shape="rect" coords="578,361,702,438" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj15'); setObjMenu('occ_obj15')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e180-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e180-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Mapear patrones de 
+demanda 
+por región
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+<area shape="rect" coords="228,247,332,312" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj16'); setObjMenu('occ_obj16')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08faf-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08faf-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Skill ESCO: 
+Data Analytics
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+<area shape="rect" coords="218,361,342,438" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj17'); setObjMenu('occ_obj17')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08fad-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08fad-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Análisis de 
+Demanda y 
+Mercado 
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</map>
+<map name="ObjectMap125">
+	<area shape="rect" coords="721,603,877,696" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj0'); setObjMenu('occ_obj0')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e182-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e182-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Tableau
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+<area shape="rect" coords="2520,451,2676,548" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj1'); setObjMenu('occ_obj1')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('oe278fcb9-7562-11f0-24ea-5cb47e4f1a87', 'general')"href="oe278fcb9-7562-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Evento
+Time of generation: 09-ago-2025 17:00:09
+Last change: 09-ago-2025 17:00:09
+"/>
+<area shape="rect" coords="2296,452,2451,548" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj2'); setObjMenu('occ_obj2')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e1ae-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e1ae-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Función
+Time of generation: 04-ago-2025 10:40:12
+Last change: 04-ago-2025 10:40:12
+"/>
+<area shape="rect" coords="1846,603,2002,696" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj3'); setObjMenu('occ_obj3')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e1ab-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e1ab-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Llamasoft, 
+AnyLogistix) 
+Time of generation: 04-ago-2025 10:39:09
+Last change: 04-ago-2025 10:39:09
+"/>
+<area shape="rect" coords="2070,451,2226,548" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj4'); setObjMenu('occ_obj4')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e1a8-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e1a8-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Costos de transporte, 
+aranceles y tiempos 
+de entrega evaluado
+Time of generation: 04-ago-2025 10:39:09
+Last change: 04-ago-2025 10:39:09
+"/>
+<area shape="rect" coords="1859,309,1989,390" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj5'); setObjMenu('occ_obj5')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e1a5-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e1a5-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Skill ESCO: 
+Operations 
+Research
+Time of generation: 04-ago-2025 10:39:09
+Last change: 04-ago-2025 10:39:09
+"/>
+<area shape="rect" coords="1621,451,1777,548" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj6'); setObjMenu('occ_obj6')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e1a1-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e1a1-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Variables
+implementadas
+Time of generation: 04-ago-2025 10:39:09
+Last change: 09-ago-2025 17:00:09
+"/>
+<area shape="rect" coords="1846,452,2001,548" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj7'); setObjMenu('occ_obj7')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e19f-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e19f-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Aplicar software de 
+optimización 
+de redes 
+Time of generation: 04-ago-2025 10:39:09
+Last change: 04-ago-2025 10:39:09
+"/>
+<area shape="rect" coords="1396,269,1551,380" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj8'); setObjMenu('occ_obj8')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e198-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e198-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Mapa de calor de 
+demanda con 
+nodos prioritarios.
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+<area shape="rect" coords="1172,269,1327,380" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj9'); setObjMenu('occ_obj9')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e195-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e195-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Modelo de impacto del
+crecimiento de e-commerce 
+en CDMX v
+s. Bogotá usando 
+algoritmos predictivos.
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+<area shape="rect" coords="47,451,203,548" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj10'); setObjMenu('occ_obj10')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o13c89ca1-7142-11f0-24ea-5cb47e4f1a87', 'general')"href="o13c89ca1-7142-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Inicio
+Time of generation: 04-ago-2025 10:58:59
+Last change: 05-ago-2025 16:56:47
+"/>
+<area shape="rect" coords="946,451,1102,548" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj11'); setObjMenu('occ_obj11')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e18a-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e18a-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Patrones
+mapeados
+Time of generation: 04-ago-2025 10:35:20
+Last change: 09-ago-2025 17:00:09
+"/>
+<area shape="rect" coords="497,451,653,548" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj12'); setObjMenu('occ_obj12')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e188-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e188-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Demanda de
+mercado
+iniciada
+Time of generation: 04-ago-2025 10:35:20
+Last change: 09-ago-2025 17:00:09
+"/>
+<area shape="rect" coords="1296,452,1451,548" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj13'); setObjMenu('occ_obj13')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e186-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e186-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Usar variables 
+como estacionalidad y 
+densidad 
+poblacional.
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+<area shape="rect" coords="1296,603,1452,696" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj14'); setObjMenu('occ_obj14')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e184-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e184-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: PowerBI
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+<area shape="rect" coords="722,452,877,548" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj15'); setObjMenu('occ_obj15')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o6662e180-713f-11f0-24ea-5cb47e4f1a87', 'general')"href="o6662e180-713f-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Mapear patrones de 
+demanda 
+por región
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+<area shape="rect" coords="285,309,415,390" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj16'); setObjMenu('occ_obj16')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08faf-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08faf-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Skill ESCO: 
+Data Analytics
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+<area shape="rect" coords="272,452,427,548" onmouseover="setModelInfoToShow('false'); setMenu('occ_obj17'); setObjMenu('occ_obj17')" onmouseout="setModelInfoToShow('true'); setMenu('general')" onclick="loadObjectPage('o61d08fad-713c-11f0-24ea-5cb47e4f1a87', 'general')"href="o61d08fad-713c-11f0-24ea-5cb47e4f1a87_inf.htm" alt="Name: Análisis de 
+Demanda y 
+Mercado 
+Time of generation: 04-ago-2025 10:35:20
+Last change: 04-ago-2025 10:35:20
+"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</map>
+
+
+
+
+
+</div>
+
+<div id="printFunctions" class="menu" style="visibility:hidden; left:-1000; top: -1000"> 
+	<table width="120%">
+    	<tr>
+    	<td onmouseout="this.className=''" onmouseover="this.className='highlight'; showPrintFunctions()" onclick="Print(false, 'printFunctions')"><script>document.write(properties[selectedLangTag]['wp_standard_print']);</script></td>
+    	</tr>
+	<tr>
+    	<td onmouseout="this.className=''" onmouseover="this.className='highlight'; showPrintFunctions()"" onclick="Print(true, 'printFunctions')"><script>document.write(properties[selectedLangTag]['wp_page_print']);</script> </td>
+    	</tr>
+        </table>
+</div>
+
+<div id="zoomFunctions" class="menu" style="visibility:hidden; left:-1000; top: -1000"> 
+	<table width="120%">
+    	<tr>
+    	<td onmouseout="this.className=''" onmouseover="this.className='highlight'; showZoomFunctions()" onclick="Zoom(0, 'zoomFunctions')"><script>document.write(properties[selectedLangTag]['wp_mini_zoomin']);</script></td>
+    	</tr>
+	<tr>
+    	<td onmouseout="this.className=''" onmouseover="this.className='highlight'; showZoomFunctions()" onclick="Zoom(1, 'zoomFunctions')"><script>document.write(properties[selectedLangTag]['wp_mini_zoomout']);</script> </td>
+    	</tr>
+	<tr>
+    	<td onmouseout="this.className=''" onmouseover="this.className='highlight'; showZoomFunctions()" onclick="Zoom(2, 'zoomFunctions')"><script>document.write(properties[selectedLangTag]['wp_mini_zoomhund']);</script> </td>
+    	</tr>
+	<tr>
+    	<td onmouseout="this.className=''" onmouseover="this.className='highlight'; showZoomFunctions()" onclick="Zoom(3, 'zoomFunctions')"><script>document.write(properties[selectedLangTag]['wp_mini_zoomopt']);</script> </td>
+    	</tr>
+        </table>
+</div>
+
+
+
+
+<div class="doc" id="imageDiv" > 
+<img id="m5bdf7e90-713e-11f0-24ea-5cb47e4f1a87" src="m5bdf7e90-713e-11f0-24ea-5cb47e4f1a87_100.png" onclick="loadModelPage('m5bdf7e90-713e-11f0-24ea-5cb47e4f1a87', 'general')" usemap="#ObjectMap100"></img>
+
+</div>
+
+</div>
+
+<div id="modLinks" class="doc"> 
+<MODEL LINKS>
+</div>
+
+<div id="print" >
+</div>
+
+</body>
+</html>
