@@ -133,7 +133,6 @@
   display: block;            /* Muestra la imagen al pasar el cursor */
 }
 
-
 .similarity-table {
   border-collapse: collapse;
   margin: 25px 0;
@@ -185,7 +184,6 @@
 .dimension-header { font-weight: 600; }
 .highlight { background-color: #c9e6ff; font-weight: 700; } /* antes: .highlight-cell */
 
-
 table {
 width: 100%;
 border-collapse: collapse;
@@ -216,7 +214,6 @@ border-bottom: 2px solid #009879;
 font-weight: bold;
 color: #006653;
 }
-
 
 .menu-directorio {
     font-family: Arial, sans-serif;
@@ -277,16 +274,13 @@ color: #006653;
   l leer este artículo usted podrá comprender, encontrar y comparar las diferencias semánticas entre tres campos clave: Comercio Exterior, Supply Chain Management y Logística. A través del análisis de competencias profesionales extraídas de publicaciones académicas, se revelan patrones de acción, objetos de trabajo, propósitos y contextos específicos de cada área. El estudio utiliza técnicas modernas de inteligencia artificial para medir la similitud de significados, incluso cuando el lenguaje varía.
 </p>
 
-
  <blockquote>
 Pregunta: ¿Actualmente cómo se diferencia Supply Chain, Comercio Exterior y Logística en la literatura académica?
 </blockquote>
 
 <p>La evolución de una competencia no solo depende de su formulación interna, sino también del campo disciplinar que la enmarca. Así, analizar cómo varía <span class="tooltip"> <span class="term">semánticamente</span> <span class="tooltip-text">Estudio del significado de la palabra y su expresión.</span> </span> las competencias entre áreas permite detectar su orientación formativa dominante, sesgo temático o vacío emergente. Este estudio se sitúa en esa intersección, combinando una técnica de representación semántica con análisis estructurado de <span class="tooltip"> <span class="term">rutas</span> <span class="tooltip-text">Un concepto estructurado en secuencia: acción-objeto--finalidad--contexto.</span></span>. El objetivo es revelar un patrón conceptual que no es evidente desde la simple lectura textual, pero que influye directamente en el diseño y convergencia de un perfil profesional.</p>
 
-
 <img src="images/nlppipeline.png" alt="Análisis de competencia" width="750">
-
 
 <blockquote>
 En el análisis de resúmenes académicos (abstracts), una competencia laboral potencial puede descomponerse en cuatro elementos fundamentales que permiten identificar su estructura semántica, sin que aún constituya una competencia de formación formalizada. En este caso, la acción está representada por el verbo “usar”, que indica lo que el profesional realiza; el objeto define sobre qué recae la acción, en este ejemplo “algoritmos de IA”; la finalidad aporta el sentido estratégico de la actuación, “gestión de inventarios”; y la condición o contexto señala bajo qué circunstancias se ejecuta, aquí “en entornos multinodal”. 
@@ -315,15 +309,12 @@ En el análisis de resúmenes académicos (abstracts), una competencia laboral p
   </figcaption>
 </figure>
 
-
 <h3> Selección de journal y representatividad</h3> 
 
-<p><strong>El factor de impacto (Impact Factor, IF)</strong>  de un journal es una medida que indica la relevancia y visibilidad académica de una revista científica. Se calcula observando cuántas veces, en promedio, han sido citados los artículos publicados en esa revista durante los últimos dos años. En términos simples: a mayor factor de impacto, más influyentes y citados son los artículos de esa revista. Por ejemplo, si una revista tiene un factor de impacto de 4.0, significa que, en promedio, cada artículo publicado en ella fue citado cuatro veces en los dos años siguientes. Además del IF, existen otros índices relevantes: el <strong>SCImago Journal Rank (SJR), que pondera las citas según el prestigio de las revistas que las emiten; y el <strong>Journal Citat</strong>on Reports (JCR) de Clarivate</strong>, que clasifica las publicaciones en cuartiles (Q1 a Q4) según su posición relativa dentro de su categoría temática, siendo Q1 el más alto. Estas métricas, combinadas, ofrecen una visión más completa del alcance, la calidad y el impacto editorial de una revista dentro de su disciplina.</p>
-
-
+<p><strong>El factor de impacto (Impact Factor, IF)</strong>  de un journal es una medida que indica la relevancia y visibilidad académica de una revista científica. Se calcula observando cuántas veces, en promedio, han sido citados los artículos publicados en esa revista durante los últimos dos años. En términos simples: a mayor factor de impacto, más influyentes y citados son los artículos de esa revista. Por ejemplo, si una revista tiene un factor de impacto de 4.0, significa que, en promedio, cada artículo publicado en ella fue citado cuatro veces en los dos años siguientes. Además del IF, existen otros índices relevantes: el <strong>SCImago Journal Rank (SJR), que pondera las citas según el prestigio de las revistas que las emiten; y el <strong>Journal Citation</strong> Reports (JCR) de Clarivate</strong>, que clasifica las publicaciones en cuartiles (Q1 a Q4) según su posición relativa dentro de su categoría temática, siendo Q1 el más alto. Estas métricas, combinadas, ofrecen una visión más completa del alcance, la calidad y el impacto editorial de una revista dentro de su disciplina.</p>
 
 <table>
-  <h3>Tabla 1: Impacto de revistas</h3>
+  <h3>Tabla 1: Impacto de revistas 📁</h3>
 <thead>
 <tr>
 <th>Revista</th>
@@ -445,9 +436,7 @@ En el análisis de resúmenes académicos (abstracts), una competencia laboral p
 </table>
 
 
-
 <h3>Proceso de inferencia </h3> 
-
 
 <p>Se compara la orientación semántica general de las competencias <span class="tooltip"> <span class="term">inferidas</span> <span class="tooltip-text">Extraer algo no dicho a partir del texto. </span> </span> en tres campos disciplinarios —Comercio Exterior, Supply Chain Management y Logística<sup id="ref1"><a href="#note1">[1]</a></sup>— a partir de los componentes estructurales de sus rutas: acción, objeto, finalidad y contexto. Para ello, se utiliza un enfoque basado en <span class="tooltip"> <span class="term"><em>embeddings</em> semánticos</span> <span class="tooltip-text">Representación numérica de palabras o frases que captura su significado según el contexto. </span> </span>, que transforma texto en <span class="tooltip"> <span class="term">vectores numéricos</span> <span class="tooltip-text">Secuencias ordenadas de números que representan magnitudes y direcciones en espacios matemáticos o computacionales.</span> </span> de <span class="tooltip"> <span class="term">alta dimensionalidad</span> <span class="tooltip-text">situación en que los datos tienen muchísimas variables o características, lo que complica el análisis y puede esconder patrones útiles. </span> </span> capaces de capturar el significado contextual.</p>
 
@@ -457,14 +446,11 @@ En el análisis de resúmenes académicos (abstracts), una competencia laboral p
 “Vectorizar textos y calcular similitud entre vectores medios...”
 </blockquote>
 
-<p>A diferencia de un análisis término a término, aquí se calcula un vector promedio por grupo y por dimensión, lo que permite identificar tendencias conceptuales generales, reduciendo la sensibilidad a <span class="tooltip"> <span class="term">variaciones léxicas específicas o frases atípicas </span> <span class="tooltip-text">Capacidad de notar cambios sutiles en palabras concretas. </span> </span>Esto permite evaluar la  <span class="tooltip"> <span class="term">proximidad semántica global</span> <span class="tooltip-text">Grado de similitud en significado entre conceptos dentro de un conjunto amplio de textos o corpus. </span> </span> entre disciplinas, brindando un marco más tolerante y robusto para analizar convergencias o divergencias en el diseño de competencias.</p>
+<p>A diferencia de un análisis término a término, aquí se calcula un vector promedio por grupo y por dimensión, lo que permite identificar tendencias conceptuales generales, reduciendo la sensibilidad a <span class="tooltip"> <span class="term">variaciones léxicas específicas o frases atípicas </span> <span class="tooltip-text">Capacidad de notar cambios sutiles en palabras concretas. </span> </span>Esto permite evaluar la  <span class="tooltip"> <span class="term">proximidad semántica global</span> <span class="tooltip-text">Grado de similitud en significado entre conceptos dentro de un conjunto amplio de textos o corpus </span> entre disciplinas, brindando un marco más tolerante y robusto para analizar convergencias o divergencias en el diseño de competencias.</p>
 
-
-<p>El diagrama de Sankey que verá a continuación representa visualmente las relaciones de similitud semántica entre los tres grupos analizados, divididas por dimensión de competencia. Cada flujo conecta dos grupos en torno a una dimensión (acción, objeto, finalidad o contexto), y su grosor indica el nivel de semejanza: a mayor grosor, mayor similitud. Al pasar el mouse sobre cualquier flujo, podrá ver el valor exacto de  <span class="tooltip"> <span class="term">similitud coseno</span> <span class="tooltip-text">Medida que indica cuán parecidos son dos textos comparando el ángulo entre sus representaciones numéricas (vectores). Si el valor está cerca de 1, significa que los textos tienen un significado muy parecido; si está cerca de 0, son muy distintos. No importa cuán largos sean, sino qué tan alineados están sus sentidos. Es como comparar la dirección de dos flechas: si apuntan igual, son similares. </span> </span> y los grupos comparados. Esto le permitirá explorar intuitivamente qué campos se acercan más en ciertos aspectos y dónde se distancian. Es una herramienta interactiva para descubrir patrones conceptuales de forma clara y visual.</p>
-
+<p>El diagrama de Sankey que a continuación representa visualmente las relaciones de similitud semántica entre los tres grupos analizados, divididas por dimensión de competencia. Cada flujo conecta dos grupos en torno a una dimensión (acción, objeto, finalidad o contexto), y su grosor indica el nivel de semejanza: a mayor grosor, mayor similitud. Al pasar el mouse sobre cualquier flujo, podrá ver el valor exacto de  <span class="tooltip"> <span class="term">similitud coseno</span> <span class="tooltip-text">Medida que indica cuán parecidos son dos textos comparando el ángulo entre sus representaciones numéricas (vectores). Si el valor está cerca de 1, significa que los textos tienen un significado muy parecido; si está cerca de 0, son muy distintos. No importa cuán largos sean, sino qué tan alineados están sus sentidos. Es como comparar la dirección de dos flechas: si apuntan igual, son similares. </span> </span> y los grupos comparados. Esto permite explorar intuitivamente qué campos se acercan más en ciertos aspectos y dónde se distancian. Es una herramienta interactiva para descubrir patrones conceptuales de forma clara y visual.</p>
 
 <p>Un <strong>umbral de similitud semántica</strong> es un valor numérico que define a partir de qué nivel dos textos o expresiones se consideran “lo suficientemente parecidos” en significado. Se calcula comparando vectores de representación semántica (por ejemplo, embeddings) y midiendo su proximidad mediante métricas como coseno o distancia euclidiana. Si la similitud medida supera el umbral fijado, se interpreta que existe correspondencia semántica relevante; si no, se considera que son distintos. El valor del umbral depende del contexto: en análisis lingüístico estricto suele ser alto (≥ 0.9), y en búsqueda aproximada puede ser más bajo (≈ 0.7).</p>
-
 
 <figure style="text-align: center; max-width: 800px; margin: 0 auto;">
   <div style="position: relative; width: 130%; padding-top: 120%; /* Ajusta este valor (ej: 100% si es muy alto) */">
@@ -490,12 +476,9 @@ En el análisis de resúmenes académicos (abstracts), una competencia laboral p
 
 <p>El <strong>umbral de similitud ≥ 0.7</strong> indica un nivel alto de coincidencia semántica entre dos elementos. Significa que, aunque las palabras puedan diferir, sus significados son lo suficientemente cercanos como para considerarlos equivalentes en contexto. Valores por debajo de 0.7 reflejan diferencias importantes en intención, contenido o enfoque. Este umbral permite distinguir entre similitud real y mera coincidencia superficial.</p>
 
-
 <h2>Tabla de similitud semántica</h2>
 
 <p> La siguiente tabla muestra el nivel promedio de similitud semántica dentro de cada grupo en relación con las cuatro dimensiones analizadas: acción, objeto, finalidad y contexto (condición). Los valores oscilan entre 0 y 1, donde un número mayor indica mayor coherencia o convergencia conceptual en las expresiones utilizadas por ese grupo. Por ejemplo, <strong>Comercio Exterior</strong> presenta alta consistencia en la dimensión "acción" (0.82), mientras que <strong>Logística</strong> muestra mayor dispersión en "objeto" (0.39). Esta tabla permite identificar qué dimensiones están más consolidadas semánticamente dentro de cada disciplina. </p>
-
-
 
 <div class="similarity-container">
 <h3>Tabla 1: Análisis de similitud (matriz unificada)</h3>
@@ -590,8 +573,6 @@ En el análisis de resúmenes académicos (abstracts), una competencia laboral p
 </table>
 </div>
 
-
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const table = document.getElementById('similarityTable');
@@ -626,7 +607,6 @@ En el análisis de resúmenes académicos (abstracts), una competencia laboral p
 
 <h2>Algunos hallazgos sobre la similitud entre Journals</h2>
 
-
 <p>Diferencia entre Comercio Exterior (ComeEx) y Logística. Desde la tabla de similitud semántica, se obtiene lo siguiente:</p>
 
 <p>1. Mayor diferencia en el "Objeto" de Estudio. ComeEx vs. Logística: La similitud semántica en la dimensión "objeto" es la más baja (0.76), e indica que los temas de investigación en ComeEx difieren significativamente con Logística. Por ex: ComeEx se enfoca en "acuerdos comerciales" o "balanzas de pagos". Logística prioriza "gestión de transporte" o "optimización de rutas".</p>
@@ -655,15 +635,15 @@ En el análisis de resúmenes académicos (abstracts), una competencia laboral p
 
 <h3>1. Enfoque temático distinto: "Objeto" como principal diferenciador.</h3>
 
-<p>ComeEx: Objetos de estudio: Políticas comerciales, acuerdos internacionales, flujos de capital, competitividad empresarial en mercados globales. Ejemplo:  "Evaluar el impacto del T-MEC en las exportaciones agrícolas mexicanas bajo nuevas normas de origen" (Journal of International Economics). "Mitigar riesgos cambiarios en operaciones de comercio exterior mediante coberturas financieras" (Review of World Economics). Logística: Objetos de estudio: Optimización de rutas, gestión de inventarios, tecnología en cadena de suministro, última milla: "Reducir costos de almacenamiento en centros de distribución mediante algoritmos de picking inteligente" (Journal of Business Logistics).  Brecha cuantificada: La similitud semántica en "objeto" es solo del 0.76, confirmando que son disciplinas con focos temáticos muy diferentes.</p>
+<p>ComeEx: Objetos de estudio: Políticas comerciales, acuerdos internacionales, flujos de capital, competitividad empresarial en mercados globales. Ejemplo:  "Evaluar el impacto del T-MEC en las exportaciones agrícolas mexicanas bajo nuevas normas de origen" (Journal of International Economics). "Mitigar riesgos cambiarios en operaciones de comercio exterior mediante coberturas financieras" (Review of World Economics). Logística: Objetos de estudio: Optimización de rutas, gestión de inventarios, tecnología en cadena de suministro, última milla: "Reducir costos de almacenamiento en centros de distribución mediante algoritmos de picking inteligente" (Journal of Business Logistics). Brecha cuantificada: La similitud semántica en "objeto" es solo del 0.76, confirmando que son disciplinas con focos temáticos muy diferentes.</p>
 
 <h3>2. Condiciones operativas vs. marco institucional.</h3>
 
-<p>Condiciones prácticas: Uso de tecnologías (IoT, blockchain), restricciones de transporte, eficiencia operativa: "Implementar drones para entregas médicas en zonas rurales con infraestructura vial limitada" (The International Journal of Logistics Management).  ComeEx: Condiciones normativas: Regulaciones aduaneras, aranceles, políticas monetarias: "Analizar el efecto de las sanciones comerciales de la UE sobre las cadenas de suministro rusas" (World Trade Review).  La similitud en "condición" es del 0.84, y refleja una superposición en contextos globales, pero con enfoques distintos (operativo vs. regulatorio).</p> 
+<p>Condiciones prácticas: Uso de tecnologías (IoT, blockchain), restricciones de transporte, eficiencia operativa: "Implementar drones para entregas médicas en zonas rurales con infraestructura vial limitada" (The International Journal of Logistics Management). ComeEx: Condiciones normativas: Regulaciones aduaneras, aranceles, políticas monetarias: "Analizar el efecto de las sanciones comerciales de la UE sobre las cadenas de suministro rusas" (World Trade Review).  La similitud en "condición" es del 0.84, y refleja una superposición en contextos globales, pero con enfoques distintos (operativo vs. regulatorio).</p> 
 
 <h3>3. Acciones similares, finalidades diferentes.</h3>
 
-<p>Acciones compartidas (similitud del 0.96 en "acción"):  Verbos como "optimizar", "analizar" o "implementar" son transversales, pero su aplicación varía:  ComeEx: "Optimizar aranceles para atraer inversión extranjera directa" (Latin American Journal of Trade Policy). Logística: "Optimizar rutas de reparto mediante IA para reducir emisiones de CO₂" (Cleaner Logistics and Supply Chain). </p>
+<p>Acciones compartidas (similitud del 0.96 en "acción"):  Verbos como "optimizar", "analizar" o "implementar" son transversales, pero su aplicación varía: ComeEx: "Optimizar aranceles para atraer inversión extranjera directa" (Latin American Journal of Trade Policy). Logística: "Optimizar rutas de reparto mediante IA para reducir emisiones de CO₂" (Cleaner Logistics and Supply Chain). </p>
 
 <p>Finalidad: ComeEx: Integración económica, competitividad internacional (ej. "Fomentar exportaciones no tradicionales"). Logística: Eficiencia y sostenibilidad operativa (ej. "Reducir tiempos de carga en puertos con automatización").</p>
 
@@ -675,7 +655,7 @@ En el análisis de resúmenes académicos (abstracts), una competencia laboral p
 
 <p>Enseñanza: Cursos de comercio exterior deben enfatizar normativas, mientras los de logística priorizan herramientas tecnológicas.</p>
 
-<p>Ejemplo: Un estudio sobre "Logística inversa de paneles solares en la UE bajo el Green Deal" requiere: ComeEx: Conocer regulaciones de importación de componentes. Logística: Diseñar rutas de reciclaje eficientes. (Evaluar las habilidades y competencias de ESCO).</p>
+<p>Por ex.: Un estudio sobre "Logística inversa de paneles solares en la UE bajo el Green Deal" requiere: ComeEx: Conocer regulaciones de importación de componentes. Logística: Diseñar rutas de reciclaje eficientes. (Evaluar las habilidades y competencias de ESCO).</p>
 
 <h3>Liderazgo empresarial.</h3>
 
@@ -693,7 +673,6 @@ En el análisis de resúmenes académicos (abstracts), una competencia laboral p
 <iframe src="Log/index.htm" width="100%" height="600" style="border:none;">
 </iframe>
 
-
 <h3>2. Empresas de ComEx. Tendencia: Regulación y gestión de riesgos globales.</h3>
 
 <p>Cargill: VAC: Uso de derivados financieros para cubrir riesgos en commodities agrícolas. Relación con datos: Alinea con "Cobertura de fluctuaciones cambiarias" (Review of International Economics).
@@ -705,7 +684,6 @@ En el análisis de resúmenes académicos (abstracts), una competencia laboral p
 <iframe src="ComEx/index.htm" width="100%" height="600" style="border:none;">
 </iframe>
 
-
 <h3>3. Empresas de Supply Chain Management (SCM). Tendencia: Sostenibilidad y resiliencia colaborativa.</h3>
 
 <p>Unilever: VAC: Red de proveedores sostenibles para aceite de palma cero deforestaciones. Relación con datos: Vinculado a "Seleccionar proveedores carbono-neutral" (Journal of Purchasing and Supply Management).</p>
@@ -713,7 +691,6 @@ En el análisis de resúmenes académicos (abstracts), una competencia laboral p
 <p>Patagonia: VAC: Cadena circular de reciclaje de prendas (Worn Wear). Relación con datos: Corresponde a "Desarrollar mercados secundarios para componentes remanufacturados" (Cleaner Logistics and Supply Chain).</p>
 
 <p>Tesla: VAC: Control vertical de baterías (desde minería de litio hasta reciclaje). Relación con datos: Refleja "Modelar redes CLSC para baterías" (Cleaner Logistics and Supply Chain).</p>
-
 
 <iframe src="scm/index.htm" width="100%" height="600" style="border:none;"> -</iframe>
 
@@ -749,7 +726,6 @@ En el análisis de resúmenes académicos (abstracts), una competencia laboral p
     </tr>
   </tbody>
 </table>
-
 
 <h3>Casos híbridos (intersecciones)</h3>
 
@@ -828,7 +804,6 @@ Estas empresas ejemplifican cómo las diferencias semánticas se traducen en mod
 </table>
 
 
-
 <h3>Desafíos y oportunidades.</h3>
 
 <p>Barreras: Alta dependencia de rutas marítimas (por ex: congestión en puertos como San Antonio) y costos de transporte.</p>
@@ -848,20 +823,11 @@ Estas empresas ejemplifican cómo las diferencias semánticas se traducen en mod
 
 <p>La tabla contiene algunas "rutas" de ejemplo. En una base de datos pueden existir una par de centenares de ellas para reaizar un estudio de similitud semántica. Es una excelente alternativa para conocer la existencia de tendencias propias en Supply Chain Management, Comercio Exterior y Logística.</p>
 
-
 <iframe src="dataframe_table.html" title="Tabla de Datos de Revistas"></iframe>
 
-  <hr>
-
-  <p style="font-size: 0.7rem; color: #666;">© 2025 OPT/DuocUC. All rights reserved.</p>
-
+<hr>
+<p style="font-size: 0.7rem; color: #666;">Gracias por su lectura. Si surge alguna pregunta no dude en escribirnos! rdelavega@duoc.cl/ © 2025 OPT/DuocUC. All rights reserved.</p>
 </body>
 </html>
-
-
-
-
-
-
 
 
